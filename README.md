@@ -1,4 +1,4 @@
-# ZCA Bootstrap Template v3.7.0 for zc158 and zc200
+# ZCA Bootstrap Template v3.4.0 for zc157 and zc158
 
 This Zen Cart template uses a [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/) foundation to provide an updated look-and-feel to your Zen Cart.  Since the template is standards-based, it's easier to make layout changes to your store.
 
@@ -10,13 +10,14 @@ This Zen Cart template uses a [Bootstrap](https://getbootstrap.com/docs/4.5/gett
 
 ## External Packages Used
 
-- [Bootstrap 4.6.2](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
-- [Font Awesome 6.5.2](https://fontawesome.com/)
-- [jQuery 3.7.1](https://jquery.com/download/)
+- [Bootstrap 4.6.0](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
+- [Font Awesome 5.15.1](https://fontawesome.com/)
+- [jQuery 3.5.1](https://jquery.com/download/)
 
 ## Features:
 
-- Supports Zen Cart major versions **1.5.8** and **2.0.0**, best when run on a zc158**a** (or zc200) installation.  Validated on PHP versions 7.4 through 8.3.
+- Supports Zen Cart versions **1.5.7** and **1.5.8**, best when run on a zc157**c** (or zc158) installation.
+  - For Zen Cart 1.5.7 (no suffix) and 1.5.7a, be sure to apply all the [Known Bugs and Fixes](https://www.zen-cart.com/showthread.php?226872-Known-bugs-(and-fixes)-for-v1-5-7-series) for the template's proper operation.
 - Bootstrap 4 Framework.
 - Responsive.
 - 3 Column Layout (removes right column on product info, shopping cart & checkout pages).
@@ -35,7 +36,7 @@ This Zen Cart template uses a [Bootstrap](https://getbootstrap.com/docs/4.5/gett
 
 ## Useful Links:
 
-- 'Official' Bootstrap 4.6 documentation: https://getbootstrap.com/docs/4.6/getting-started/introduction/
+- 'Official' Bootstrap 4.5 documentation: https://getbootstrap.com/docs/4.5/components/alerts/
 - Bootstrap Classes 'Cheat-sheet': https://hackerthemes.com/bootstrap-cheatsheet/
 - Templates, Snippets and more: https://bootstrapious.com/
 - w3schools has a bunch of 'Try It' links: https://www.w3schools.com/bootstrap4/default.asp
@@ -46,4 +47,4 @@ This Zen Cart template uses a [Bootstrap](https://getbootstrap.com/docs/4.5/gett
 
 ## Additional Information:
 
-- [FAQs](https://github.com/lat9/ZCA-Bootstrap-Template/wiki/Frequently-Asked-Questions).  View the current list of Frequently Asked Questions.
+- [FAQs](./pages/faqs.md).  View the current list of Frequently Asked Questions.
