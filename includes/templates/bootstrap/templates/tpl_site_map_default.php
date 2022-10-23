@@ -54,6 +54,7 @@ if (SHOW_ACCOUNT_LINKS_ON_SITE_MAP === 'Yes') {
         <li class="list-group-item"><?php echo '<a href="' . zen_href_link(FILENAME_REVIEWS) . '">' . PAGE_REVIEWS . '</a>'; ?></li>
         <li class="list-group-item"><?php echo BOX_HEADING_INFORMATION; ?>
             <ul class="list-group">
+                <li class="list-group-item"><?php echo '<a href="' . zen_href_link(FILENAME_ABOUT_US) . '">' . BOX_INFORMATION_ABOUT_US . '</a>'; ?></li>
 <?php
 if (DEFINE_SHIPPINGINFO_STATUS <= '1') {
 ?>

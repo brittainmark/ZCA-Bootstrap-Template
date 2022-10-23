@@ -18,6 +18,10 @@
     .img-fluid.listingProductImage {
         min-width: unset;
     }
+    /* Padd image on aboutus page*/
+    .mega-about img {
+        padding-right: 1rem;
+    }
     /* color changes */
     h1, h2, h3, h4, h5, h6 {
         color:#1f4f7d;
