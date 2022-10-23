@@ -85,6 +85,11 @@ if (!empty($external_bb_url) && !empty($external_bb_text)) {
                 <li class="list-group-item"><?php echo '<a href="' . $external_bb_url . '" rel="noopener" target="_blank">' . $external_bb_text . '</a>'; ?></li>
 <?php
 }
+if (defined('FILENAME_FAQ')) {
+?>
+                <li class="list-group-item"><?php echo '<a href="' . zen_href_link(FILENAME_FAQ) . '">' . BOX_INFORMATION_FAQ . '</a>'; ?></li>
+<?php
+}
 if (defined('MODULE_ORDER_TOTAL_GV_STATUS') && MODULE_ORDER_TOTAL_GV_STATUS === 'true') {
 ?>
                 <li class="list-group-item"><?php echo '<a href="' . zen_href_link(FILENAME_GV_FAQ) . '">' . BOX_INFORMATION_GV . '</a>'; ?></li>

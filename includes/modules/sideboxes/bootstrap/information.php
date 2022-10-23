@@ -79,7 +79,9 @@ if (!empty($external_bb_url) && !empty($external_bb_text)) {
 if (DEFINE_SITE_MAP_STATUS <= 1) {
     $information[] = '<a class="' . $information_classes . '" href="' . zen_href_link(FILENAME_SITE_MAP) . '">' . BOX_INFORMATION_SITE_MAP . '</a>';
 }
-
+if (defined('FILENAME_FAQ')) {
+    $information[] = '<a class="' . $information_classes . '" href="' . zen_href_link(FILENAME_FAQ) . '">' . BOX_INFORMATION_FAQ . '</a>';
+}
 // only show GV FAQ when installed
 if (defined('MODULE_ORDER_TOTAL_GV_STATUS') && MODULE_ORDER_TOTAL_GV_STATUS === 'true') {
     $information[] = '<a class="' . $information_classes . '" href="' . zen_href_link(FILENAME_GV_FAQ) . '">' . BOX_INFORMATION_GV . '</a>';
