@@ -2,7 +2,7 @@
 /**
  * new_products.php module
  * 
- * BOOTSTRAP v3.6.4
+ * BOOTSTRAP v3.4.0
  *
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -75,10 +75,7 @@ if ($num_products_count > 0) {
 
         $new_products_image = '';
         if (!($new_products->fields['products_image'] === '' && PRODUCTS_IMAGE_NO_IMAGE_STATUS === '0')) {
-            $new_products_image =
-                '<a href="' . $new_products_link . '" title="' . zen_output_string_protected($new_products_name) . '">' .
-                    zen_image(DIR_WS_IMAGES . $new_products->fields['products_image'], $new_products_name, IMAGE_PRODUCT_NEW_WIDTH, IMAGE_PRODUCT_NEW_HEIGHT) .
-                '</a><br>';
+            $new_products_image = '<a href="' . $new_products_link . '">' . zen_image(DIR_WS_IMAGES . $new_products->fields['products_image'], $new_products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) . '</a><br>';
         }
 
         $zco_notifier->notify('NOTIFY_MODULES_NEW_PRODUCTS_B4_LIST_BOX', [], $new_products->fields, $products_price);
@@ -97,11 +94,11 @@ if ($num_products_count > 0) {
     }
 
     $heading_month_name = sprintf(TABLE_HEADING_NEW_PRODUCTS, zca_get_translated_month_name());
-    if (!empty($new_products_category_id)) {
-        $category_title = zen_get_category_name((int)$new_products_category_id, $_SESSION['languages_id']);
-        $title = '<p id="newCenterbox-card-header" class="centerBoxHeading card-header h3">' . $heading_month_name . ($category_title !== '' ? ' - ' . $category_title : '') . '</p>';
+    if (!empty($current_category_id)) {
+        $category_title = zen_get_category_name((int)$current_category_id, $_SESSION['languages_id']);
+        $title = '<h4 id="newCenterbox-card-header" class="centerBoxHeading card-header">' . $heading_month_name . ($category_title !== '' ? ' - ' . $category_title : '' ) . '</h4>';
     } else {
-        $title = '<p id="newCenterbox-card-header" class="centerBoxHeading card-header h3">' . $heading_month_name . '</p>';
+        $title = '<h4 id="newCenterbox-card-header" class="centerBoxHeading card-header">' . $heading_month_name . '</h4>';
     }
     $zc_show_new_products = true;
 }

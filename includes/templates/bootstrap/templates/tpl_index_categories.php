@@ -105,6 +105,8 @@ foreach ($show_display_category as $next_display_category) {
         case 'SHOW_PRODUCT_INFO_CATEGORY_UPCOMING':
             require DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS);
             break;
+        case 'SHOW_PRODUCT_INFO_CATEGORY_PRODUCTS_RESTOCKED':
+            require $template->get_template_dir('tpl_modules_products_restocked.php', DIR_WS_TEMPLATE, $current_page_base, 'centerboxes') . '/tpl_modules_products_restocked.php';
         default:
             break;
     }
