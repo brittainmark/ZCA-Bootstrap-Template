@@ -31,7 +31,9 @@ if (!isset($flag_disable_footer) || !$flag_disable_footer) {
 <?php require($template->get_template_dir('tpl_ezpages_bar_footer.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_ezpages_bar_footer.php'); ?>
 <?php } ?>
 <!--eof-navigation display -->
-
+<!-- BOF My Footer Display -->
+<?php require($template->get_template_dir('tpl_footer_default.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_footer_default.php'); ?> 
+<!-- EOF My Footer Display -->
 <!--bof-ip address display -->
 <?php
 if (SHOW_FOOTER_IP == '1') {
@@ -68,7 +70,19 @@ echo zen_display_banner('static', $banner);
 <!--bof- site copyright display -->
 <div id="siteinfoLegal" class="legalCopyright text-center"><?php echo FOOTER_TEXT_BODY; ?></div>
 <!--eof- site copyright display -->
-
+<!--bof sitemap, privacy, conditions -->
+<nav id="footer-bottom"  class="navbar navbar-extend-sm justify-content-center rounded-top">
+        <?php if (DEFINE_SITE_MAP_STATUS <= 1) { ?>
+            <a href="<?php echo zen_href_link(FILENAME_SITE_MAP); ?>" class="nav-link"><?php echo BOX_INFORMATION_SITE_MAP; ?></a>
+        <?php } ?>
+        <?php if (DEFINE_PRIVACY_STATUS <= 1) { ?>
+            <a href="<?php echo zen_href_link(FILENAME_PRIVACY); ?>" class="nav-link"><?php echo BOX_INFORMATION_PRIVACY; ?></a>
+        <?php } ?>
+        <?php if (DEFINE_CONDITIONS_STATUS <= 1) { ?>
+            <a href="<?php echo zen_href_link(FILENAME_CONDITIONS); ?>" class="nav-link"><?php echo BOX_INFORMATION_CONDITIONS; ?></a>
+        <?php } ?>
+</nav>
+<!--eof sitemap, privacy, conditions -->
 
 </div>
 <?php

@@ -22,6 +22,16 @@
     .mega-about img {
         padding-right: 1rem;
     }
+    /* footer bottom menu */
+    #footerBottomMenu a {
+        color: #fff;
+    }
+    #footerBottomMenu a:hover {
+        font-weight: bold;
+        color: #fff;
+        background: #007f7f;
+        border-radius: 8px;
+    }
     /* color changes */
     h1, h2, h3, h4, h5, h6 {
         color:#1f4f7d;
