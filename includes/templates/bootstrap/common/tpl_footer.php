@@ -24,7 +24,7 @@ require(DIR_WS_MODULES . zen_get_module_directory('footer.php'));
 if (!isset($flag_disable_footer) || !$flag_disable_footer) {
 ?>
 
-<div id="footerWrapper">
+<div id="footerWrapper" class="rounded-top">
 
 <!--bof-navigation display -->
 <?php if (EZPAGES_STATUS_FOOTER == '1' or (EZPAGES_STATUS_FOOTER == '2' && zen_is_whitelisted_admin_ip())) { ?>

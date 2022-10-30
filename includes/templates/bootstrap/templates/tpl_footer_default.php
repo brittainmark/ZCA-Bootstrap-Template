@@ -10,7 +10,7 @@
  */
 ?>
 <!-- BOF My Footer Menu -->
-<div id="footerBottomMenu" class="container-flex centerBoxHeading d-flex rounded">
+<div id="footerBottomMenu" class="container-flex d-flex rounded">
     <div class="row col-sm-12">
         <div id="footerMenuOne" class="col-sm-6 pull-sm-left" >
             <h4 class="leftBoxHeading rounded">Shop</h4>

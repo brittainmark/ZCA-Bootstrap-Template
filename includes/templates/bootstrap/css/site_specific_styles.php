@@ -29,14 +29,16 @@
     }
     /* color changes */
     #footerBottomMenu a {
-        color: #fff;
+        color: <?php echo ZCA_FOOTER_WRAPPER_TEXT_COLOR; ?>;
     }
     #footerBottomMenu a:hover {
-        color: #fff;
-        background: #007f7f;
+        color: <?php echo ZCA_SIDEBOX_LINK_COLOR_HOVER; ?>;
+        background: <?php echo ZCA_SIDEBOX_LINK_BACKGROUND_COLOR_HOVER; ?>;
     }
     h1, h2, h3, h4, h5, h6 {
         color:#1f4f7d;
     }
-    .list-quantity {color: <?php echo ZCA_BODY_PRODUCTS_NORMAL_COLOR; ?>;}
+    .list-quantity {
+        color: <?php echo ZCA_BODY_PRODUCTS_NORMAL_COLOR; ?>;
+    }
 </style>
