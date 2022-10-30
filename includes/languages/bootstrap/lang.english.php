@@ -37,7 +37,7 @@ $define = [
     'ENTRY_TELEPHONE_NUMBER_TEXT' => '',
     'ERROR_TEXT_COUNTRY_DISABLED_PLEASE_CHANGE' => 'Sorry, but we no longer accept billing or delivery addresses in "%s".  Please update this address to continue.',
     'LANGUAGE_CURRENCY' => 'GBP',
-    'MORE_INFO_TEXT' => 'details <i class="fa fa-arrow-circle-right"></i>',
+    'MORE_INFO_TEXT' => ' See More / To Buy ',
     'PREVNEXT_BUTTON_NEXT' => '[<span class="pg-hide">Next&nbsp;</span>&raquo;]',
     'PREVNEXT_BUTTON_PREV' => '[&laquo;<span class="pg-hide">&nbsp;Prev</span>]',
     'PRODUCT_PRICE_DISCOUNT_PERCENTAGE' => '% ',

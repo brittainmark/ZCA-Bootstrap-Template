@@ -240,16 +240,31 @@ if ($num_products_count > 0) {
 
         $href = zen_href_link(zen_get_info_page($record['products_id']), 'cPath=' . zen_get_generated_category_path_rev($linkCpath) . '&products_id=' . $record['products_id']);
         $listing_product_name = zen_get_products_name((int)$record['products_id']);
+        $listing_description = '';
+        if ((int)PRODUCT_LIST_DESCRIPTION > 0) {
+            $listing_description = zen_trunc_string(zen_clean_html(stripslashes(zen_get_products_description($record['products_id'], $_SESSION['languages_id']))), PRODUCT_LIST_DESCRIPTION);
+        }
+        $listing_model = $record['products_model'] ?? '';
+        $listing_weight = $record['products_weight'] ?? 0;
+        $listing_mfg_link = !empty($record['manufacturers_id']) ? zen_href_link(FILENAME_DEFAULT, 'manufacturers_id=' . (int)$record['manufacturers_id']) : '';
+        $listing_price = zen_get_products_display_price($record['products_id']);
 
+        $listing_qty_input_form = zen_draw_form('cart_quantity', zen_href_link($_GET['main_page'], zen_get_all_get_params(array('action')) . 'action=add_product&products_id=' . $record['products_id']), 'post', 'enctype="multipart/form-data"')
+            . '<input class="mt-2" type="text" name="cart_quantity" value="' . (zen_get_buy_now_qty($record['products_id'])) . '" maxlength="6" size="4" aria-label="' . ARIA_QTY_ADD_TO_CART . '">'
+            . '<br>'
+            . zen_draw_hidden_field('products_id', $record['products_id'])
+            . zen_image_submit(BUTTON_IMAGE_IN_CART, BUTTON_IN_CART_ALT)
+            . '</form>';
         $listing_quantity = $record['products_quantity'] ?? 0;
 
         $listing_mfg_name = $record['manufacturers_name'] ?? '';
 
-        $more_info_button = '<a class="moreinfoLink" href="' . $href . '">' . MORE_INFO_TEXT . '</a>';
+//        $more_info_button = '<a class="moreinfoLink" href="' . $href . '">' . MORE_INFO_TEXT . '</a>';
+        $more_info_button = '<div class="pl-details"><a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . zen_get_generated_category_path_rev($linkCpath) . '&products_id=' . $listing->fields['products_id']) . '">' . zen_image_button(BUTTON_IMAGE_GOTO_PROD_DETAILS, BUTTON_GOTO_PROD_DETAILS_ALT, 'class="listingBuyNowButton moreinfoLink"') . '</a></div>';
 
         $buy_now_link = zen_href_link($_GET['main_page'], zen_get_all_get_params(['action']) . 'action=buy_now&products_id=' . $record['products_id']);
         $buy_now_button = zca_button_link($buy_now_link, BUTTON_BUY_NOW_ALT, 'mt-2 button_buy_now listingBuyNowButton');
-
+            
         $lc_button = '';
         if (zen_requires_attribute_selection($record['products_id']) || PRODUCT_LIST_PRICE_BUY_NOW === '0') {
             // more info in place of buy now
@@ -344,10 +359,13 @@ if ($num_products_count > 0) {
 
                     $lc_text = '<div class="pl-dp">' . zen_get_products_display_price($record['products_id']) . '</div>';
                     $lc_text .= zen_get_buy_now_button($record['products_id'], $lc_button, $more_info_button);
-                    $min_max_units = zen_get_products_quantity_min_units_display($record['products_id']);
-                    if ($min_max_units !== '') {
-                        $lc_text .= '<div class="mmu-wrap">' . $min_max_units . '</div>';
-                    }
+// MJFB
+//                    $min_max_units = zen_get_products_quantity_min_units_display($record['products_id']);
+//                    if ($min_max_units !== '') {
+//                        $lc_text .= '<div class="mmu-wrap">' . $min_max_units . '</div>';
+//                    }
+                    $lc_text .= mjfb_zen_get_products_quantity_min_units_display($record['products_id']);
+// MJFB End
                     if (zen_get_show_product_switch($record['products_id'], 'ALWAYS_FREE_SHIPPING_IMAGE_SWITCH')) {
                         if (zen_get_product_is_always_free_shipping($record['products_id'])) {
                             $lc_text .= '<div class="text-center">';
@@ -359,7 +377,10 @@ if ($num_products_count > 0) {
 
                 case 'PRODUCT_LIST_QUANTITY':
                     $lc_align = ($product_listing_layout_style === 'table') ? 'right' : 'center';
-                    $lc_text = TEXT_PRODUCTS_QUANTITY . $listing_quantity;
+// MJFB                    
+//                    $lc_text = TEXT_PRODUCTS_QUANTITY . $listing_quantity;
+                    $lc_text .= '<div class="list-quantity">' . $listing->fields['products_quantity'] . ' available</div>';
+// MJFB End                    
                     break;
 
                 case 'PRODUCT_LIST_WEIGHT':
