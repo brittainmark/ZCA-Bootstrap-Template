@@ -379,7 +379,7 @@ if ($num_products_count > 0) {
                     $lc_align = ($product_listing_layout_style === 'table') ? 'right' : 'center';
 // MJFB                    
 //                    $lc_text = TEXT_PRODUCTS_QUANTITY . $listing_quantity;
-                    $lc_text .= '<div class="list-quantity">' . $listing->fields['products_quantity'] . ' available</div>';
+                    $lc_text .= '<div class="list-quantity">' . $listing_quantity . ' available</div>';
 // MJFB End                    
                     break;
 
