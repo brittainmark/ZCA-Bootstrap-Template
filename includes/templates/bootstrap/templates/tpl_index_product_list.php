@@ -128,6 +128,15 @@ if (PROJECT_VERSION_MAJOR > 1) {
     </div>
     <div class="p-3"></div>
 <?php
+$columns_per_row = defined('PRODUCT_LISTING_COLUMNS_PER_ROW') ? PRODUCT_LISTING_COLUMNS_PER_ROW : 1;
+if (empty($columns_per_row) === false || (int)$columns_per_row !== 1) {
+	if (PRODUCT_LISTING_GRID_SORT && $_GET['main_page'] == 'index') {
+    /**
+     * require code to display the list-display-order dropdown
+     */
+        require($template->get_template_dir('/tpl_modules_products_listing_display_order.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_products_listing_display_order.php');
+    }
+}
 /**
  * require the code for listing products
  */
