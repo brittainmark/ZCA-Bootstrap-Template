@@ -18,14 +18,35 @@
     .img-fluid.listingProductImage {
         min-width: unset;
     }
-    /* Padd image on aboutus page*/
+    /* Pad image on aboutus page*/
     .mega-about img {
         padding-right: 1rem;
+    }
+    /* Customer services dropdown */
+    #CustomerServicesDropdown {
+        width: 600px;
+        padding: 20px;
+        background: #007f7f;
     }
     /* footer bottom menu */
     #footerBottomMenu a:hover {
         font-weight: bold;
         border-radius: 8px;
+    }
+    /* dropdown on hover */
+    .dropdown:hover>.dropdown-menu, .dropdown-submenu:hover>.dropdown-menu {
+        display: block;
+    }
+    /* multi level dropdown */
+    .dropdown-submenu {
+        position: relative;
+    }
+
+    .dropdown-submenu>.dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: 0px;
+        margin-left: 0px;
     }
     /* color changes */
     #footerBottomMenu a {
