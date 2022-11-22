@@ -63,13 +63,13 @@ Crystals or its associates.</p>
 	you do not return the goods, a deduction will be made from the refund
 	to cover the cost of collecting the goods. More information can be
 	found on the <a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">FAQ
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">FAQ
 		page</a><br> <a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Refund"><strong>Refunds
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Refund"><strong>Refunds
 			- changed your mind?</strong></a><br> <a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Damaged"><strong>Refunds
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Damaged"><strong>Refunds
 			- items damaged in transit.</strong></a><br> <a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Other""><strong>Refunds
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Other""><strong>Refunds
 			- other items returned to us: </a><br> and on the <a
 		href="<?php echo zen_href_link(FILENAME_SHIPPING, '', 'SSL');?>">delivery
 		page</a>

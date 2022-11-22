@@ -1,39 +1,39 @@
 <ul id="top">
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#PayPal"><strong>What
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#PayPal"><strong>What
 				is PayPal and how does it work?</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#BankTransfer"><strong>Paying
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#BankTransfer"><strong>Paying
 				for your purchases by Direct Bank Transfer</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#CreditCard"><strong>Paying
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#CreditCard"><strong>Paying
 				for your purchases using a Credit or Debit card</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#PayPalAccount"><strong>Paying
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#PayPalAccount"><strong>Paying
 				for your purchases using a PayPal account</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Cheque"><strong>Paying
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Cheque"><strong>Paying
 				for your purchases using a Cheque, Postal Order or Money Order</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Shop"><strong>Do
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Shop"><strong>Do
 				you have a shop? or can we visit you?</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Gift"><strong>Can
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Gift"><strong>Can
 				I buy an item as a gift for someone else?</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Source"><strong>How
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Source"><strong>How
 				do you source your stock?</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Refund"><strong>Refunds
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Refund"><strong>Refunds
 				- changed your mind?</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Damaged"><strong>Refunds
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Damaged"><strong>Refunds
 				- items damaged in transit.</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Other"><strong>Refunds
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Other"><strong>Refunds
 				- other items returned to us.</strong></a></li>
 	<li><a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>#Lost"><strong>I
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Lost"><strong>I
 				have not received my delivery.</strong></a></li>
 </ul>
 <p id="PayPal">
@@ -66,7 +66,7 @@
 	PLEASE GIVE YOUR POSTCODE AND NAME AS THE REFERENCE so that we can link
 	your payment with your order.
 </p>
-<a href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">Top</a>
+<a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <hr>
 <p id="CreditCard">
 	<strong>Paying for your purchases using a Credit or Debit card:</strong>
@@ -85,7 +85,7 @@
 	Payment will not be requested until after you have accepted the terms
 	and conditions, and confirmed that your order details are correct.
 </p>
-<a href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">Top</a>
+<a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <hr>
 <p id="PayPalAccount">
 	<strong>Paying for your purchases using a PayPal account:</strong>
@@ -113,7 +113,7 @@
 	PLEASE ENSURE YOU INCLUDE YOUR NAME AND ADDRESS WITH YOUR PAYMENT so
 	that we can link your payment with your order.
 </p>
-<a href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">Top</a>
+<a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <hr>
 <p id="Shop">
 	<strong>Do you have a shop? or can we visit you?</strong>
@@ -139,7 +139,7 @@
 	special deal on &quot;large&quot; purchases.<br> Please note that all
 	goods sold in this way will be &quot;as seen&quot;, and thus refunds
 	(if you later change your mind) will not be possible.<br> <a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">Top</a><br>
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a><br>
 <hr>
 <p id="Gift">
 	<strong>Can I buy an item as a gift for someone else?</strong>
@@ -157,7 +157,7 @@
 	be able to buy these &quot;on-line&quot;, but at the moment if you wish
 	to arrange to buy one of these please contact us to discuss what you
 	need.<br> <a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">Top</a><br>
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a><br>
 <hr>
 <p id="Source">
 	<strong>How do you source your stock?</strong>
@@ -173,7 +173,7 @@
 	their immediate distributors. This means that we are able to acquire
 	the best crystals we can find and sell them to our customers, usually
 	at &quot;below high street&quot; prices.<br> <a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">Top</a><br>
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a><br>
 <hr>
 <p id="Refund">
 	<strong>Refunds - changed your mind?</strong>
@@ -197,7 +197,7 @@ packing fee of &pound;1. If you chose a more expensive delivery rate
 (e.g. next day delivery) when purchasing the item we regret that these
 additional postal costs will not be refunded.
 <br>
-<a href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">Top</a>
+<a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <br>
 <hr>
 <p id="Damaged">
@@ -209,7 +209,7 @@ additional postal costs will not be refunded.
 	immediately, stating the problem, before you send the item(s) back. We
 	will then let you know the procedure to be followed regarding its
 	return and what our refund of your purchase and costs will be.<br> <a
-		href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">Top</a><br>
+		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a><br>
 <hr>
 <p id="Other">
 	<strong>Refunds - other items returned to us:</strong>
@@ -230,7 +230,7 @@ additional postal costs will not be refunded.
 	</li>
 </ul>
 <br>
-<a href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">Top</a>
+<a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <br>
 <hr>
 <p id="Lost">
@@ -294,5 +294,5 @@ additional postal costs will not be refunded.
 		</tbody>
 	</table>
 </div>
-<a href="<?php echo zen_href_link(FILENAME_PAGE_2, '', 'SSL');?>">Top</a>
+<a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <p>&nbsp;
