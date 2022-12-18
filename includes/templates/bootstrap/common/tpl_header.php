@@ -23,10 +23,11 @@ if (!empty($flag_disable_header)) {
     <div id="navMainWrapper">
         <div id="navMain">
             <nav class="navbar fixed-top mx-3 navbar-expand-lg rounded-bottom" aria-label="<?= TEXT_HEADER_ARIA_LABEL_NAVBAR ?>">
+<!--
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
-
+-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li id="nav-home" class="nav-item" title="<?= HEADER_TITLE_CATALOG ?>">
@@ -38,10 +39,10 @@ if (!empty($flag_disable_header)) {
 if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 ?>
                         <li class="nav-item" title="<?= HEADER_TITLE_LOGOFF ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL') ?>"><?= HEADER_TITLE_LOGOFF ?></a>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL') ?>"><i class="fas fa-sign-out"></i><span class="d-none d-md-block"><?= HEADER_TITLE_LOGOFF ?></span></a>
                         </li>
                         <li class="nav-item" title="<?= HEADER_TITLE_MY_ACCOUNT ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL') ?>"><?= HEADER_TITLE_MY_ACCOUNT ?></a>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL') ?>"><i class="fas fa-user"></i><span class="d-none d-md-block"><?= HEADER_TITLE_MY_ACCOUNT ?></span></a>
                         </li>
 <?php
 } else {
