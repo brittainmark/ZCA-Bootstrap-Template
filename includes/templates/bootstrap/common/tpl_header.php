@@ -28,29 +28,27 @@ if (!empty($flag_disable_header)) {
                     <i class="fas fa-bars"></i>
                 </button>
 -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-expand" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li id="nav-home" class="nav-item" title="<?= HEADER_TITLE_CATALOG ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_DEFAULT) ?>">
-                                <i class="fas fa-home"></i> <?= HEADER_TITLE_CATALOG ?>
-                            </a>
-                        </li>
-<?php
-if (zen_is_logged_in() && !zen_in_guest_checkout()) {
-?>
-                        <li class="nav-item" title="<?= HEADER_TITLE_LOGOFF ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL') ?>"><i class="fas fa-sign-out"></i><span class="d-none d-md-block"><?= HEADER_TITLE_LOGOFF ?></span></a>
-                        </li>
-                        <li class="nav-item" title="<?= HEADER_TITLE_MY_ACCOUNT ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL') ?>"><i class="fas fa-user"></i><span class="d-none d-md-block"><?= HEADER_TITLE_MY_ACCOUNT ?></span></a>
-                        </li>
+<?php if (!$this_is_home_page) { ?>        
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=  HTTP_SERVER . DIR_WS_CATALOG ;?>"><i class="fas fa-home" title="<?= strip_tags(HEADER_TITLE_CATALOG); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CATALOG; ?></span></a>
+                </li>
+<?php } ?>
+<?php if (zen_is_logged_in() && !zen_in_guest_checkout()) { ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><i class="fas fa-sign-out-alt" title="<?= strip_tags(HEADER_TITLE_LOGOFF); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_LOGOFF; ?></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><i class="fas fa-user" title="<?= strip_tags(HEADER_TITLE_MY_ACCOUNT); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_MY_ACCOUNT; ?></span></a>
+                </li>
 <?php
 } else {
     if (STORE_STATUS === '0') {
 ?>
                         <li class="nav-item" title="<?= HEADER_TITLE_LOGIN ?>">
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGIN, '', 'SSL') ?>">
-                                <i class="fas fa-sign-in-alt"></i> <?= HEADER_TITLE_LOGIN ?>
+                                <i class="fas fa-sign-in-alt" title="<?= strip_tags(HEADER_TITLE_LOGIN); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_LOGIN ?></span>
                             </a>
                         </li>
 <?php
@@ -59,17 +57,20 @@ if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 
 if ($_SESSION['cart']->count_contents() > 0) {
 ?>
-                        <li class="nav-item" title="<?= HEADER_TITLE_CART_CONTENTS ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL') ?>"><?= HEADER_TITLE_CART_CONTENTS ?></a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL'); ?>"> <span class="hidden-xs hdr-cart-total"><?= $currencies->format($_SESSION['cart']->show_total()); ?></span> <i class="fas fa-shopping-basket" title="<?= strip_tags(HEADER_TITLE_CART_CONTENTS); ?>"></i><sup><span class="badge badge-light text-black ml-n2"><?= $_SESSION['cart']->count_contents(); ?></span></sup> <span class="d-none d-md-inline"><?= HEADER_TITLE_CART_CONTENTS; ?></a>
                         </li>
-                        <li class="nav-item" title="<?= HEADER_TITLE_CHECKOUT ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL') ?>"><?= HEADER_TITLE_CHECKOUT ?></a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'); ?>"> <i class="fa fa-check-square" title="<?= strip_tags(HEADER_TITLE_CHECKOUT); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CHECKOUT; ?></span></a>
                         </li>
 <?php
 }
 
-require $template->get_template_dir('tpl_offcanvas_menu.php', DIR_WS_TEMPLATE, $current_page_base, 'common') . '/tpl_offcanvas_menu.php';
+//require $template->get_template_dir('tpl_offcanvas_menu.php', DIR_WS_TEMPLATE, $current_page_base, 'common') . '/tpl_offcanvas_menu.php';
 ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ADVANCED_SEARCH); ?>"><i class="fa fa-search" title="Search"></i></a>
+                        </li>
                     </ul>
 <?php
 require DIR_WS_MODULES . zen_get_module_sidebox_directory('search_header.php');
