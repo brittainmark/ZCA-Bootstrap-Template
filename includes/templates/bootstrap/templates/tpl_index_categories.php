@@ -45,7 +45,8 @@ if ($show_welcome === true) {
         <?php require $template->get_template_dir('tpl_index_slider.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_index_slider.php'; ?>
     </div>
 <?php
-    if (DEFINE_MAIN_PAGE_STATUS === '1' || DEFINE_MAIN_PAGE_STATUS === '2') {
+// MJFB added ' && $show_welcome === true'
+    if ((DEFINE_MAIN_PAGE_STATUS === '1' || DEFINE_MAIN_PAGE_STATUS === '2') && $show_welcome === true) {
 ?>
     <div id="indexCategories-defineContent" class="defineContent">
 <?php

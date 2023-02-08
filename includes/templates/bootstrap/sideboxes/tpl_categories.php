@@ -73,9 +73,10 @@ foreach ($box_categories_array as $next_box_cat) {
     }
 }
 
+// MJFB added  or SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED == 'true'
 if (SHOW_CATEGORIES_BOX_SPECIALS === 'true' || SHOW_CATEGORIES_BOX_PRODUCTS_NEW === 'true' || SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS === 'true' || SHOW_CATEGORIES_BOX_PRODUCTS_ALL === 'true' || SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED === 'true') {
-    if (SHOW_CATEGORIES_BOX_SPECIALS === 'true') {
-        $show_this = $db->Execute("SELECT s.products_id FROM " . TABLE_SPECIALS . " s WHERE s.status = 1 LIMIT 1");
+    if (SHOW_CATEGORIES_BOX_SPECIALS == 'true') {
+        $show_this = $db->Execute("SELECT s.products_id FROM " . TABLE_SPECIALS . " s WHERE s.status= 1 LIMIT 1");
         if (!$show_this->EOF) {
             $content .= '<a class="list-group-item list-group-item-action list-group-item-secondary" href="' . zen_href_link(FILENAME_SPECIALS) . '">' . CATEGORIES_BOX_HEADING_SPECIALS . '</a>';
         }
@@ -102,6 +103,7 @@ if (SHOW_CATEGORIES_BOX_SPECIALS === 'true' || SHOW_CATEGORIES_BOX_PRODUCTS_NEW 
     if (SHOW_CATEGORIES_BOX_PRODUCTS_ALL === 'true') {
         $content .= '<a class="list-group-item list-group-item-action  list-group-item-secondary" href="' . zen_href_link(FILENAME_PRODUCTS_ALL) . '">' . CATEGORIES_BOX_HEADING_PRODUCTS_ALL . '</a>';
     }
+// MJFB    
     if (SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED === 'true') {
         $display_limit = mjfb_get_restocked_date_range();
         $show_this = $db->Execute("SELECT p.products_id FROM " . TABLE_PRODUCTS . " p WHERE p.products_status = 1 AND p.products_quantity > 0 " . $display_limit . " LIMIT 1");      
@@ -109,5 +111,6 @@ if (SHOW_CATEGORIES_BOX_SPECIALS === 'true' || SHOW_CATEGORIES_BOX_PRODUCTS_NEW 
             $content .= '<a class="list-group-item list-group-item-action list-group-item-secondary" href="' . zen_href_link(FILENAME_PRODUCTS_RESTOCKED) . '">' . CATEGORIES_BOX_HEADING_PRODUCTS_RESTOCKED . '</a>';
         }
     }
+// MJFB End    
 }
 $content .= '</div>';

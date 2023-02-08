@@ -23,7 +23,8 @@ require(DIR_WS_MODULES . zen_get_module_directory('footer.php'));
 <?php
 if (!isset($flag_disable_footer) || !$flag_disable_footer) {
 ?>
-
+<!-- MJFB
+<div id="footerWrapper"> -->
 <div id="footerWrapper" class="rounded-top">
 
 <!--bof-navigation display -->
@@ -31,7 +32,7 @@ if (!isset($flag_disable_footer) || !$flag_disable_footer) {
 <?php require($template->get_template_dir('tpl_ezpages_bar_footer.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_ezpages_bar_footer.php'); ?>
 <?php } ?>
 <!--eof-navigation display -->
-<!-- BOF My Footer Display -->
+<!-- BOF My Footer Display  MJFB-->
 <?php require($template->get_template_dir('tpl_footer_default.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_footer_default.php'); ?> 
 <!-- EOF My Footer Display -->
 <!--bof-ip address display -->
@@ -70,7 +71,7 @@ echo zen_display_banner('static', $banner);
 <!--bof- site copyright display -->
 <div id="siteinfoLegal" class="legalCopyright text-center"><?php echo FOOTER_TEXT_BODY; ?></div>
 <!--eof- site copyright display -->
-<!--bof sitemap, privacy, conditions -->
+<!--bof sitemap, privacy, conditions MJFB-->
 <nav id="footer-bottom"  class="navbar navbar-extend-sm justify-content-center rounded-top">
         <?php if (DEFINE_SITE_MAP_STATUS <= 1) { ?>
             <a href="<?php echo zen_href_link(FILENAME_SITE_MAP); ?>" class="nav-link"><?php echo BOX_INFORMATION_SITE_MAP; ?></a>

@@ -12,7 +12,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: tpl_modules_categories_tabs.php 3395 2006-04-08 21:13:00Z ajeh $
  */
-
+// MJFB complete rewrite
 if (CATEGORIES_TABS_STATUS == '1' ) {
     include(DIR_WS_MODULES . zen_get_module_directory(FILENAME_CATEGORIES_TABS));
 ?>

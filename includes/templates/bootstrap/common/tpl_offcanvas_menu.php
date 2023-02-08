@@ -68,7 +68,7 @@ if (SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS === 'true') {
 <?php
     }
 }
-
+// MJFB
 if (SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED == 'true') {
     $display_limit = mjfb_get_restocked_date_range();
     $show_this = $db->Execute("SELECT p.products_id FROM " . TABLE_PRODUCTS . " p WHERE p.products_status = 1 AND p.products_quantity > 0 " . $display_limit . " LIMIT 1");      
@@ -78,6 +78,7 @@ if (SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED == 'true') {
 <?php          
     }
 }
+// MJFB end
 if (SHOW_CATEGORIES_BOX_PRODUCTS_ALL === 'true') {
 ?>
         <div class="dropdown-divider"></div><a class="dropdown-item" href="<?php echo zen_href_link(FILENAME_PRODUCTS_ALL); ?>"><?php echo CATEGORIES_BOX_HEADING_PRODUCTS_ALL; ?></a>

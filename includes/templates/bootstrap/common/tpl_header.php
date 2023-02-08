@@ -22,26 +22,36 @@ if (!empty($flag_disable_header)) {
 <!--bof-navigation display-->
     <div id="navMainWrapper">
         <div id="navMain">
-            <nav class="navbar fixed-top mx-3 navbar-expand-lg rounded-bottom" aria-label="<?= TEXT_HEADER_ARIA_LABEL_NAVBAR ?>">
-<!--
+            <nav class="navbar fixed-top mx-3 navbar-expand-lg rounded-bottom"  aria-label="<?= TEXT_HEADER_ARIA_LABEL_NAVBAR; ?>">
+<!-- MJFB
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 -->
                 <div class="navbar-expand" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-<?php if (!$this_is_home_page) { ?>        
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=  HTTP_SERVER . DIR_WS_CATALOG ;?>"><i class="fas fa-home" title="<?= strip_tags(HEADER_TITLE_CATALOG); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CATALOG; ?></span></a>
-                </li>
-<?php } ?>
-<?php if (zen_is_logged_in() && !zen_in_guest_checkout()) { ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><i class="fas fa-sign-out-alt" title="<?= strip_tags(HEADER_TITLE_LOGOFF); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_LOGOFF; ?></span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><i class="fas fa-user" title="<?= strip_tags(HEADER_TITLE_MY_ACCOUNT); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_MY_ACCOUNT; ?></span></a>
-                </li>
+<?php 
+if (!$this_is_home_page) { 
+// MJFB added strip_tags to all below.    
+?>        
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?=  HTTP_SERVER . DIR_WS_CATALOG ;?>">
+                                <i class="fas fa-home" title="<?= strip_tags(HEADER_TITLE_CATALOG); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CATALOG; ?></span>
+                            </a>
+                        </li>
+<?php
+}
+
+if (zen_is_logged_in() && !zen_in_guest_checkout()) { 
+?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><i class="fas fa-sign-out-alt" title="<?= strip_tags(HEADER_TITLE_LOGOFF); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_LOGOFF; ?></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><i class="fas fa-user" title="<?= strip_tags(HEADER_TITLE_MY_ACCOUNT); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_MY_ACCOUNT; ?></span></a>
+                        </li>
 <?php
 } else {
     if (STORE_STATUS === '0') {
@@ -66,7 +76,9 @@ if ($_SESSION['cart']->count_contents() > 0) {
 <?php
 }
 
+// MJFB
 //require $template->get_template_dir('tpl_offcanvas_menu.php', DIR_WS_TEMPLATE, $current_page_base, 'common') . '/tpl_offcanvas_menu.php';
+// MJFB to </UL>
 ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_ADVANCED_SEARCH); ?>"><i class="fa fa-search" title="Search"></i></a>

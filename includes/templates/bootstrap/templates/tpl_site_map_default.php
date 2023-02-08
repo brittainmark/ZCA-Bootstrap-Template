@@ -54,6 +54,7 @@ if (SHOW_ACCOUNT_LINKS_ON_SITE_MAP === 'Yes') {
         <li class="list-group-item"><?php echo '<a href="' . zen_href_link(FILENAME_REVIEWS) . '">' . PAGE_REVIEWS . '</a>'; ?></li>
         <li class="list-group-item"><?php echo BOX_HEADING_INFORMATION; ?>
             <ul class="list-group">
+                <!-- MJFB -->
                 <li class="list-group-item"><?php echo '<a href="' . zen_href_link(FILENAME_ABOUT_US) . '">' . BOX_INFORMATION_ABOUT_US . '</a>'; ?></li>
 <?php
 if (DEFINE_SHIPPINGINFO_STATUS <= '1') {
@@ -86,11 +87,13 @@ if (!empty($external_bb_url) && !empty($external_bb_text)) {
                 <li class="list-group-item"><?php echo '<a href="' . $external_bb_url . '" rel="noopener" target="_blank">' . $external_bb_text . '</a>'; ?></li>
 <?php
 }
+// MJFB
 if (defined('FILENAME_FAQ')) {
 ?>
                 <li class="list-group-item"><?php echo '<a href="' . zen_href_link(FILENAME_FAQ) . '">' . BOX_INFORMATION_FAQ . '</a>'; ?></li>
 <?php
 }
+// MJFB End
 if (defined('MODULE_ORDER_TOTAL_GV_STATUS') && MODULE_ORDER_TOTAL_GV_STATUS === 'true') {
 ?>
                 <li class="list-group-item"><?php echo '<a href="' . zen_href_link(FILENAME_GV_FAQ) . '">' . BOX_INFORMATION_GV . '</a>'; ?></li>

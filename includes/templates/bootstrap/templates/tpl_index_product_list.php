@@ -128,6 +128,7 @@ if (PROJECT_VERSION_MAJOR > 1) {
     </div>
     <div class="p-3"></div>
 <?php
+// MJFB
 $columns_per_row = defined('PRODUCT_LISTING_COLUMNS_PER_ROW') ? PRODUCT_LISTING_COLUMNS_PER_ROW : 1;
 if (empty($columns_per_row) === false || (int)$columns_per_row !== 1) {
 	if (PRODUCT_LISTING_GRID_SORT && $_GET['main_page'] == 'index') {
@@ -137,6 +138,7 @@ if (empty($columns_per_row) === false || (int)$columns_per_row !== 1) {
         require($template->get_template_dir('/tpl_modules_products_listing_display_order.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_products_listing_display_order.php');
     }
 }
+// MJFB End
 /**
  * require the code for listing products
  */
@@ -177,6 +179,15 @@ if ($error_categories) {
         if ($content_box_to_display['configuration_key'] === 'SHOW_PRODUCT_INFO_MISSING_UPCOMING') {
             require DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS);
         }
+
+// MJFB        
+        if ($content_box_to_display['configuration_key'] == 'SHOW_PRODUCT_INFO_MISSING_PRODUCTS_RESTOCKED') {
+            /**
+             * display the Products Restocked Center Box
+             */
+            require $template->get_template_dir('tpl_modules_products_restocked.php', DIR_WS_TEMPLATE, $current_page_base, 'centerboxes') . '/tpl_modules_products_restocked.php';
+        }
+// MJFB End
     }
 } else {
     $show_display_category = $db->Execute(SQL_SHOW_PRODUCT_INFO_LISTING_BELOW);
@@ -205,6 +216,15 @@ if ($error_categories) {
         if ($content_box_to_display['configuration_key'] === 'SHOW_PRODUCT_INFO_LISTING_BELOW_UPCOMING') {
             require DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS);
         }
+ 
+// MJFB
+        if ($content_box_to_display['configuration_key'] == 'SHOW_PRODUCT_INFO_LISTING_BELOW_PRODUCTS_RESTOCKED') {
+            /**
+             * display the Products Restocked Center Box
+             */
+            require $template->get_template_dir('tpl_modules_products_restocked.php', DIR_WS_TEMPLATE, $current_page_base, 'centerboxes') . '/tpl_modules_products_restocked.php';
+        }
+// MJFB End        
     } // !EOF
 } //// eof: categories
 ?>
