@@ -93,11 +93,8 @@ if ($num_products_count > 0) {
         $featured_products->MoveNextRandom();
     }
     
-// MJFB
-//    if (isset($new_products_category_id) && $new_products_category_id != 0) {
-//        $category_title = zen_get_category_name((int)$new_products_category_id, $_SESSION['languages_id']);
-    if (!empty($current_category_id)) {
-        $category_title = zen_get_category_name((int)$current_category_id, $_SESSION['languages_id']);
+    if (isset($new_products_category_id) && $new_products_category_id != 0) {
+        $category_title = zen_get_category_name((int)$new_products_category_id, $_SESSION['languages_id']);
         $title = '<h4 id="featuredCenterbox-card-header" class="centerBoxHeading card-header">' . TABLE_HEADING_FEATURED_PRODUCTS . ($category_title != '' ? ' - ' . $category_title : '') . '</h4>';
     } else {
         $title = '<h4 id="featuredCenterbox-card-header" class="centerBoxHeading card-header">' . TABLE_HEADING_FEATURED_PRODUCTS . '</h4>';

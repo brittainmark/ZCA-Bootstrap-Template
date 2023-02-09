@@ -89,8 +89,8 @@ if ($num_products_count > 0) {
         $restocked_products->MoveNextRandom();
     }
 
-    if (!empty($current_category_id)) {
-        $category_title = zen_get_category_name((int)$current_category_id, $_SESSION['languages_id']);
+    if (!empty($new_products_category_id)) {
+        $category_title = zen_get_category_name((int)$new_products_category_id, $_SESSION['languages_id']);
         $title = '<h4 id="restockedCenterbox-card-header" class="centerBoxHeading card-header">' . TABLE_HEADING_PRODUCTS_RESTOCKED . ($category_title != '' ? ' - ' . $category_title : '') . '</h4>';
     } else {
         $title = '<h4 id="restockedCenterbox-card-header" class="centerBoxHeading card-header">' . TABLE_HEADING_PRODUCTS_RESTOCKED . '</h4>';
