@@ -9,6 +9,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: DrByte 2020 Dec 19 New in v1.5.8-alpha $
  */
+// MJFB added back button link lines 30-32
 ?>
 <div class="centerColumn" id="aboutUs">
     <h1 id="aboutUsHeading" class="pageHeading"><?php echo HEADING_TITLE; ?></h1>

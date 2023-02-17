@@ -10,6 +10,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: tpl_modules_listing_display_order.php 3369 2006-04-03 23:09:13Z drbyte $
  */
+// MJFb whole file
 ?>
 <?php
 // NOTE: to remove a sort order option add an HTML comment around the option to be removed

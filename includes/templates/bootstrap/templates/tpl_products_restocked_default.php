@@ -1,6 +1,6 @@
 <?php
 /**
- * Page Template - Products REstocked listing
+ * Page Template - Products Restocked listing
  * 
  * BOOTSTRAP v1.0.BETA
  *
@@ -10,6 +10,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: Author: DrByte  Sat Jan 9 13:13:41 2016 -0500 Modified in v1.5.5 $
  */
+// MJFB whole file 
 ?>
 
 <div id="productsRestockedDefault" class="centerColumn">

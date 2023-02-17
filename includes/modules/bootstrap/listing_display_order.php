@@ -23,6 +23,9 @@ switch (true) {
   // reset and let reset continue
   $_GET['disp_order'] = $disp_order_default;
   $disp_order = $disp_order_default;
+  // MJFB added " IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC ,"
+  // or " IF (p.products_quantity = 0, 1, 0) ASC ,"
+  // to order by clauses
   case ($_GET['disp_order'] == 1):
   $order_by = " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC , pd.products_name";
   break;
@@ -48,4 +51,5 @@ switch (true) {
   $order_by = " ORDER BY p.products_sort_order, IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC ";
   break;
 }
+// MJFB End
 ?>

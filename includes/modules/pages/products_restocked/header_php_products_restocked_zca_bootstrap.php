@@ -13,13 +13,14 @@
  * zca_responsive_default BASE
  *
  */
+// MJFB whole file base on hearet_php_specials_zca_bootstrap.php
 // -----
 // restocked: Provide updated processing **ONLY IF** the ZCA bootstrap is the active template.
 //
 if (!(function_exists('zca_bootstrap_active') && zca_bootstrap_active())) {
     return;
 }
-
+// MJFB added
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
 // display order dropdown
@@ -29,7 +30,7 @@ require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_LISTING_DISPLAY_ORDER
 
 
 $display_limit = mjfb_get_restocked_date_range();
-
+// MJfB End
 $listing_sql =
     "SELECT p.products_id, p.products_type, pd.products_name, p.products_image, p.products_price, p.products_tax_class_id, p.products_date_added, p.products_model, 
             p.products_quantity, p.products_weight, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status, p.master_categories_id,

@@ -6,7 +6,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: lat9 2022 Jun 05 New in v1.5.8-alpha $
  */
-
+// MJFB whole file
 // This should be first line of the script:
 $zco_notifier->notify('NOTIFY_HEADER_START_ABOUT_US');
 if (!(function_exists('zca_bootstrap_active') && zca_bootstrap_active())) {

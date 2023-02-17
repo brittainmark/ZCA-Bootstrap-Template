@@ -9,6 +9,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: tpl_modules__products_restocked.php 2935 2006-02-01 11:12:40Z birdbrain $
  */
+// MJFB whole file based on tpl_modules_featured_products.php
 $zc_show_restocked_product = false;
 require DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_PRODUCTS_RESTOCKED_MODULE);
 ?>
