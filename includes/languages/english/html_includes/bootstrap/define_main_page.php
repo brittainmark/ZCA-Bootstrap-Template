@@ -11,9 +11,13 @@ healers and collectors - and in fact to anyone who loves and wants to buy crysta
 <!-- <h3>Privacy Policy</h3>
 <p><strong>As of 12 May 2020 we have updated our privacy policy to include Square payment processing. The policy can be found <a href="<?php echo zen_href_link(FILENAME_PRIVACY); ?>">here.</a></strong>
  -->
+ <?php if (date('Y-m-d') < '2022-11-30') {?>
  <h2>Autumn Sale</h2>
- <p>We are having an autumn sale! From 1<sup>st</sup> October 2022 until 30<sup>th</sup> November there will be 15% off everything.</p>
+ <p>We are having an autumn sale from 1<sup>st</sup> October 2022 until 30<sup>th</sup> November 2022, with 40% off books and 15% off everything else, before postage and packing.</p>
+ <?php }?>
 <h2 class="cvs">Deliveries and despatches:</h2>
+<h3 class="cvs"> IMPORTANT: Non-UK Customers. (11 Jan 2023)</h3>
+   <p>Royal Mail has temporarily suspended overseas shipping. If your order is urgent, please e-mail us with your postal address and details of the items you want (giving the item code number and quantity required). We will then look at other methods of shipping and get back to you with alternative shipping costs and payment methods. Any changes to this situation will be notified here. We are sorry for any inconvenience caused!</p>
 <h3 class="cvs">Despatches:</h3>
 <!-- this code for delayed despatch -->
 <?php
@@ -31,7 +35,7 @@ if (defined('MJFB_DELAYED_DESPATCH_DATE') && MJFB_DELAYED_DESPATCH_DATE<>"" && s
 <p>We normally despatch orders once a week on a Thursday for all orders received and paid for by 9pm on the Wednesday before.
 </p>
 <h3 class="cvs">Deliveries:</h3>
-<p>Please bear in mind that deliveries can be affected by local lockdown measures and/or staffing issues, and (in the case
+<p>Please bear in mind that deliveries can be affected by local staffing issues, and (in the case
 of destinations outside the UK) by the availability of sufficient freight carrying capacity on aircraft. Although every
 effort is made to deliver items within the timescales given per your chosen shipping method, at present these cannot be
 absolutely guaranteed and so your order may arrive a little later than expected.</p>

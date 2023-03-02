@@ -16,6 +16,7 @@ absolutely guaranteed and so your order may arrive a little later than expected.
 		Africa, South Korea, and Western Europe<sup>*</sup> (<sup>*</sup>for full
 		list of countries see below)
 	</li>
+	<li>Minimum order limits apply see <a href="#euroLimit">home page</a></li>
 	<li>At present all packages and parcels are sent using Royal Mail /
 		Parcel Force.</li>
 	<li>The delivery options available for your shopping basket will depend

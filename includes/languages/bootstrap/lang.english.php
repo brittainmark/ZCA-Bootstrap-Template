@@ -7,6 +7,32 @@
 global $locales;
 $locales = ['en_GB', 'en_GB.utf8', 'en', 'English_United Kingdom.1252'];
  @setlocale(LC_TIME, $locales);
+$define['LANGUAGE_CURRENCY'] = 'GBP';
+$define['BOX_HEADING_LINKS'] = '&nbsp;&nbsp;<small>[more]</small>';
+$define['BOX_HEADING_SHOPPING_CART'] = 'Shopping Basket';
+$define['BOX_SHOPPING_CART_EMPTY'] = 'Your basket is empty.';
+$define['BOX_INFORMATION_CONDITIONS'] = 'Terms &amp; Conditions';
+$define['BOX_INFORMATION_SHIPPING'] = 'Delivery &amp; Returns';
+$define['CATEGORY_COMPANY'] = 'Company Details (if applicable)';
+$define['CATEGORY_PERSONAL'] = 'Account Holder Details';
+$define['DATE_FORMAT'] = 'd/m/Y';
+$define['DOB_FORMAT_STRING'] = 'dd/mm/yyyy';
+$define['ENTRY_DATE_OF_BIRTH_ERROR'] = 'Is your birth date correct? Our system requires the date in this format: DD/MM/YYYY (eg 21/05/1970) or this format: YYYY-MM-DD (eg 1970-05-21)';
+$define['ENTRY_DATE_OF_BIRTH_TEXT'] = '* (eg. 21/05/1970 or 1970-05-21)';
+$define['ENTRY_STREET_ADDRESS'] = 'Address Line 1:';
+$define['ENTRY_STREET_ADDRESS_ERROR'] = 'Your Address line 1 must contain a minimum of ' . $define['ENTRY_STREET_ADDRESS_MIN_LENGTH'] . ' characters.';
+$define['ENTRY_CITY'] = 'Town/City:';
+$define['ENTRY_CITY_ERROR'] = 'Your Town/City must contain a minimum of ' . $define['ENTRY_CITY_MIN_LENGTH'] . ' characters.';
+$define['ENTRY_STATE'] = 'County/State:';
+$define['ENTRY_STATE_ERROR'] = 'Your County/State must contain a minimum of ' . $define['ENTRY_STATE_MIN_LENGTH'] . ' characters.';
+$define['ENTRY_STATE_ERROR_SELECT'] = 'Please select a County/State from the pull down menu.';
+$define['ENTRY_TELEPHONE_NUMBER'] = 'Telephone/Mobile:<br>(optional)';
+$define['ENTRY_TELEPHONE_NUMBER_ERROR'] = 'Your Telephone/Mobile Number must contain a minimum of ' . $define['ENTRY_TELEPHONE_MIN_LENGTH'] . ' characters.';
+$define['MORE_INFO_TEXT'] = 'details <i class="fa fa-arrow-circle-right"></i>';
+$define['SUCCESS_ADDED_TO_CART_PRODUCT'] = 'You have successfully added an item to your basket ...';
+$define['SUCCESS_ADDED_TO_CART_PRODUCTS'] = 'You have successfully added items to your basket ...';
+$define['TEXT_PRODUCT_WEIGHT_UNIT'] = 'Kg';
+$define['TEXT_SHIPPING_WEIGHT'] = 'Kg';
 $define = [
     'BOX_HEADING_LINKS' => '&nbsp;&nbsp;<small>[more]</small>',
     'BOX_HEADING_SHOPPING_CART' => 'Shopping Basket',

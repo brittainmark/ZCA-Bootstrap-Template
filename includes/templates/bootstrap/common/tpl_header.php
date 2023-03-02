@@ -34,7 +34,7 @@ if (!empty($flag_disable_header)) {
                     <ul class="navbar-nav mr-auto">
 <?php 
 if (!$this_is_home_page) { 
-// MJFB added strip_tags to all below.    
+// MJFB added strip_tags font awsome and titles to all below.    
 ?>        
                         <li class="nav-item">
                             <a class="nav-link" href="<?=  HTTP_SERVER . DIR_WS_CATALOG ;?>">

@@ -26,6 +26,23 @@
 if ($messageStack->size('checkout_shipping') > 0) {
     echo $messageStack->output('checkout_shipping');
 }
+// MJFB Delayed despatch
+if (defined('MJFB_DELAYED_DESPATCH_DATE') && MJFB_DELAYED_DESPATCH_DATE<>"" && strtotime(MJFB_DELAYED_DESPATCH_DATE) > strtotime('now')) {
+	echo '<p class="delayedDespatch">'.MJFB_DELAYED_DESPATCH_MESSAGE.'</p>';
+} else {
+    echo '<p class="despatchDate">Our next despatch date is ' . mjfb_expected_despatch_date();
+    if (defined('MJFB_CHRISTMAS_DESPATCH') && MJFB_CHRISTMAS_DESPATCH == 'TRUE') {
+       	echo '<br><span class="christmasDespatch">'.MJFB_CHRISTMAS_DESPATCH_MESSAGE. '</span>';
+    }
+    echo '.</p> ';
+}
+// MJFB Item date available    
+$mjfb_date_available = mjfb_get_date_available();
+if ($mjfb_date_available <> NULL) {
+    echo '<p id="productDateAvailable" class="docProduct centeredContent">'. sprintf(TEXT_DATE_AVAILABLE, zen_date_long($mjfb_date_available)).'</p>';
+    echo '<br class="clearBoth" />';
+}
+// MJFB End    
 ?>
     <div class="card-columns">
         <div id="shippingInformation-card" class="card mb-3">
@@ -143,7 +160,19 @@ if (zen_count_shipping_modules() > 0) {
         <div id="noShipping-card" class="card mb-3">
             <div class="card-body p-3">
                 <h2 class="pageHeading"><?php echo TITLE_NO_SHIPPING_AVAILABLE; ?></h2>
+<?php
+// MJFB Valid country
+    if (mjfb_valid_shipping_country() > 0){
+    ?>
+                <div class="content"><?php echo TEXT_NO_SHIPPING_AVAILABLE_TOO_HEAVY; ?></div>
+<?php                
+    } else {
+?>
                 <div class="content"><?php echo TEXT_NO_SHIPPING_AVAILABLE; ?></div>
+<?php
+    }
+?>
+            
             </div>
         </div>
 <?php
