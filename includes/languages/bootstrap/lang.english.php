@@ -7,38 +7,11 @@
 global $locales;
 $locales = ['en_GB', 'en_GB.utf8', 'en', 'English_United Kingdom.1252'];
  @setlocale(LC_TIME, $locales);
-$define['LANGUAGE_CURRENCY'] = 'GBP';
-$define['BOX_HEADING_LINKS'] = '&nbsp;&nbsp;<small>[more]</small>';
-$define['BOX_HEADING_SHOPPING_CART'] = 'Shopping Basket';
-$define['BOX_SHOPPING_CART_EMPTY'] = 'Your basket is empty.';
-$define['BOX_INFORMATION_CONDITIONS'] = 'Terms &amp; Conditions';
-$define['BOX_INFORMATION_SHIPPING'] = 'Delivery &amp; Returns';
-$define['CATEGORY_COMPANY'] = 'Company Details (if applicable)';
-$define['CATEGORY_PERSONAL'] = 'Account Holder Details';
-$define['DATE_FORMAT'] = 'd/m/Y';
-$define['DOB_FORMAT_STRING'] = 'dd/mm/yyyy';
-$define['ENTRY_DATE_OF_BIRTH_ERROR'] = 'Is your birth date correct? Our system requires the date in this format: DD/MM/YYYY (eg 21/05/1970) or this format: YYYY-MM-DD (eg 1970-05-21)';
-$define['ENTRY_DATE_OF_BIRTH_TEXT'] = '* (eg. 21/05/1970 or 1970-05-21)';
-$define['ENTRY_STREET_ADDRESS'] = 'Address Line 1:';
-$define['ENTRY_STREET_ADDRESS_ERROR'] = 'Your Address line 1 must contain a minimum of ' . $define['ENTRY_STREET_ADDRESS_MIN_LENGTH'] . ' characters.';
-$define['ENTRY_CITY'] = 'Town/City:';
-$define['ENTRY_CITY_ERROR'] = 'Your Town/City must contain a minimum of ' . $define['ENTRY_CITY_MIN_LENGTH'] . ' characters.';
-$define['ENTRY_STATE'] = 'County/State:';
-$define['ENTRY_STATE_ERROR'] = 'Your County/State must contain a minimum of ' . $define['ENTRY_STATE_MIN_LENGTH'] . ' characters.';
-$define['ENTRY_STATE_ERROR_SELECT'] = 'Please select a County/State from the pull down menu.';
-$define['ENTRY_TELEPHONE_NUMBER'] = 'Telephone/Mobile:<br>(optional)';
-$define['ENTRY_TELEPHONE_NUMBER_ERROR'] = 'Your Telephone/Mobile Number must contain a minimum of ' . $define['ENTRY_TELEPHONE_MIN_LENGTH'] . ' characters.';
-$define['MORE_INFO_TEXT'] = 'details <i class="fa fa-arrow-circle-right"></i>';
-$define['SUCCESS_ADDED_TO_CART_PRODUCT'] = 'You have successfully added an item to your basket ...';
-$define['SUCCESS_ADDED_TO_CART_PRODUCTS'] = 'You have successfully added items to your basket ...';
-$define['TEXT_PRODUCT_WEIGHT_UNIT'] = 'Kg';
-$define['TEXT_SHIPPING_WEIGHT'] = 'Kg';
 $define = [
-    'BOX_HEADING_LINKS' => '&nbsp;&nbsp;<small>[more]</small>',
     'BOX_HEADING_SHOPPING_CART' => 'Shopping Basket',
     'BOX_INFORMATION_CONDITIONS' => 'Terms &amp; Conditions',
     'BOX_INFORMATION_SHIPPING' => 'Delivery &amp; Returns',
-    'BOX_SHOPPING_CART_EMPT' => 'Your basket is empty.',
+    'BOX_SHOPPING_CART_EMPTY' => 'Your basket is empty.',
     'CART_SHIPPING_METHOD_FREE_TEXT','Free Delivery',
     'CART_SHIPPING_METHOD_TEXT' => 'Available Delivery Methods',
     'CART_SHIPPING_QUOTE_CRITERIA' => 'Delivery quotes are based on the address information you selected:',
@@ -47,25 +20,25 @@ $define = [
     'DATE_FORMAT' => 'd/m/Y',
     'DOB_FORMAT_STRING' => 'dd/mm/yyyy',
     'EMPTY_CART_TEXT_NO_QUOTE' => 'Whoops! Your session has expired ... Please update your basket for Delivery Quote ...',
+    'ENTRY_CITY_ERROR' => 'Your Town/City must contain a minimum of ' . $define['ENTRY_CITY_MIN_LENGTH'] . ' characters.',
     'ENTRY_CITY' => 'Town/City:',
-    'ENTRY_CITY_ERROR' => 'Your Town/City must contain a minimum of ' . ENTRY_CITY_MIN_LENGTH . ' characters.',
     'ENTRY_DATE_OF_BIRTH_ERROR' => 'Is your birth date correct? Our system requires the date in this format: DD/MM/YYYY (eg 21/05/1970) or this format: YYYY-MM-DD (eg 1970-05-21)',
     'ENTRY_DATE_OF_BIRTH_TEXT' => '* (eg. 21/05/1970 or 1970-05-21)',
-    'ENTRY_STATE' => 'County/State:',
-    'ENTRY_STATE_ERROR' => 'Your County/State must contain a minimum of ' . ENTRY_STATE_MIN_LENGTH . ' characters.',
     'ENTRY_STATE_ERROR_SELECT' => 'Please select a County/State from the pull down menu.',
+    'ENTRY_STATE_ERROR' => 'Your County/State must contain a minimum of ' . $define['ENTRY_STATE_MIN_LENGTH'] . ' characters.',
     'ENTRY_STATE_TEXT' => '',
+    'ENTRY_STATE' => 'County/State:',
+    'ENTRY_STREET_ADDRESS_ERROR' => 'Your Address line 1 must contain a minimum of ' . $define['ENTRY_STREET_ADDRESS_MIN_LENGTH'] . ' characters.',
     'ENTRY_STREET_ADDRESS' => 'Address Line 1:',
-    'ENTRY_STREET_ADDRESS_ERROR' => 'Your Address line 1 must contain a minimum of ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' characters.',
-    'FREE_SHIPPING_DESCRIPTION' => 'Free Delivery for orders over %s',
-    'ENTRY_TELEPHONE_NUMBER' => 'Telephone/Mobile:<br>(optional)',
-    'ENTRY_TELEPHONE_NUMBER_ERROR' => 'Your Telephone/Mobile Number must contain a minimum of ' . ENTRY_TELEPHONE_MIN_LENGTH . ' characters.',
+    'ENTRY_TELEPHONE_NUMBER_ERROR' => 'Your Telephone/Mobile Number must contain a minimum of ' . $define['ENTRY_TELEPHONE_MIN_LENGTH'] . ' characters.',
     'ENTRY_TELEPHONE_NUMBER_TEXT' => '',
+    'ENTRY_TELEPHONE_NUMBER' => 'Telephone/Mobile:<br>(optional)',
     'ERROR_TEXT_COUNTRY_DISABLED_PLEASE_CHANGE' => 'Sorry, but we no longer accept billing or delivery addresses in "%s".  Please update this address to continue.',
+    'FREE_SHIPPING_DESCRIPTION' => 'Free Delivery for orders over %s',
     'LANGUAGE_CURRENCY' => 'GBP',
     'MORE_INFO_TEXT' => ' See More / To Buy ',
-    'PREVNEXT_BUTTON_NEXT' => '[<span class="pg-hide">Next&nbsp;</span>&raquo;]',
-    'PREVNEXT_BUTTON_PREV' => '[&laquo;<span class="pg-hide">&nbsp;Prev</span>]',
+//    'PREVNEXT_BUTTON_NEXT' => '[<span class="pg-hide">Next&nbsp;</span>&raquo;]',
+//    'PREVNEXT_BUTTON_PREV' => '[&laquo;<span class="pg-hide">&nbsp;Prev</span>]',
     'PRODUCT_PRICE_DISCOUNT_PERCENTAGE' => '% ',
     'PRODUCTS_ORDER_QTY_TEXT' => 'Add to Basket: ',
     'SUCCESS_ADDED_TO_CART_PRODUCT' => 'You have successfully added an item to your basket ...',
@@ -79,18 +52,15 @@ $define = [
     'TEXT_DATE_ADDED' => 'This product was added to our catalogue on %s.',
     'TEXT_DATE_AVAILABLE' => 'This order will not be despatched until stock available after %s',
     'TEXT_HEADER_DISCOUNT_PRICES_ACTUAL_PRICE' => 'Multiple Purchases <br> price per item',
-    'TEXT_INFO_SORT_BY_PRODUCTS_MODEL' => 'Item Code',
-    'TEXT_INFO_SORT_BY_PRODUCTS_MODEL_DESC' => 'Item Code Descending',
+//    'TEXT_INFO_SORT_BY_PRODUCTS_MODEL_DESC' => 'Item Code Descending',
+//    'TEXT_INFO_SORT_BY_PRODUCTS_MODEL' => 'Item Code',
+//    'TEXT_INFO_SORT_BY_PRODUCTS_QUANTITY_DESC' => 'Quantity Descending',
+//    'TEXT_INFO_SORT_BY_PRODUCTS_QUANTITY' => 'Quantity',
     'TEXT_PRODUCT_COLLECTIONS' => 'Music Samples: ',
-    'TEXT_INFO_SORT_BY_PRODUCTS_QUANTITY' => 'Quantity',
-    'TEXT_INFO_SORT_BY_PRODUCTS_QUANTITY_DESC' => 'Quantity Descending',
     'TEXT_PRODUCT_MODEL' => 'Code No: ',
-    'TEXT_PRODUCT_WEIGHT' => 'Delivery Weight: ',
     'TEXT_PRODUCT_WEIGHT_UNIT' => 'Kg',
+    'TEXT_PRODUCT_WEIGHT' => 'Delivery Weight: ',
     'TEXT_SHIPPING_WEIGHT' => 'Kg',
-    'PREVNEXT_BUTTON_NEXT' => '[<span class="pg-hide">Next&nbsp;</span>&raquo;]',
-    'PREVNEXT_BUTTON_PREV' => '[&laquo;<span class="pg-hide">&nbsp;Prev</span>]',
-    'PRODUCT_PRICE_DISCOUNT_PERCENTAGE' => '% ',
     'WARNING_SHOPPING_CART_COMBINED' => 'NOTICE: For your convenience, your current shopping basket has been combined with your basket from your last visit. Please review your shopping basket before checking out.',
 ];
 
