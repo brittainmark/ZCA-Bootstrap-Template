@@ -11,10 +11,11 @@ absolutely guaranteed and so your order may arrive a little later than expected.
 	<strong>Additionally, please note:</strong>
 </p>
 <ul>
-	<li>We only currently deliver to addresses within the UK and to
+	<li>We mainly deliver to addresses within the UK and to
 		Australia, Canada, Cyprus, New Zealand, the USA, Hong Kong, Singapore, South
 		Africa, South Korea, and Western Europe<sup>*</sup> (<sup>*</sup>for full
-		list of countries see below)
+		list of European countries see below)... If we don't deliver to your country contact 
+        us and we will see what we can do.
 	</li>
 	<li>Minimum order limits apply see <a href="#euroLimit">home page</a></li>
 	<li>At present all packages and parcels are sent using Royal Mail /

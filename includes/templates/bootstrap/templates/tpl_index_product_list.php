@@ -33,11 +33,23 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS === 'true') {
 <?php
 // categories_description
 if ($current_categories_description != '') {
+
+// MJFB added shorten me script
 ?>
         <div id="indexProductList-content" class="content">
             <?= $current_categories_description ?>
         </div>
+<script>
+    function shortenme(_this) {
+        $(_this).text() == 'see more...' ? $('#indexProductList-content').css('height', 'auto') : $('#indexProductList-content').css('height', '3em');
+        $(_this).text($(_this).text() == 'see more...' ? 'see less...' : 'see more...');
+        return false;
+    }
+</script>
+        <div id="indexProductList-content" class="content"><?php echo $current_categories_description;  ?></div>
+        <div id="indexProductList-contentMore"><a class="btn float-right smaller" onclick="shortenme(this)">see more...</a></div>
 <?php 
+// MJFB end shorten me script
 } // categories_description
 ?>
     </div>

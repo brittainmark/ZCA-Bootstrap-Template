@@ -261,9 +261,16 @@ if ($num_products_count > 0) {
 
 //        $more_info_button = '<a class="moreinfoLink" href="' . $href . '">' . MORE_INFO_TEXT . '</a>';
 
-            $more_info_button = '<div class="pl-details"><a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . 
-                    zen_get_generated_category_path_rev($linkCpath) . '&products_id=' . $listing->fields['products_id']) . '">' . 
-                    zen_image_button(BUTTON_IMAGE_GOTO_PROD_DETAILS, BUTTON_GOTO_PROD_DETAILS_ALT, 'class="listingBuyNowButton moreinfoLink"') . '</a></div>';
+        $more_info_button = '<a href="' . $href . '">';
+        if ($listing_quantity > 0) {
+            $more_info_button .= zen_image_button(BUTTON_IMAGE_GOTO_PROD_DETAILS, BUTTON_GOTO_PROD_DETAILS_ALT, 'class="listingBuyNowButton moreinfoLink"') . '</a>';
+        } else {
+            $more_info_button .= zen_image_button(MORE_INFO_TEXT, BUTTON_GOTO_PROD_DETAILS_ALT, 'class="listingBuyNowButton moreinfoLink"') . '</a>';
+        }
+
+//            $more_info_button = '<div class="pl-details"><a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . 
+//                    zen_get_generated_category_path_rev($linkCpath) . '&products_id=' . $listing->fields['products_id']) . '">' . 
+ //                   zen_image_button(BUTTON_IMAGE_GOTO_PROD_DETAILS, BUTTON_GOTO_PROD_DETAILS_ALT, 'class="listingBuyNowButton moreinfoLink"') . '</a></div>';
         $buy_now_link = zen_href_link($_GET['main_page'], zen_get_all_get_params(['action']) . 'action=buy_now&products_id=' . $record['products_id']);
         $buy_now_button = zca_button_link($buy_now_link, BUTTON_BUY_NOW_ALT, 'mt-2 button_buy_now listingBuyNowButton');
             

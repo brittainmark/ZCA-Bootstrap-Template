@@ -16,8 +16,8 @@ healers and collectors - and in fact to anyone who loves and wants to buy crysta
  <p>We are having an autumn sale from 1<sup>st</sup> October 2022 until 30<sup>th</sup> November 2022, with 40% off books and 15% off everything else, before postage and packing.</p>
  <?php }?>
 <h2 class="cvs">Deliveries and despatches:</h2>
-<h3 class="cvs"> IMPORTANT: Non-UK Customers. (11 Jan 2023)</h3>
-   <p>Royal Mail has temporarily suspended overseas shipping. If your order is urgent, please e-mail us with your postal address and details of the items you want (giving the item code number and quantity required). We will then look at other methods of shipping and get back to you with alternative shipping costs and payment methods. Any changes to this situation will be notified here. We are sorry for any inconvenience caused!</p>
+<h3 class="cvs"> IMPORTANT: Non-UK Customers. (15 Mar 2023)</h3>
+   <p>Royal Mail has now reinstated all overseas shipping. However, some delays may be experienced whilst any backlog is cleared. So please allow a little longer than usual for delivery.</p>
 <h3 class="cvs">Despatches:</h3>
 <!-- this code for delayed despatch -->
 <?php

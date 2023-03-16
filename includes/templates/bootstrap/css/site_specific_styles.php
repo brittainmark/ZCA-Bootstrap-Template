@@ -33,6 +33,10 @@
         font-weight: bold;
         border-radius: 8px;
     }
+    /* taglne */
+    #tagline {
+        font-size:2.5rem;
+    }
     /* dropdown on hover */
     .dropdown:hover>.dropdown-menu, .dropdown-submenu:hover>.dropdown-menu {
         display: block;
@@ -60,6 +64,29 @@
         color:#1f4f7d;
     }
     .list-quantity {
-        color: <?php echo ZCA_BODY_PRODUCTS_NORMAL_COLOR; ?>;
+        color: <?php echo ZCA_BUTTON_LINK_COLOR_HOVER; ?>;
+        padding: 0.5rem 0;
+    }
+    /* Delivery dropdown */
+    .dropdown_customer_service {
+      background-color: <?php echo ZCA_BODY_BACKGROUND_COLOR; ?>;
+      margin: 1rem;
+      border-radius: 1rem;
+    }
+    .dropdown_customer_service h2 {
+      color: <?php echo ZCA_HEADER_TABS_TEXT_COLOR; ?>;
+      background-color: <?php echo ZCA_HEADER_TABS_COLOR; ?>;
+      padding-top: .5rem;
+    }
+    .dropdown_customer_service p {
+        padding: 0 .5rem;
+    }
+    /* shorten me */
+    #indexProductList-content {
+        height: 4.5rem;
+        overflow: hidden;
+    }
+    #indexProductList-contentMore a {
+        line-height: 1;
     }
 </style>
