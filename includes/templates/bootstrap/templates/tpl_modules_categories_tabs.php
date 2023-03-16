@@ -25,7 +25,7 @@ if (CATEGORIES_TABS_STATUS == '1' ) {
         <div class="collapse navbar-collapse hover-dropdown" id="header2">
             <ul class="navbar-nav mr-auto">
                 <li class="dropdown nav-link">
-                    <a class="nav-item dropdown-toggle" id="categoriesDropdown" href ="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo BOX_HEADING_CATEGORIES;?></a>
+                    <a class="nav-item dropdown-toggle" id="categoryDropdown" href ="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo BOX_HEADING_CATEGORIES;?></a>
 <?php
     echo $menulist;
  ?>

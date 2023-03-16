@@ -45,7 +45,7 @@
         }
         ?>        
             </ul>
-        </div><br class="clearBoth" />
+        </div><br class="clearBoth">
     </div>
 </div>
 <!--EOF  My Footer Menu  -->

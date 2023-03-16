@@ -26,8 +26,8 @@ absolutely guaranteed and so your order may arrive a little later than expected.
 		transaction: this ensures that the shipping methods presented to you
 		at checkout are the most cost-effective, and that all items reach you
 		in the best possible condition.</li>
-	<li>If you wish to purchase a number of books at the same time:<br />Books
-		for next-day delivery by Parcel Force will be packaged in one bundle.<br />Books
+	<li>If you wish to purchase a number of books at the same time:<br>Books
+		for next-day delivery by Parcel Force will be packaged in one bundle.<br>Books
 		for despatch by 1st or 2nd class mail (small parcel) will be
 		despatched in separate packages, with a maximum of 2 books to each
 		package.

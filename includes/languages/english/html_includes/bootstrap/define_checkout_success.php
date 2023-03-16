@@ -10,9 +10,9 @@ if (defined('MJFB_DELAYED_DESPATCH_DATE') && MJFB_DELAYED_DESPATCH_DATE<>""){
 ?>
 <!-- End Delayed despatch -->
 <p>We will process your order as soon as your payment has cleared. If you paid
-by PayPal this should be within 3 working days. <br />
+by PayPal this should be within 3 working days. <br>
 If you asked to collect your order from us we will then e-mail or telephone you
-when your order is ready to collect.<br />
+when your order is ready to collect.<br>
 If we are despatching your order to you, we will then use the Royal Mail method
 you have chosen.
 <?php

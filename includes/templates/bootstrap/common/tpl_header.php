@@ -68,7 +68,7 @@ if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 if ($_SESSION['cart']->count_contents() > 0) {
 ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL'); ?>"> <span class="hidden-xs hdr-cart-total"><?= $currencies->format($_SESSION['cart']->show_total()); ?></span> <i class="fas fa-shopping-basket" title="<?= strip_tags(HEADER_TITLE_CART_CONTENTS); ?>"></i><sup><span class="badge badge-light text-black ml-n2"><?= $_SESSION['cart']->count_contents(); ?></span></sup> <span class="d-none d-md-inline"><?= HEADER_TITLE_CART_CONTENTS; ?></a>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL'); ?>"> <span class="hidden-xs hdr-cart-total"><?= $currencies->format($_SESSION['cart']->show_total()); ?></span> <i class="fas fa-shopping-basket" title="<?= strip_tags(HEADER_TITLE_CART_CONTENTS); ?>"></i><sup><span class="badge badge-light text-black ml-n2"><?= $_SESSION['cart']->count_contents(); ?></span></sup> <span class="d-none d-md-inline"><?= HEADER_TITLE_CART_CONTENTS; ?></span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'); ?>"> <i class="fa fa-check-square" title="<?= strip_tags(HEADER_TITLE_CHECKOUT); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CHECKOUT; ?></span></a>

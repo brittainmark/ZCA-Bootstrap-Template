@@ -11,12 +11,12 @@
 	we will not collect any information about you.</p>
 <ol type="1">
 	<li>If you (a) place an order and/or (b) create an account with us, the
-		following information will be collected:<br /> your name; postal
+		following information will be collected:<br> your name; postal
 		address; delivery address; phone number(s) (if supplied by you); Ip
 		address; and any comments you entered when placing an order.
 	</li>
-	<li>If you use PayPal to pay for your order we will also collect:<br />
-		PayPal payer id; PayPal transaction id.<br />NB: Transactions
+	<li>If you use PayPal to pay for your order we will also collect:<br>
+		PayPal payer id; PayPal transaction id.<br>NB: Transactions
 		completed using PayPal. PayPal do not share any card details with us;
 		and have their own privacy policy for any data they collect about you
 		(you can find out more about this <a
@@ -24,9 +24,9 @@
 		target="_blank">here</a>).
 	</li>
 	<li>If you use a credit or debit card (not through PayPal) we will
-		collect:<br /> the type of credit card used; the last 4 digits of
+		collect:<br> the type of credit card used; the last 4 digits of
 		credit card; the expiry date of the credit card; the square
-		transaction id and the Square tender id.<br />NB: We use square to
+		transaction id and the Square tender id.<br>NB: We use square to
 		process credit and debit card payments and only share with Square the
 		information necessary to complete the payment. Square give us a
 		transaction and tender id which we store. (you can find out more about
@@ -58,7 +58,7 @@
 		details necessary for us to manage your order. Only information that
 		is necessary to complete the transaction will be passed to PayPal:
 		they in turn only give us the information that is necessary for us to
-		complete your order <br />(for example the PayPal transaction id,
+		complete your order <br>(for example the PayPal transaction id,
 		which enables us process any refunds). They will NOT include any of
 		your banking/card details.
 	</li>
@@ -92,7 +92,7 @@
 	will then remove <strong>ALL</strong> information <strong>not related
 		to orders*</strong> from our system. (NB: once this has happened, you
 	will no longer be able to access any historic or current details of
-	your account.)<br /> *Please be aware that for legal reasons we are
+	your account.)<br> *Please be aware that for legal reasons we are
 	required to keep details of items sold for a minimum of 7 years after
 	the completion of each transaction
 </p>

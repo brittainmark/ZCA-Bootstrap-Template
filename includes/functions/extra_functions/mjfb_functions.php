@@ -134,8 +134,8 @@ function mjfb_get_restocked_date_range($time_limit = false) {
 	$upcoming_mask_range = time();
 	$upcoming_mask = date('Ymd', $upcoming_mask_range);
 
-	// echo 'Now:      '. date('Y-m-d') ."<br />";
-	// echo $time_limit . ' Days: '. date('Ymd', $date_range) ."<br />";
+	// echo 'Now:      '. date('Y-m-d') ."<br>";
+	// echo $time_limit . ' Days: '. date('Ymd', $date_range) ."<br>";
 	$zc_new_date = date('Ymd', $date_range);
 	switch (true) {
 		case (SHOW_NEW_PRODUCTS_LIMIT == 0):
