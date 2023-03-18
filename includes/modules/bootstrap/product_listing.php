@@ -261,6 +261,7 @@ if ($num_products_count > 0) {
 
 //        $more_info_button = '<a class="moreinfoLink" href="' . $href . '">' . MORE_INFO_TEXT . '</a>';
 
+// MJFB change button
         $more_info_button = '<a href="' . $href . '">';
         if ($listing_quantity > 0) {
             $more_info_button .= zen_image_button(BUTTON_IMAGE_GOTO_PROD_DETAILS, BUTTON_GOTO_PROD_DETAILS_ALT, 'class="listingBuyNowButton moreinfoLink"') . '</a>';
@@ -271,6 +272,7 @@ if ($num_products_count > 0) {
 //            $more_info_button = '<div class="pl-details"><a href="' . zen_href_link(zen_get_info_page($listing->fields['products_id']), 'cPath=' . 
 //                    zen_get_generated_category_path_rev($linkCpath) . '&products_id=' . $listing->fields['products_id']) . '">' . 
  //                   zen_image_button(BUTTON_IMAGE_GOTO_PROD_DETAILS, BUTTON_GOTO_PROD_DETAILS_ALT, 'class="listingBuyNowButton moreinfoLink"') . '</a></div>';
+// MJFB end
         $buy_now_link = zen_href_link($_GET['main_page'], zen_get_all_get_params(['action']) . 'action=buy_now&products_id=' . $record['products_id']);
         $buy_now_button = zca_button_link($buy_now_link, BUTTON_BUY_NOW_ALT, 'mt-2 button_buy_now listingBuyNowButton');
             
@@ -386,10 +388,9 @@ if ($num_products_count > 0) {
 
                 case 'PRODUCT_LIST_QUANTITY':
                     $lc_align = ($product_listing_layout_style === 'table') ? 'right' : 'center';
-// MJFB                    
-//                    $lc_text = TEXT_PRODUCTS_QUANTITY . $listing_quantity;
+// MJFB add div
                     $lc_text .= '<div class="list-quantity">' . $listing_quantity . ' available</div>';
-// MJFB End                    
+// MJFB end
                     break;
 
                 case 'PRODUCT_LIST_WEIGHT':
