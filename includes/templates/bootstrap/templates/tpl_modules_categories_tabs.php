@@ -83,7 +83,7 @@ if (CATEGORIES_TABS_STATUS == '1' ) {
                     <a class="nav-item dropdown-toggle" href="#" id="infoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <?php echo BOX_HEADING_INFORMATION; ?>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="infoDropdown">
+                    <div class="dropdown-menu m-0 p-0" aria-labelledby="infoDropdown">
                         <ul class="m-0 p-0">
 <?php
                 foreach ($information as $next_link) {
