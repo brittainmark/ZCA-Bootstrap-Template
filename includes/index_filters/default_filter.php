@@ -62,60 +62,67 @@ $listing_sql = "SELECT " . $select_column_list . " p.products_id, p.products_typ
                 WHERE p.products_status = 1
                 " . $and . "
                 " . $alpha_sort;
-
-// set the default sort order setting from the Admin when not defined by customer
-if (!isset($_GET['sort']) and PRODUCT_LISTING_DEFAULT_SORT_ORDER != '') {
-  $_GET['sort'] = PRODUCT_LISTING_DEFAULT_SORT_ORDER;
-}
+//
 // MJFB Modified to move sold items to end and list master category first. IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id, 0, 1) ASC ,
-if (isset($column_list)) {
-  if (!isset($_GET['sort']) 
-      || !preg_match('/[1-8][ad]/', $_GET['sort']) 
-      || (substr($_GET['sort'], 0, 1) > sizeof($column_list)) ) {
-    for ($i = 0, $n = sizeof($column_list); $i < $n; $i++) {
-      if (isset($column_list[$i]) && $column_list[$i] == 'PRODUCT_LIST_NAME') {
-        $_GET['sort'] = $i + 1 . 'a';
-        $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC , p.products_sort_order, pd.products_name";
-        break;
+// and to use bootstrap index filter if products listing page
+// 
+if ($current_page == FILENAME_DEFAULT) {
+    require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_LISTING_DISPLAY_ORDER));
+    $listing_sql .= $order_by;
+} else {
+    // set the default sort order setting from the Admin when not defined by customer
+    if (!isset($_GET['sort']) and PRODUCT_LISTING_DEFAULT_SORT_ORDER != '') {
+      $_GET['sort'] = PRODUCT_LISTING_DEFAULT_SORT_ORDER;
+    }
+    if (isset($column_list)) {
+      if (!isset($_GET['sort']) 
+          || !preg_match('/[1-8][ad]/', $_GET['sort']) 
+          || (substr($_GET['sort'], 0, 1) > sizeof($column_list)) ) {
+        for ($i = 0, $n = sizeof($column_list); $i < $n; $i++) {
+          if (isset($column_list[$i]) && $column_list[$i] == 'PRODUCT_LIST_NAME') {
+            $_GET['sort'] = $i + 1 . 'a';
+            $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC , p.products_sort_order, pd.products_name";
+            break;
+          } else {
+            // sort by products_sort_order when PRODUCT_LISTING_DEFAULT_SORT_ORDER is left blank
+            // for reverse, descending order use:
+            // $listing_sql .= " ORDER BY p.products_sort_order desc, pd.products_name";
+            $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC , p.products_sort_order, pd.products_name";
+            break;
+          }
+        }
+        // if set to nothing use products_sort_order and PRODUCTS_LIST_NAME is off
+        if (PRODUCT_LISTING_DEFAULT_SORT_ORDER == '') {
+          $_GET['sort'] = '20a';
+        }
       } else {
-        // sort by products_sort_order when PRODUCT_LISTING_DEFAULT_SORT_ORDER is left blank
-        // for reverse, descending order use:
-        // $listing_sql .= " ORDER BY p.products_sort_order desc, pd.products_name";
-        $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC , p.products_sort_order, pd.products_name";
-        break;
+        $sort_col = substr($_GET['sort'], 0, 1);
+        $sort_order = substr($_GET['sort'], -1);
+        switch ($column_list[$sort_col - 1]) {
+          case 'PRODUCT_LIST_MODEL':
+            $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC , p.products_model " . ($sort_order == 'd' ? 'DESC' : '') . ", pd.products_name";
+            break;
+          case 'PRODUCT_LIST_NAME':
+            $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC , pd.products_name " . ($sort_order == 'd' ? 'DESC' : '');
+            break;
+          case 'PRODUCT_LIST_MANUFACTURER':
+            $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , m.manufacturers_name " . ($sort_order == 'd' ? 'DESC' : '') . ", IF (p.master_categories_id = $current_category_id, 0, 1) ASC , pd.products_name";
+            break;
+          case 'PRODUCT_LIST_QUANTITY':
+            $listing_sql .= " ORDER BY p.products_quantity " . ($sort_order == 'd' ? 'DESC' : '') . ", pd.products_name";
+            break;
+          case 'PRODUCT_LIST_IMAGE':
+            $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC ,IF (p.master_categories_id = $current_category_id, 0, 1) ASC ,  pd.products_name";
+            break;
+          case 'PRODUCT_LIST_WEIGHT':
+            $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC ,IF (p.master_categories_id = $current_category_id, 0, 1) ASC ,  p.products_weight " . ($sort_order == 'd' ? 'DESC' : '') . ", pd.products_name";
+            break;
+          case 'PRODUCT_LIST_PRICE':
+            $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , p.products_price_sorter " . ($sort_order == 'd' ? 'DESC' : '') . ", pd.products_name";
+            break;
+        }
       }
     }
-    // if set to nothing use products_sort_order and PRODUCTS_LIST_NAME is off
-    if (PRODUCT_LISTING_DEFAULT_SORT_ORDER == '') {
-      $_GET['sort'] = '20a';
-    }
-  } else {
-    $sort_col = substr($_GET['sort'], 0, 1);
-    $sort_order = substr($_GET['sort'], -1);
-    switch ($column_list[$sort_col - 1]) {
-      case 'PRODUCT_LIST_MODEL':
-        $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC , p.products_model " . ($sort_order == 'd' ? 'DESC' : '') . ", pd.products_name";
-        break;
-      case 'PRODUCT_LIST_NAME':
-        $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC , pd.products_name " . ($sort_order == 'd' ? 'DESC' : '');
-        break;
-      case 'PRODUCT_LIST_MANUFACTURER':
-        $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , m.manufacturers_name " . ($sort_order == 'd' ? 'DESC' : '') . ", IF (p.master_categories_id = $current_category_id, 0, 1) ASC , pd.products_name";
-        break;
-      case 'PRODUCT_LIST_QUANTITY':
-        $listing_sql .= " ORDER BY p.products_quantity " . ($sort_order == 'd' ? 'DESC' : '') . ", pd.products_name";
-        break;
-      case 'PRODUCT_LIST_IMAGE':
-        $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC ,IF (p.master_categories_id = $current_category_id, 0, 1) ASC ,  pd.products_name";
-        break;
-      case 'PRODUCT_LIST_WEIGHT':
-        $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC ,IF (p.master_categories_id = $current_category_id, 0, 1) ASC ,  p.products_weight " . ($sort_order == 'd' ? 'DESC' : '') . ", pd.products_name";
-        break;
-      case 'PRODUCT_LIST_PRICE':
-        $listing_sql .= " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , p.products_price_sorter " . ($sort_order == 'd' ? 'DESC' : '') . ", pd.products_name";
-        break;
-    }
-  }
 }
 //MJFB end modification
 // optional Product List Filter

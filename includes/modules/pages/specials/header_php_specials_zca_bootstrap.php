@@ -20,6 +20,13 @@
 if (!(function_exists('zca_bootstrap_active') && zca_bootstrap_active()) || PROJECT_VERSION_MAJOR > 1) {
     return;
 }
+// MJFB restored sort
+require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
+
+// display order dropdown
+$disp_order_default = PRODUCT_NEW_LIST_SORT_DEFAULT;
+
+require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_LISTING_DISPLAY_ORDER));
 
 // -----
 // Set the maximum number of products in a page's listing to that defined for
@@ -48,8 +55,8 @@ $listing_sql =
             )
       WHERE p.products_status = 1
         AND s.status = 1
-      ORDER BY s.specials_date_added DESC";
-
+        AND pd.language_id = :languageID " . $order_by;
+// MJFb end
 $listing_sql = $db->bindVars($listing_sql, ':languageID', $_SESSION['languages_id'], 'integer');
 
 //check to see if we are in normal mode ... not showcase, not maintenance, etc

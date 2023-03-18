@@ -16,6 +16,12 @@
 <div id="indexProductList" class="centerColumn">
     <h1 id="indexProductList-pageHeading" class="pageHeading"><?= $current_categories_name ?></h1>
 
+ <?php
+    /**
+     * require code to display the list-display-order dropdown
+     */
+    require($template->get_template_dir('/tpl_modules_listing_display_order.php',DIR_WS_TEMPLATE, $current_page_base,'templates'). '/tpl_modules_listing_display_order.php');
+?>
     <div id="indexProductList-cat-wrap">
 <?php
 if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS === 'true') {

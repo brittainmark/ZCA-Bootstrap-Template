@@ -33,9 +33,18 @@ $display_order_options = [
     ['id' => '7', 'text' => TEXT_INFO_SORT_BY_PRODUCTS_DATE],
 ];
 ?>
-<div id="listingDisplayOrderSorter" class="row">
-    <label for="disp-order-sorter" class="mb-0 mt-1 mx-2"><?= TEXT_INFO_SORT_BY ?></label>
+<div id="listingDisplayOrderSorter" class="mb-3">
+<label for="disp-order-sorter"><?php echo TEXT_INFO_SORT_BY; ?></label>
 <?php
+  echo zen_draw_form('sorter_form', zen_href_link($_GET['main_page']), 'get');
+  echo zen_draw_hidden_field('main_page', $_GET['main_page']);
+// MJFB allow display of sort on categories page  
+  if (!empty($_GET['cPath'])) {
+      echo zen_draw_hidden_field('cPath', $_GET['cPath']);
+  }
+// MJFB end  
+//  echo zen_draw_hidden_field('disp_order', $_GET['disp_order']);
+  echo zen_hide_session_id();
 $excluded_get_params = [
     'disp_order',
 ];
