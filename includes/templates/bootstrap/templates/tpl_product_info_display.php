@@ -11,6 +11,8 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: Marco Ponchia 2020 May 20 Modified in v1.5.7 $
+ * 
+ * Version 3.5.3 brittainm added main page image as carousel
  */
 // -----
 // This variable, added in v3.7.0, enables all product_xx_info pages' templates to
@@ -35,21 +37,80 @@ if ($module_show_categories !== '0') {
     <!--eof Category Icon -->
 <?php
 }
-
-if (PRODUCT_INFO_PREVIOUS_NEXT === '1' || PRODUCT_INFO_PREVIOUS_NEXT === '3') {
 ?>
-    <!--bof Prev/Next top position -->
-    <div id="<?= $html_id_prefix ?>-productPrevNextTop" class="productPrevNextTop">
-        <?php require $template->get_template_dir('/tpl_products_next_previous.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_products_next_previous.php'; ?>
-    </div>
-    <!--eof Prev/Next top position-->
+<!--bof Prev/Next top position -->
+<?php if (PRODUCT_INFO_PREVIOUS_NEXT === '1' || PRODUCT_INFO_PREVIOUS_NEXT === '3') { ?>
+<div id="productInfo-productPrevNextTop" class="productPrevNextTop">
 <?php
-}
-?>
-    <!--bof Product Name-->
-    <h1 id="<?= $html_id_prefix ?>-productName" class="productName"><?= $products_name ?></h1>
-    <!--eof Product Name-->
+/**
+ * display the product previous/next helper
+ */
+require $template->get_template_dir('/tpl_products_next_previous.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_products_next_previous.php'; ?>
+</div>
+<?php } ?>
+<!--eof Prev/Next top position-->
 
+<!--bof Product Name-->
+<h1 id="productInfo-productName" class="productName"><?php echo $products_name; ?></h1>
+<!--eof Product Name-->
+
+<div id="productInfo-displayRow" class="row">
+   <div id="productInfo-displayColLeft"  class="col-sm mb-3">
+
+<!--bof Main Product Image -->
+<?php
+  if (!empty($products_image)) {
+  ?>
+<div id="productInfo-productMainImage" class="productMainImage pt-3 text-center">
+<?php
+if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE === '2') {
+    if (!defined('IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE')) {
+        define('IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE', 'Yes');
+    }
+    /**
+     * Display main product and additional images as a carousel
+     */
+    require DIR_WS_MODULES . zen_get_module_directory(FILENAME_MAIN_PRODUCT_IMAGE);
+    if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes'){
+        require $template->get_template_dir('tpl_image.php', DIR_WS_TEMPLATE, $current_page_base, 'modalboxes'). '/tpl_image.php';
+    }
+?>    
+
+    <!-- main slider carousel -->
+                    
+                        <div class="col-lg-10 offset-lg-1 " id="mainImage">
+<?php 
+require($template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, $current_page_base,'modalboxes'). '/tpl_bootstrap_slider_items.php');
+?>
+                        </div>
+<?php    
+    if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes'){
+?>       
+<script>
+    function carouselImageSwitch() {
+        imageToUse = document.getElementById("productImagesCarousel").getElementsByClassName("active")[0].getElementsByTagName('img')[0].src;
+        if (imageToUse != null) {
+            document.getElementById('productLargeImageModal').getElementsByTagName('img')[0].src = imageToUse;
+            document.getElementById('productLargeImageModal').getElementsByTagName('img')[0].style.width = "auto";
+            document.getElementById('productLargeImageModal').getElementsByTagName('img')[0].style.height = "auto";
+        }
+    }
+</script>
+<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#image-modal-lg" onclick="carouselImageSwitch()"><?php echo TEXT_CLICK_TO_ENLARGE; ?> </button>
+
+<?php    
+    }
+?>    
+</div>
+<?php
+} else {
+/**
+ * display the main product image
+ */
+   require $template->get_template_dir('/tpl_modules_main_product_image.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_main_product_image.php'; ?>
+</div>
+
+<!--eof Main Product Image-->
     <div id="<?= $html_id_prefix ?>-displayRow" class="row">
        <div id="<?= $html_id_prefix ?>-displayColLeft" class="col-sm mb-3">
 
@@ -87,26 +148,24 @@ if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes' && PRODUCT_INFO_SHOW_BOOT
 /**
  * display the products additional images in individual modal
  */
-} else {
-?>
-                <div class="p-3"></div>
-                <?php require $template->get_template_dir('/tpl_modules_additional_images.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_additional_images.php';
-}
-?>
-            </div>
-            <!--eof Additional Product Images -->
-
-            <!--bof Product description -->
+ echo '<div class="p-3"></div>'; 
+ 
+  require $template->get_template_dir('/tpl_modules_additional_images.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_additional_images.php';
+  }
+  ?>
+</div>
+<!--eof Additional Product Images -->
 <?php
-if ($products_description != '') {
+  }
 ?>
-            <div id="<?= $html_id_prefix ?>-productDescription" class="productDescription mb-3">
-                <?= stripslashes($products_description) ?>
-            </div>
+<!--bof Product description -->
 <?php
-}
-?>
-            <!--eof Product description -->
+ }
+if ($products_description != '') { ?>
+<div id="productInfo-productDescription" class="productDescription mb-3"><?php echo stripslashes($products_description); ?>
+</div>
+<?php } ?>
+<!--eof Product description -->
 
             <!--bof Reviews button and count-->
 <?php
