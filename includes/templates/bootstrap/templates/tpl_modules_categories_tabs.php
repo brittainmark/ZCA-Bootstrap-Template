@@ -35,7 +35,7 @@ if (CATEGORIES_TABS_STATUS == '1' ) {
 ?>
                 <!-- bof customer service -->
                 <li class="dropdown  nav-link">
-                    <a href="https://innerlightcrystals.co.uk/sales/index.php?main_page=shippinginfo" class="drop">Delivery &amp; Payment</a>
+                    <a href="<?php zen_href_link(FILENAME_SHIPPING, '', 'SSL');?>" class="drop">Delivery &amp; Payment</a>
                     <ul class="m-0 p-0 dropdown-menu" aria-labelledby="CustomerServicesDropdown" id="CustomerServicesDropdown">
                         <li>
                             <div class="dropdown_customer_service">

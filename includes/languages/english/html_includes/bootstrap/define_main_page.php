@@ -48,12 +48,21 @@ and upon any directives from the Welsh and UK Governments.</p>
 trips to the Post Office in town. This will apply to all orders that have been received and paid for by midnight
 on the day before (Wednesdays). <br>
 </p> -->
-<h2 class="cvs">Minimum / Maximum order amounts:</h2>
-<table id="minmax">
-<tr><th>Delivery<br>Address</th><th>Mimimum<br>Order</th><th>Maximum<br>Order</th></tr>
-<tr><td>UK</td><td>&pound;15</td><td>&pound;500</td></tr>
-<tr><td>EU</td><td>&pound;150</td><td>&pound;270</td></tr>
-<tr><td>Rest of world</td><td>&pound;15</td><td>&pound;270</td></tr></table>
+<h2 id="euroLimit" class="cvs">Minimum / Maximum order amounts:</h2>
+<table id="minmax" class="table">
+    <thead>
+        <tr>
+            <th>Delivery<br>Address</th>
+            <th>Mimimum<br>Order</th>
+            <th>Maximum<br>Order</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>UK</td><td>&pound;15</td><td>&pound;500</td></tr>
+        <tr><td>EU</td><td>&pound;150</td><td>&pound;270</td></tr>
+        <tr><td>Rest of world</td><td>&pound;15</td><td>&pound;270</td></tr>
+    </tbody>
+</table>
 <p> </p>
 <h2 class="cvs">Taxes / Import duties:</h2>
 <h3 class="cvs">ALL overseas customers please note:</h3>
