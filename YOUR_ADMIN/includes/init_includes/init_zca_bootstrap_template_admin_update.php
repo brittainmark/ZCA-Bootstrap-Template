@@ -40,7 +40,7 @@ switch (true) {
     // v3.5.3 update PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE to for main image as carousel
     // Add option 2
     //
-    case  version_compare(ZCA_BOOTSTRAP_VERSION, '3.5.3', '<'):
+    case  version_compare(ZCA_BOOTSTRAP_VERSION, '3.5.3-beta-1', '<'):
         $db->Execute (
             "UPDATE " . TABLE_CONFIGURATION . " SET 
                 configuration_description = 'Default is <b>0</b>, Opens images in an individual modal, <b>1</b> opens images in a single modal with carousel. <b>2 Uses main image as carousel', 
