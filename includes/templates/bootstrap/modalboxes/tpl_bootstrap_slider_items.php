@@ -22,7 +22,7 @@ require DIR_WS_MODULES . zen_get_module_directory('main_product_image.php');
 <?php
 require DIR_WS_MODULES . zen_get_module_directory('bootstrap_slide_additional_images.php');
 
-if ($flag_show_product_info_additional_images !== '0' && $num_images > 1) {
+if ($flag_show_product_info_additional_images !== '0' && $num_images > 0) {
     if (is_array($list_box_contents)) {
         for ($row = 0, $rn = count($list_box_contents); $row < $rn; $row++) {
             $params = '';
@@ -64,7 +64,7 @@ require DIR_WS_MODULES . zen_get_module_directory('main_product_image.php');
 
 require DIR_WS_MODULES . zen_get_module_directory('bootstrap_additional_images.php');
 
-if ($flag_show_product_info_additional_images !== '0' && $num_images > 1) {
+if ($flag_show_product_info_additional_images !== '0' && $num_images > 0) {
     if (is_array($list_box_contents) > 0 ) {
         for ($row = 0, $rn = count($list_box_contents); $row < $rn; $row++) {
             $params = '';
