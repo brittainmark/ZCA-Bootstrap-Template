@@ -34,6 +34,11 @@
                     <li class="list-group-item">
                         <?php echo zca_button_link(zen_href_link(FILENAME_ACCOUNT_PASSWORD, '', 'SSL'), MY_ACCOUNT_PASSWORD); ?>
                     </li>
+                    <li class="list-group-item">
+                        <?php
+// MJFB added account delete link (<li> --- <\li>)
+                        echo zca_button_link(zen_href_link(FILENAME_ACCOUNT_DELETE, '', 'SSL'), MY_ACCOUNT_DELETE); ?>
+                    </li>
                 </ul>
             </div>
         </div>
