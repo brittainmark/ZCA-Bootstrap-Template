@@ -93,4 +93,8 @@
     .pt-6 {
         padding-top:3.5rem;
     }
+    /*delayed despatch*/
+    .delayedDespatch {
+        margin-top: 1rem;
+    }
 </style>

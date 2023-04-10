@@ -3,9 +3,6 @@
 	to proceed with your purchase, click the Checkout button below.
 	Shipping costs etc. will be presented on subsequent pages, before
 	payment is finalised..</div>
-<h3 class="cvs"> IMPORTANT: Non-UK Customers. (11 Jan 2023)</h3>
-   <p>Royal Mail has temporarily suspended overseas shipping. If your order is urgent, please e-mail us with your postal address and details of the items you want (giving the item code number and quantity required). We will then look at other methods of shipping and get back to you with alternative shipping costs and payment methods. Any changes to this situation will be notified here. We are sorry for any inconvenience caused!</p>
-
 <!-- mjfb this code for delayed despatch -->
 <?php
 if (defined('MJFB_DELAYED_DESPATCH_DATE') && MJFB_DELAYED_DESPATCH_DATE != "" && strtotime(MJFB_DELAYED_DESPATCH_DATE) > strtotime('now')) {
