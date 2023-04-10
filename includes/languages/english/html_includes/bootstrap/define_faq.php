@@ -1,4 +1,4 @@
-<ul id="top">
+<ul>
 	<li><a
 		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#PayPal"><strong>What
 				is PayPal and how does it work?</strong></a></li>
@@ -36,7 +36,7 @@
 		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>#Lost"><strong>I
 				have not received my delivery.</strong></a></li>
 </ul>
-<p id="PayPal">
+<p id="PayPal" class="pt-6">
 	<strong>What is PayPal and how does it work?</strong>
 </p>
 <p>
@@ -51,7 +51,7 @@
 		target="blank">www.paypal.co.uk.</a><br> <a
 		href="index.php?main_page=page_2">Top</a><br>
 <hr>
-<p id="BankTransfer">
+<p id="BankTransfer" class="pt-6">
 	<strong>Paying for your purchases by Direct Bank Transfer:</strong>
 </p>
 <p>
@@ -68,7 +68,7 @@
 </p>
 <a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <hr>
-<p id="CreditCard">
+<p id="CreditCard" class="pt-6">
 	<strong>Paying for your purchases using a Credit or Debit card:</strong>
 </p>
 <p>We are fully aware of the risks involved with card transactions over
@@ -87,7 +87,7 @@
 </p>
 <a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <hr>
-<p id="PayPalAccount">
+<p id="PayPalAccount" class="pt-6">
 	<strong>Paying for your purchases using a PayPal account:</strong>
 </p>
 <p>Once you have added all the items you wish to purchase to your
@@ -97,7 +97,7 @@
 	be taken to the appropriate PayPal page to complete your transaction.</p>
 <hr>
 <a href="index.php?main_page=page_2">Top</a>
-<p id="Cheque">
+<p id="Cheque" class="pt-6">
 	<strong>Paying for your purchases using a Cheque, Postal Order or Money
 		Order:</strong>
 </p>
@@ -115,7 +115,7 @@
 </p>
 <a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <hr>
-<p id="Shop">
+<p id="Shop" class="pt-6">
 	<strong>Do you have a shop? or can we visit you?</strong>
 </p>
 <p>
@@ -141,7 +141,7 @@
 	(if you later change your mind) will not be possible.<br> <a
 		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a><br>
 <hr>
-<p id="Gift">
+<p id="Gift" class="pt-6">
 	<strong>Can I buy an item as a gift for someone else?</strong>
 </p>
 <p>
@@ -159,7 +159,7 @@
 	need.<br> <a
 		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a><br>
 <hr>
-<p id="Source">
+<p id="Source" class="pt-6">
 	<strong>How do you source your stock?</strong>
 </p>
 <p>
@@ -175,7 +175,7 @@
 	at &quot;below high street&quot; prices.<br> <a
 		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a><br>
 <hr>
-<p id="Refund">
+<p id="Refund" class="pt-6">
 	<strong>Refunds - changed your mind?</strong>
 <p>We make every effort to be honest when describing and photographing
 	each item for sale. However there may be circumstances where you are
@@ -200,7 +200,7 @@ additional postal costs will not be refunded.
 <a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <br>
 <hr>
-<p id="Damaged">
+<p id="Damaged" class="pt-6">
 	<strong>Refunds - items damaged in transit.</strong>
 <p>
 	Your delivery options will have ensured that all despatches are covered
@@ -211,7 +211,7 @@ additional postal costs will not be refunded.
 	return and what our refund of your purchase and costs will be.<br> <a
 		href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a><br>
 <hr>
-<p id="Other">
+<p id="Other" class="pt-6">
 	<strong>Refunds - other items returned to us:</strong>
 <ul>
 	<li>Duties / import duties unpaid, delivery refused:<br> If you do not
@@ -233,7 +233,7 @@ additional postal costs will not be refunded.
 <a href="<?php echo zen_href_link(FILENAME_FAQ, '', 'SSL');?>">Top</a>
 <br>
 <hr>
-<p id="Lost">
+<p id="Lost" class="pt-6">
 	<strong>I have not received my delivery.</strong>
 <p>
 	<strong class="cvs">Coronavirus:</strong> Please bear in mind that
@@ -252,12 +252,12 @@ additional postal costs will not be refunded.
 	delivery after the relevant time has elapsed, please contact us and we
 	will investigate and / or arrange a refund as appropriate.</p>
 <div id="GPOLate">
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
-				<td>Product</td>
-				<td>Due Date</td>
-				<td>Considered lost in transit</td>
+				<th>Product</th>
+				<th>Due Date</th>
+				<th>Considered lost in transit</th>
 			</tr>
 		</thead>
 		<tbody>

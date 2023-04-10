@@ -11,7 +11,7 @@ $define = [
 		goods to change your mind: if you do, you are responsible for returning the goods to us in the condition they were received, at your own
 		cost.<br>You can choose to pay via your PayPal account, if you have one, or use your credit card to pay through our Square interface if you
 		don\'t. You may also be assured that your personal information will not be shared with anyone.',
-    'PAYMENT_ICON'=>'<p><i class="fab fa-cc-paypal"></i> <i class="fas fa-money-check"></i> <i class="fa fa-credit-card"></i><i class="fas fa-pound-sign">&pound;</i> <i class="fab fa-paypal"></i></p>',
+    'PAYMENT_ICON'=>'<p><i class="fab fa-cc-paypal mx-1"></i> <i class="fas fa-money-check mx-1"></i> <i class="fa fa-credit-card mx-1"></i><i class="fas fa-pound-sign mx-1"></i> <i class="fab fa-paypal mx-1"></i></p>',
 ];
 
 return $define;

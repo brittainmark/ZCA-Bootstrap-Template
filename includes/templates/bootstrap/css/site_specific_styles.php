@@ -89,4 +89,8 @@
     #indexProductList-contentMore a {
         line-height: 1;
     }
+    /* extend top margin */
+    .pt-6 {
+        padding-top:3.5rem;
+    }
 </style>
