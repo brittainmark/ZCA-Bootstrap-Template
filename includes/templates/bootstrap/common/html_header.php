@@ -57,6 +57,13 @@ $preloads = [
         'type' => 'style',
     ],
 ];
+if (empty($disableFontAwesomeV4Compatibility)) {
+    $preloads['fa-4shim'] = [
+        'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/v4-shims.css',
+        'integrity' => 'sha512-tqGH6Vq3kFB19sE6vx9P6Fm/f9jWoajQ05sFTf0hr3gwpfSGRXJe4D7BdzSGCEj7J1IB1MvkUf3V/xWR25+zvw==',
+        'type' => 'style',
+        ];
+} 
 ?>
 <!DOCTYPE html>
 <html <?php echo HTML_PARAMS; ?>>
