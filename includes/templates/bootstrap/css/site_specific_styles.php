@@ -97,4 +97,8 @@
     .delayedDespatch {
         margin-top: 1rem;
     }
+    /*sold out hover*/
+    button.button_sold_out_sm, button.button_sold_out {
+	border: none;
+}
 </style>
