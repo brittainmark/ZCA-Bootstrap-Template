@@ -2,9 +2,9 @@
 /**
  * Common Template
  *
- * BOOTSTRAP v3.7.0
+ * BOOTSTRAP v3.6.0
  *
- * outputs the html header. i,e, everything that comes before the </head> tag.
+ * outputs the html header. i,e, everything that comes before the \</head\> tag <br />
  *
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -32,8 +32,8 @@ require DIR_WS_MODULES . zen_get_module_directory('meta_tags.php');
 //
 $preloads = [
     'jquery' => [
-        'link' => 'https://code.jquery.com/jquery-3.7.1.min.js',
-        'integrity' => 'sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=',
+        'link' => 'https://code.jquery.com/jquery-3.5.1.min.js',
+        'integrity' => 'sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=',
         'type' => 'script',
     ],
     'bscss' => [
@@ -47,15 +47,15 @@ $preloads = [
         'type' => 'script',
     ],
     'fa' => [
-        'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css',
-        'integrity' => 'sha512-UuQ/zJlbMVAw/UU8vVBhnI4op+/tFOpQZVT+FormmIEhRSCnJWyHiBbEVgM4Uztsht41f3FzVWgLuwzUqOObKw==',
+        'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css',
+        'integrity' => 'sha512-SgaqKKxJDQ/tAUAAXzvxZz33rmn7leYDYfBP+YoMRSENhf3zJyx3SBASt/OfeQwBHA1nxMis7mM3EV/oYT6Fdw==',
         'type' => 'style',
-    ],
+        ],
     'fa-solid' => [
-        'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/solid.min.css',
-        'integrity' => 'sha512-Hp+WwK4QdKZk9/W0ViDvLunYjFrGJmNDt6sCflZNkjgvNq9mY+0tMbd6tWMiAlcf1OQyqL4gn2rYp7UsfssZPA==',
+        'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css',
+        'integrity' => 'sha512-yDUXOUWwbHH4ggxueDnC5vJv4tmfySpVdIcN1LksGZi8W8EVZv4uKGrQc0pVf66zS7LDhFJM7Zdeow1sw1/8Jw==',
         'type' => 'style',
-    ],
+        ],
 ];
 if (empty($disableFontAwesomeV4Compatibility)) {
     $preloads['fa-4shim'] = [
@@ -68,7 +68,6 @@ if (empty($disableFontAwesomeV4Compatibility)) {
 <!DOCTYPE html>
 <html <?php echo HTML_PARAMS; ?>>
   <head>
-    <meta charset="<?php echo CHARSET; ?>">
 <?php
 // -----
 // Provide a notification that the <head> tag has been rendered for the current page.
@@ -77,20 +76,20 @@ $zco_notifier->notify('NOTIFY_HTML_HEAD_TAG_START', $current_page_base);
 
 // -----
 // Provide an easy way for a site to disable the preload, if they want to ensure
-// that it's working properly.  If  includes/extra_datafiles/site-specific-bootstrap-settings.php does not exist 
-// copy dist.site-specific-bootstrap-settings.php to site-specific-bootstrap-settings.php 
-// and uncomment "// $zca_no_preloading = false;" and change that variable's value to (bool)true.
+// that it's working properly.  Just create a .php file in either /extra_configures or
+// /extra_datafiles that sets $bs4_no_preloading to a 'truthy' value.
 //
-if (empty($zca_no_preloading)) {
-    foreach ($preloads as $load) {
+if (empty($bs4_no_preloading)) {
+      foreach ($preloads as $load) {
 ?>
-    <link rel="preload" href="<?= $load['link'] ?>" integrity="<?= $load['integrity'] ?>" crossorigin="anonymous" as="<?= $load['type'] ?>">
+    <link rel="preload" href="<?php echo $load['link']; ?>" integrity="<?php echo $load['integrity']; ?>" crossorigin="anonymous" as="<?php echo $load['type']?>">
 <?php
-    }
+      }
 }
 ?>
+    <meta charset="<?php echo CHARSET; ?>">
     <title><?php echo META_TAG_TITLE; ?></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="<?php echo META_TAG_KEYWORDS; ?>">
     <meta name="description" content="<?php echo META_TAG_DESCRIPTION; ?>">
     <meta name="author" content="<?php echo STORE_NAME ?>">
@@ -120,10 +119,10 @@ if (empty($zca_no_preloading)) {
     }
     // EOF hreflang for multilingual sites
     // Important to load Bootstrap CSS First...
-    foreach ($preloads as $load) {
-        if ($load['type'] === 'style') {
+      foreach ($preloads as $load) {
+          if ($load['type'] === 'style') {
 ?>
-    <link rel="stylesheet" href="<?= $load['link'] ?>" integrity="<?= $load['integrity'] ?>" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo $load['link']; ?>" integrity="<?php echo $load['integrity']; ?>" crossorigin="anonymous">
 <?php
         }
     }
@@ -201,7 +200,7 @@ if (empty($zca_no_preloading)) {
     foreach ($preloads as $load) {
           if ($load['type'] === 'script') {
 ?>
-    <script src="<?= $load['link'] ?>" integrity="<?= $load['integrity'] ?>" crossorigin="anonymous"></script>
+    <script src="<?php echo $load['link']; ?>" integrity="<?php echo $load['integrity']; ?>" crossorigin="anonymous"></script>
 <?php
           }
     }
