@@ -5,7 +5,7 @@
 	payment is finalised..</div>
 <!-- mjfb this code for delayed despatch -->
 <?php
-if (defined('MJFB_DELAYED_DESPATCH_DATE') && MJFB_DELAYED_DESPATCH_DATE != "" && strtotime(MJFB_DELAYED_DESPATCH_DATE) > strtotime('now')) {
+if (defined('MJFB_DELAYED_DESPATCH_DATE') && MJFB_DELAYED_DESPATCH_DATE != '' && strtotime(MJFB_DELAYED_DESPATCH_DATE) > strtotime('now')) {
     echo '<p class="delayedDespatch">' . MJFB_DELAYED_DESPATCH_MESSAGE . '</p>';
 } else {
     echo '<p class="despatchDate">Our next despatch date is ' . mjfb_expected_despatch_date();
