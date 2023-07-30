@@ -58,7 +58,7 @@
     }
     #footerBottomMenu a:hover {
         color: <?php echo ZCA_SIDEBOX_LINK_COLOR_HOVER; ?>;
-        background: <?php echo ZCA_SIDEBOX_LINK_BACKGROUND_COLOR_HOVER; ?>;
+        background-color: <?php echo ZCA_SIDEBOX_LINK_BACKGROUND_COLOR_HOVER; ?>;
     }
     h1, h2, h3, h4, h5, h6 {
         color:#1f4f7d;
@@ -67,6 +67,9 @@
         color: <?php echo ZCA_BUTTON_LINK_COLOR_HOVER; ?>;
         padding: 0.5rem 0;
     }
+    
+    #btnCallPrice {
+        background-color: <?php echo ZCA_CHECKOUT_CONFIRM_BACKGROUND_COLOR ; ?>;
     /* Delivery dropdown */
     .dropdown_customer_service {
       background-color: <?php echo ZCA_BODY_BACKGROUND_COLOR; ?>;
