@@ -371,9 +371,8 @@ if ($num_products_count > 0) {
                     $lc_text = '<div class="pl-dp">' . zen_get_products_display_price($record['products_id']) . '</div>';
                     $lc_text .= zen_get_buy_now_button($record['products_id'], $lc_button, $more_info_button);
 
-// MJFB Use mjfb_zen_get_products_quantity_min_units_display instead of zen_get_products_quantity_min_units_display
-//                    $min_max_units = zen_get_products_quantity_min_units_display($record['products_id']);
-                    $min_max_units = mjfb_zen_get_products_quantity_min_units_display($record['products_id']);
+// MJFB add Notifer to adjust $min_max_units                    
+                    $zco_notifier->notify('NOTIFY_PRODUCT_LISTING_PRODUCT_LIST_PRICE', $record['products_id'], $min_max_units);
 // MJFB end
                     if ($min_max_units !== '') {
                         $lc_text .= '<div class="mmu-wrap">' . $min_max_units . '</div>';
