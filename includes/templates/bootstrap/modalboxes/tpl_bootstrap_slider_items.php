@@ -40,8 +40,8 @@ if ($flag_show_product_info_additional_images !== '0' && $num_images > 0) {
     }
 ?>
                                     <div id="carousel-btn-toolbar" class="btn-toolbar justify-content-between p-3" role="toolbar">
-                                        <a class="carousel-control-prev left pt-3" href="#productImagesCarousel" data-slide="prev"><i class="fas fa-chevron-left" title="<?php echo TEXT_SLIDER_IMAGE_PREVIOUS;?>"></i></a>
-                                        <a class="carousel-control-next right pt-3" href="#productImagesCarousel" data-slide="next"><i class="fas fa-chevron-right" title="<?php echo TEXT_SLIDER_IMAGE_NEXT;?>"></i></a>
+                                        <a class="carousel-control-prev left pt-3" href="#productImagesCarousel" data-slide="prev"><i class="fas fa-chevron-left" title="<?php echo BUTTON_PREVIOUS_ALT;?>"></i></a>
+                                        <a class="carousel-control-next right pt-3" href="#productImagesCarousel" data-slide="next"><i class="fas fa-chevron-right" title="<?php echo BUTTON_NEXT_ALT;?>"></i></a>
                                     </div>
                                 </div>
                                 <!-- main slider carousel nav controls -->

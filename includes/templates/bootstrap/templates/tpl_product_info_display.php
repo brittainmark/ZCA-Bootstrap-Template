@@ -63,6 +63,7 @@ require $template->get_template_dir('/tpl_products_next_previous.php', DIR_WS_TE
   ?>
 <div id="productInfo-productMainImage" class="productMainImage pt-3 text-center">
 <?php
+// MJFB - start
 if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE === '2') {
     if (!defined('IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE')) {
         define('IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE', 'Yes');
@@ -70,6 +71,7 @@ if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE === '2') {
     /**
      * Display main product and additional images as a carousel
      */
+//    require $template->get_template_dir('/tpl_modules_main_product_image.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_main_product_image.php';
     require DIR_WS_MODULES . zen_get_module_directory(FILENAME_MAIN_PRODUCT_IMAGE);
     if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes'){
         require $template->get_template_dir('tpl_image.php', DIR_WS_TEMPLATE, $current_page_base, 'modalboxes'). '/tpl_image.php';
@@ -109,7 +111,7 @@ require($template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, 
  */
    require $template->get_template_dir('/tpl_modules_main_product_image.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_main_product_image.php'; ?>
 </div>
-
+<?php // MJFB -end ?>
 <!--eof Main Product Image-->
     <div id="<?= $html_id_prefix ?>-displayRow" class="row">
        <div id="<?= $html_id_prefix ?>-displayColLeft" class="col-sm mb-3">
@@ -156,11 +158,13 @@ if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes' && PRODUCT_INFO_SHOW_BOOT
 </div>
 <!--eof Additional Product Images -->
 <?php
+// MJFB - start
   }
 ?>
 <!--bof Product description -->
 <?php
  }
+//MJFB - end 
 if ($products_description != '') { ?>
 <div id="productInfo-productDescription" class="productDescription mb-3"><?php echo stripslashes($products_description); ?>
 </div>
