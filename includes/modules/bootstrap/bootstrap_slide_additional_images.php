@@ -91,14 +91,39 @@ if ($num_images !== 0) {
         $thumb_slashes = zen_image(addslashes($base_image), addslashes($products_name), SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT);
         $thumb_regular = zen_image($base_image, $products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT);
         $large_link = zen_href_link(FILENAME_POPUP_IMAGE_ADDITIONAL, 'pID=' . $_GET['products_id'] . '&pic=' . $slideNumber . '&products_image_large_additional=' . $products_image_large);
-        $slideNumber++;
+        
 
-        $slide = zen_image($products_image_large);
+       
         // List Box array generation:
-        $list_box_contents[$row][$col] = [
-            'params' => 'class="item carousel-item" data-slide-number="' . $slideNumber . '"',
-            'text' => $slide
-        ];
+        if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE === '2') {
+            $slide = zen_image($products_image_large, parameters: 'loading="lazy"');
+            $carousel_list_box_contents[$row][$col] = [
+                'params' => 'class="item carousel-item imagezoom" data-slide-number="' . $slideNumber . '"',
+                'text' => '    <a href="' . $base_image . '">' . "\n        " . $slide . "\n" . '    </a>' . "\n",
+            ];
+            $list_box_contents[$row][$col] = [
+                'params' => 'class="list-inline-item"',
+                'text' => '        <script>' . "\n" .
+                    '            document.write(\'<a id="carousel-selector-' . $slideNumber . '" class="selected" data-slide-to="' . $slideNumber . '" data-target="#productImagesCarousel">\');' . "\n" .
+                    '            document.write(\'' . $thumb_slashes . '\');' . "\n" .
+                    '            document.write(\'</a>\');' . "\n" .
+                    '        </script>' . "\n" .
+                    '        <noscript>' . "\n" .
+                    '            <a href="' . $base_image . '" target="_blank">' . "\n" .
+                    '                ' . $thumb_regular . "\n" .
+                    '            </a>' . "\n" .
+                    '        </noscript>' . "\n" 
+            ];
+                
+            
+        } else {
+            $slide = zen_image($products_image_large);
+            $list_box_contents[$row][$col] = [
+                'params' => 'class="item carousel-item" data-slide-number="' . $slideNumber . '"',
+                'text' => $slide
+            ];
+        }
+        $slideNumber++;
         $col++;
         if ($col >= $images_auto_added) {
             $col = 0;
