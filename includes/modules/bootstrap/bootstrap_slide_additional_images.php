@@ -49,6 +49,7 @@ if ($products_image !== '' && $flag_show_product_info_additional_images !== '0')
 // Build output based on images found
 $num_images = count($images_array);
 $list_box_contents = [];
+$carousel_list_box_contents = [];
 $title = '';
 
 if ($num_images !== 0) {

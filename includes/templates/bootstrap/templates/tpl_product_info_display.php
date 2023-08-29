@@ -73,9 +73,6 @@ if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE === '2') {
      */
 //    require $template->get_template_dir('/tpl_modules_main_product_image.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_main_product_image.php';
     require DIR_WS_MODULES . zen_get_module_directory(FILENAME_MAIN_PRODUCT_IMAGE);
-    if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes'){
-        require $template->get_template_dir('tpl_image.php', DIR_WS_TEMPLATE, $current_page_base, 'modalboxes'). '/tpl_image.php';
-    }
 ?>    
 
     <!-- main slider carousel -->
@@ -85,24 +82,6 @@ if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE === '2') {
 require($template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, $current_page_base,'modalboxes'). '/tpl_bootstrap_slider_items.php');
 ?>
                         </div>
-<?php    
-    if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes'){
-?>       
-<script>
-    function carouselImageSwitch() {
-        imageToUse = document.getElementById("productImagesCarousel").getElementsByClassName("active")[0].getElementsByTagName('img')[0].src;
-        if (imageToUse != null) {
-            document.getElementById('productLargeImageModal').getElementsByTagName('img')[0].src = imageToUse;
-            document.getElementById('productLargeImageModal').getElementsByTagName('img')[0].style.width = "auto";
-            document.getElementById('productLargeImageModal').getElementsByTagName('img')[0].style.height = "auto";
-        }
-    }
-</script>
-<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#image-modal-lg" onclick="carouselImageSwitch()"><?php echo TEXT_CLICK_TO_ENLARGE; ?> </button>
-
-<?php    
-    }
-?>    
 </div>
 <?php
 } else {

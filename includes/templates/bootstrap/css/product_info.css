@@ -1,8 +1,8 @@
 .imageLink{
-    position:absolute;
-    top:0;
-    right:0;
-    z-index:2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
 }
 .imageLink a i {
     color: black;
@@ -11,8 +11,12 @@
 }
 #carousel-btn-toolbar .carousel-control-next, #carousel-btn-toolbar .carousel-control-prev{
     top:auto;
-    background-color:white;
-    padding-bottom:1rem;
-    width:2rem;
+    background-color: white;
+    padding-bottom: 1rem;
+    width: 2rem;
+}
+
+.carousel-control-next:focus, .carousel-control-prev:focus {
+ color: black;
 }
 
