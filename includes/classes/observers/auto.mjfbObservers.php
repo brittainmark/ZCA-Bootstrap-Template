@@ -85,7 +85,7 @@ class zcObserverMjfbObservers extends base {
                 $the_min_units .= '</span>';
             }
         }
-        if ($check_max > 0 and $check_max != 1 and $check_units != 1) {
+        if ($check_max > 0 and ($check_max != 1 or $check_units != 1)) {
             $the_min_units .= '<span class="qmax">';
             if ($include_break == true) {
                 $the_min_units .= ($the_min_units != '' ? '<br>' : '');
