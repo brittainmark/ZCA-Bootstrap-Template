@@ -108,8 +108,8 @@ if (isset($_GET['action']) && ($_GET['action'] === 'send')) {
             $messageStack->add('contact', ENTRY_EMAIL_NAME_CHECK_ERROR);
         }
 // MJFB added subject        
-	    if (empty($subject)) {
-          $messageStack->add('contact', ENTRY_EMAIL_SUBJECT_CHECK_ERROR);
+        if (empty($subject)) {
+            $messageStack->add('contact', ENTRY_EMAIL_SUBJECT_CHECK_ERROR);
         }
         if ($zc_validate_email == false) {
             $messageStack->add('contact', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);

@@ -55,7 +55,13 @@ $preloads = [
         'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css',
         'integrity' => 'sha512-yDUXOUWwbHH4ggxueDnC5vJv4tmfySpVdIcN1LksGZi8W8EVZv4uKGrQc0pVf66zS7LDhFJM7Zdeow1sw1/8Jw==',
         'type' => 'style',
-        ],
+    ],
+    'fab' => [
+        'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css',
+        'integrity' => 'sha512-W/zrbCncQnky/EzL+/AYwTtosvrM+YG/V6piQLSe2HuKS6cmbw89kjYkp3tWFn1dkWV7L1ruvJyKbLz73Vlgfg==',
+        'type' => 'style',
+    ],
+
 ];
 if (empty($disableFontAwesomeV4Compatibility)) {
     $preloads['fa-4shim'] = [

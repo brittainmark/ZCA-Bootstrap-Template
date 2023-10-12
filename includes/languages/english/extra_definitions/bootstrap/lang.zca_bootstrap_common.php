@@ -113,5 +113,13 @@ $define = [
 // Note: For zc200, this constant will be in /includes/languages/english/lang.index.php.
 //
     'HEADING_TITLE_SCREENREADER' => 'See Additional Content Below',
+
+// MJFB start - added extra for image slider
+// -----
+// Used by slider for next/previous image button title
+//
+    'TEXT_SLIDER_IMAGE_NEXT' => 'Next Image',
+    'TEXT_SLIDER_IMAGE_PREVIOUS' => 'Previous Image',
+// MJFB end
 ];
 return $define;

@@ -26,7 +26,7 @@
     #CustomerServicesDropdown {
         width: 600px;
         padding: 20px;
-        background: #007f7f;
+        background: <?php echo ZCA_HEADER_NAV_BAR_BACKGROUND_COLOR;?>;
     }
     /* footer bottom menu */
     #footerBottomMenu a:hover {
@@ -61,15 +61,16 @@
         background-color: <?php echo ZCA_SIDEBOX_LINK_BACKGROUND_COLOR_HOVER; ?>;
     }
     h1, h2, h3, h4, h5, h6 {
-        color:#1f4f7d;
+        color:#003366;
     }
     .list-quantity {
-        color: <?php echo ZCA_BUTTON_LINK_COLOR_HOVER; ?>;
+        color: #003366;
         padding: 0.5rem 0;
     }
     
     #btnCallPrice {
         background-color: <?php echo ZCA_CHECKOUT_CONFIRM_BACKGROUND_COLOR ; ?>;
+    }
     /* Delivery dropdown */
     .dropdown_customer_service {
       background-color: <?php echo ZCA_BODY_BACKGROUND_COLOR; ?>;
@@ -78,7 +79,7 @@
     }
     .dropdown_customer_service h2 {
       color: <?php echo ZCA_HEADER_TABS_TEXT_COLOR; ?>;
-      background-color: <?php echo ZCA_HEADER_TABS_COLOR; ?>;
+      background-color: <?php echo ZCA_HEADER_NAV_BAR_BACKGROUND_COLOR; ?>;
       padding-top: .5rem;
     }
     .dropdown_customer_service p {
@@ -103,5 +104,5 @@
     /*sold out hover*/
     button.button_sold_out_sm, button.button_sold_out {
 	border: none;
-}
+    }
 </style>
