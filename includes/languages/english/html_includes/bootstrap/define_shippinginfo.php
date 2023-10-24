@@ -2,14 +2,6 @@
 <p >Please note that under normal circumstances we despatch orders once a week on a THURSDAY, to avoid unnecessary trips to the Post Office in town. This will be the despatch day for all orders that have been placed and paid for by midnight on the day before (Wednesday).
 If despatches are delayed for any reason, notification of this will appear in your shopping basket and during the checkout process.</p>
 <h2>Deliveries:</h2>
-<p>Please bear in mind that deliveries can be affected by local lock down measures and/or staffing issues, and (in the case
-of destinations outside the UK) by the availability of sufficient freight carrying capacity on aircraft. Although every
-effort is made to deliver items within the timescales given per your chosen shipping method, at present these cannot be
-absolutely guaranteed and so your order may arrive a little later than expected. </p>
-
-<p>
-	<strong>Additionally, please note:</strong>
-</p>
 <ul>
 	<li>We mainly deliver to addresses within the UK and to
 		Australia, Canada, Cyprus, New Zealand, the USA, Hong Kong, Singapore, South

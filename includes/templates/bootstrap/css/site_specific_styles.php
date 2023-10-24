@@ -73,14 +73,14 @@
     }
     /* Delivery dropdown */
     .dropdown_customer_service {
-      background-color: <?php echo ZCA_BODY_BACKGROUND_COLOR; ?>;
-      margin: 1rem;
-      border-radius: 1rem;
+        background-color: <?php echo ZCA_BODY_BACKGROUND_COLOR; ?>;
+        margin: 1rem;
+        border-radius: 1rem;
     }
     .dropdown_customer_service h2 {
-      color: <?php echo ZCA_HEADER_TABS_TEXT_COLOR; ?>;
-      background-color: <?php echo ZCA_HEADER_NAV_BAR_BACKGROUND_COLOR; ?>;
-      padding-top: .5rem;
+        color: <?php echo ZCA_HEADER_TABS_TEXT_COLOR; ?>;
+        background-color: <?php echo ZCA_HEADER_NAV_BAR_BACKGROUND_COLOR; ?>;
+        padding-top: .5rem;
     }
     .dropdown_customer_service p {
         padding: 0 .5rem;
@@ -103,6 +103,10 @@
     }
     /*sold out hover*/
     button.button_sold_out_sm, button.button_sold_out {
-	border: none;
+        border: none;
+    }
+    /*Set min width for links on categories page*/
+    .categoryListBoxContents.card  {
+        min-width:120px;
     }
 </style>

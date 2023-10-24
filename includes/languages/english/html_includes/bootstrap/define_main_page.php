@@ -15,8 +15,10 @@ healers and collectors - and in fact to anyone who loves and wants to buy crysta
  <h2 class="pt-6">Autumn Sale</h2>
  <p>We are having an autumn sale from 1<sup>st</sup> October 2022 until 30<sup>th</sup> November 2022, with 40% off books and 15% off everything else, before postage and packing.</p>
  <?php }?>
-<h2 class="pt-6">Deliveries and despatches:</h2>
-<h3>Despatches:</h3>
+<h2 class="pt-6">Despatches:</h2>
+<p>We normally despatch orders once a week on a THURSDAY. This is for all orders that have been placed and paid for by midnight on the day before (Wednesday).
+If despatches are delayed for any reason, notification of this will appear in your shopping basket and during the checkout process.
+</p>
 <!-- this code for delayed despatch -->
 <?php
 if (defined('MJFB_DELAYED_DESPATCH_DATE') && MJFB_DELAYED_DESPATCH_DATE<>"" && strtotime(MJFB_DELAYED_DESPATCH_DATE) > strtotime("now")) {
@@ -30,14 +32,6 @@ if (defined('MJFB_DELAYED_DESPATCH_DATE') && MJFB_DELAYED_DESPATCH_DATE<>"" && s
     }
 ?>
 <!-- End Delayed despatch -->
-<p>We normally despatch orders once a week on a Thursday for all orders received and paid for by 9pm on the Wednesday before.
-</p>
-<h3>Deliveries:</h3>
-<p>Please bear in mind that deliveries can be affected by local staffing issues, and (in the case
-of destinations outside the UK) by the availability of sufficient freight carrying capacity on aircraft. Although every
-effort is made to deliver items within the timescales given per your chosen shipping method, at present these cannot be
-absolutely guaranteed and so your order may arrive a little later than expected.</p>
-<p> </p>
 
 <!--
 <p>As the firebreak lockdown in Wales is now over we are once again able to despatch orders. Please note that the 'open' status of our shop will remain under review, and depends upon our ability as a household to remain virus free -
@@ -85,8 +79,6 @@ on the day before (Wednesdays). <br>
 		to us, NO refund will be issued.</li>
 </ul>
 </div>
-
-
 <!--
 <P class="alert"><strong><a <?php echo 'href="'. HTTP_SERVER . DIR_WS_CATALOG . 'index.php?main_page=index&amp;cPath=38_1022_1054"'; ?> style="text-decoration: underline"
 		onMouseOver="this.style.textDecoration='underline overline'"
