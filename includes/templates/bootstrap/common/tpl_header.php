@@ -109,13 +109,13 @@ $tagline_banner_section_present = ((SHOW_BANNERS_GROUP_SET2 !== '' && $banner = 
 $sales_text_class = ($tagline_banner_section_present === true) ? 'col-sm-4' : 'col-sm-12';
 /* MJFB moved logo lower 
 ?>
-            <div class="<?= $sales_text_class ?>">
-                <a id="hdr-img" class="d-block" href="<?= zen_href_link(FILENAME_DEFAULT) ?>" aria-label="<?= TEXT_HEADER_ARIA_LABEL_LOGO ?>">
-                    <?= zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base, 'images') . '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT) ?>
+            <div class="<?php echo $sales_text_class; ?>">
+                <a id="hdr-img" class="d-block" href="<?php echo zen_href_link(FILENAME_DEFAULT); ?>" aria-label="<?php echo TEXT_HEADER_ARIA_LABEL_LOGO; ?>">
+                    <?php echo zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base, 'images') . '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT); ?>
                 </a>
             </div>
 <?php
-*/
+ */
 if ($tagline_banner_section_present === true) {
 ?>
             <div id="taglineWrapper" class="col-sm-8 text-center">
