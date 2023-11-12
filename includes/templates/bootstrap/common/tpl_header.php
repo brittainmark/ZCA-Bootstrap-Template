@@ -117,8 +117,9 @@ $sales_text_class = ($tagline_banner_section_present === true) ? 'col-sm-4' : 'c
 <?php
  */
 if ($tagline_banner_section_present === true) {
+//MJFB set taglineWrapper class to col-sm-12 not col-sm-8
 ?>
-            <div id="taglineWrapper" class="col-sm-8 text-center">
+            <div id="taglineWrapper" class="col-sm-12 text-center">
 <?php
     if (HEADER_SALES_TEXT !== '') {
 /* MJFB added image */
