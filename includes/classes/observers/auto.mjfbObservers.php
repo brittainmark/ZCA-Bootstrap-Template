@@ -11,6 +11,11 @@ class zcObserverMjfbObservers extends base {
                 'NOTIFY_ZEN_GET_BUY_NOW_BUTTON_RETURN',
                 'NOTIFY_HEADER_SHOPPING_CART_IN_PRODUCTS_LOOP',
                 'NOTIFY_PRODUCT_LISTING_PRODUCT_LIST_PRICE',
+                'NOTIFY_HEADER_START_DOCUMENT_GENERAL_INFO',
+                'NOTIFY_HEADER_START_DOCUMENT_PRODUCT_INFO',
+                'NOTIFY_HEADER_START_PRODUCT_FREE_SHIPPING_INFO',
+                'NOTIFY_HEADER_START_PRODUCT_INFO',
+                'NOTIFY_HEADER_START_PRODUCT_MUSIC_INFO',
             ]
         );
     }
@@ -39,6 +44,31 @@ class zcObserverMjfbObservers extends base {
             return;
         }
         $min_max_units = $this->mjfb_zen_get_products_quantity_min_units_display($pId);
+    }
+    
+    protected function updateNotifyHeaderStartDocumentGeneralInfo(&$class, $eventID) {
+        //redirect if wrong type handeler
+        $this->redirectIncorrectTypeHandler();
+    }
+    
+    protected function updateNotifyHeaderStartDocumentProductInfo(&$class, $eventID) {
+        //redirect if wrong type handeler
+        $this->redirectIncorrectTypeHandler();
+    }
+    
+    protected function updateNotifyHeaderStartProductInfo(&$class, $eventID) {
+        //redirect if wrong type handeler
+        $this->redirectIncorrectTypeHandler();
+    }
+        
+    protected function updateNotifyHeaderStartProductMusicInfo(&$class, $eventID) {
+        //redirect if wrong type handeler
+        $this->redirectIncorrectTypeHandler();
+    }
+        
+    protected function updateNotifyHeaderStartProductFreeShippingInfo(&$class, $eventID) {
+        //redirect if wrong type handeler
+        $this->redirectIncorrectTypeHandler();
     }
     
     protected function mjfb_zen_get_products_quantity_min_units_display($product_id, $include_break = true, $message_is_for_shopping_cart = false) {
@@ -98,5 +128,36 @@ class zcObserverMjfbObservers extends base {
 
         return $the_min_units;
 
+    }
+    
+    protected function redirectIncorrectTypeHandler(){
+        $product_id = $_GET['products_id'] ?? 0;
+        $page = $_GET['main_page'];
+        $parameters = '';
+        if ($product_id === 0) {
+            // no product specfied
+            $_GET['main_page'] = '';
+            //redirect to home page or category if present
+            $parameters = $this->getParameters();
+            zen_redirect(zen_href_link(FILENAME_DEFAULT, $parameters));
+        }  
+        $type_handler = zen_get_info_page($product_id);
+        if ($type_handler !== $page) {
+            // incorrect type handeler redirect to correct type handler
+            unset($_GET['main_page']);
+            $parameters = $this->getParameters();
+            zen_redirect(zen_href_link($type_handler, $parameters));
+        }
+    }
+    
+    protected function getParameters() : string {
+        $parameters = '';
+        foreach ($_GET as $key => $value) {
+            if (empty($value) === false) {
+                $parameters = '&' . $key . '=' . $value;
+            }
+        }
+        $parameters = substr($parameters, 1);
+        return $parameters;
     }
 }
