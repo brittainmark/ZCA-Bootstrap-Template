@@ -71,7 +71,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL'); ?>"> <span class="hidden-xs hdr-cart-total"><?= $currencies->format($_SESSION['cart']->show_total()); ?></span> <i class="fas fa-shopping-basket" title="<?= strip_tags(HEADER_TITLE_CART_CONTENTS); ?>"></i><sup><span class="badge badge-light text-black ml-n2"><?= $_SESSION['cart']->count_contents(); ?></span></sup> <span class="d-none d-md-inline"><?= HEADER_TITLE_CART_CONTENTS; ?></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL'); ?>"> <i class="fa fa-check-square" title="<?= strip_tags(HEADER_TITLE_CHECKOUT); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CHECKOUT; ?></span></a>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL') ?>"> <i class="fa fa-check-square" title="<?= strip_tags(HEADER_TITLE_CHECKOUT) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CHECKOUT ?></span></a>
                         </li>
 <?php
 }
@@ -81,7 +81,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
 // MJFB to </UL>
 ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ADVANCED_SEARCH); ?>"><i class="fa fa-search" title="Search"></i></a>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ADVANCED_SEARCH) ?>"><i class="fa fa-search" title="Search"></i></a>
                         </li>
                     </ul>
 <?php
@@ -124,9 +124,9 @@ if ($tagline_banner_section_present === true) {
     if (HEADER_SALES_TEXT !== '') {
 /* MJFB added image */
         ?>
-                <div id="tagline" class="text-center"><a href="<?php echo zen_href_link(FILENAME_DEFAULT); ?>" aria-label="<?php echo TEXT_HEADER_ARIA_LABEL_LOGO; ?>">
-                    <?php echo zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base, 'images') . '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT); ?>
-                </a><?php echo HEADER_SALES_TEXT;?></div>
+                <div id="tagline" class="text-center"><a href="<?= zen_href_link(FILENAME_DEFAULT) ?>" aria-label="<?= TEXT_HEADER_ARIA_LABEL_LOGO ?>">
+                    <?= zen_image($template->get_template_dir(HEADER_LOGO_IMAGE, DIR_WS_TEMPLATE, $current_page_base, 'images') . '/' . HEADER_LOGO_IMAGE, HEADER_ALT_TEXT, HEADER_LOGO_WIDTH, HEADER_LOGO_HEIGHT) ?>
+                </a><?= HEADER_SALES_TEXT ?></div>
 <?php
     }
 

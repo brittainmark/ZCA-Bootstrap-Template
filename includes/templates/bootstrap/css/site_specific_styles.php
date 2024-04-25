@@ -109,4 +109,18 @@
     .categoryListBoxContents.card  {
         min-width:120px;
     }
+    /* carousel images*/
+    #productImagesCarousel .carousel-indicators > li.active img {
+        opacity: 1;
+        border: 1px #fff solid;
+        outline:2px #000 solid;
+    }
+    .carousel-indicators li {
+        opacity:1;
+    }
+    /*add space below sort form*/
+    .form-inline {
+        padding-bottom: 10px;
+    }
+
 </style>
