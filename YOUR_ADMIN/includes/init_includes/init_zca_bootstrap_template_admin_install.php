@@ -10,6 +10,12 @@
 // from the "Layout Settings" and "Product Info" configuration groups into the consolidated
 // template-settings' group.  Otherwise, create those base configuration settings.
 //
+//// MJFB start
+// If version already installed (pre - v3.5.2) update PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE
+// to include main image as carousel
+//
+// Version 3.5.3 brittainm added main page image as carousel
+// MJFB end
 // BOOTSTRAP v3.6.3
 //
 // -----
@@ -48,41 +54,14 @@ $db->Execute(
         ('Display the Notifications Box on Product Pages', 'PRODUCT_INFO_SHOW_NOTIFICATIONS_BOX', '1', 'Used by the ZCA Bootstrap template. Default is <b>1</b>, Displays on Info Page, <b>0</b> Does not Display.', $cgi, now(), 303, NULL, 'zen_cfg_select_option([\'0\', \'1\'],')"
 );
 
+// MJFB extras
+$db->Execute("INSERT IGNORE INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value,configuration_description, configuration_group_id, sort_order,last_modified, date_added, use_function, set_function) VALUES ('Define About Us Status', 'DEFINE_ABOUT_US_STATUS', '1', 'Enable the Defined About Us Link/Text?0= Link ON, Define Text OFF1= Link ON, Define Text ON2= Link OFF, Define Text ON3= Link OFF, Define Text OFF', 25, 90, '', '', NULL, 'zen_cfg_select_option(array(''0'', ''1'', ''2'', ''3''),');");
+// MJFB end
+
 // -----
 // Set the previously-recorded template version for the remainder of the
 // install/upgrade processing.
 //
-
-$db->Execute(
-    "INSERT IGNORE INTO " . TABLE_CONFIGURATION . "
-        (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, use_function, set_function)
-     VALUES
-            ('Responsive Right Column Width', 'SET_COLUMN_RIGHT_LAYOUT', '3', 'Set Width of Right Column<br>Default is <b>3</b>, Total columns <b>12</b>.<br>Responsive Left, Center & Right Column Width must sum to 12', $cgi, now(), 202, NULL, 'zen_cfg_select_option(array(\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\', \'11\', \'12\'),'),
-
-            ('<i>Bootstrap Banner Display</i> - Enable Header Position 1 Carousel Feature', 'ZCA_ACTIVATE_BANNER_ONE_CAROUSEL', 'false', 'Enable the Header Position 1 Banner Carousel.', $cgi, now(), 213, NULL, 'zen_cfg_select_option(array(''true'',''false''),'),
-
-            ('<i>Bootstrap Banner Display</i> - Enable Header Position 2 Carousel Feature', 'ZCA_ACTIVATE_BANNER_TWO_CAROUSEL', 'false', 'Enable the Header Position 2 Banner Carousel.', $cgi, now(), 214, NULL, 'zen_cfg_select_option(array(''true'',''false''),'),
-
-            ('<i>Bootstrap Banner Display</i> - Enable Header Position 3 Carousel Feature', 'ZCA_ACTIVATE_BANNER_THREE_CAROUSEL', 'false', 'Enable the Header Position 3 Banner Carousel.', $cgi, now(), 215, NULL, 'zen_cfg_select_option(array(''true'',''false''),'),
-
-            ('<i>Bootstrap Banner Display</i> - Enable Footer Position 1 Carousel Feature', 'ZCA_ACTIVATE_BANNER_FOUR_CAROUSEL', 'false', 'Enable the Footer Position 1 Banner Carousel.', $cgi, now(), 216, NULL, 'zen_cfg_select_option(array(''true'',''false''),'),
-
-            ('<i>Bootstrap Banner Display</i> - Enable Footer Position 2 Carousel Feature', 'ZCA_ACTIVATE_BANNER_FIVE_CAROUSEL', 'false', 'Enable the Footer Position 2 Banner Carousel.', $cgi, now(), 217, NULL, 'zen_cfg_select_option(array(''true'',''false''),'),
-
-            ('<i>Bootstrap Banner Display</i> - Enable Footer Position 3 Carousel Feature', 'ZCA_ACTIVATE_BANNER_SIX_CAROUSEL', 'false', 'Enable the Footer Position 3 Banner Carousel.', $cgi, now(), 218, NULL, 'zen_cfg_select_option(array(''true'',''false''),'),
-
-            ('Enable <em>Bootstrap</em> Modal Image Popups', 'PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS', 'Yes', 'Should the ZCA <code>bootstrap</code> template display pop-up product images using its <em>modal</em> dialog? If your store uses an image-display plugin (like <b>Zen ColorBox</b>), set this value to <em>No</em>. Default: <b>Yes</b>', $cgi, now(), 300, NULL, 'zen_cfg_select_option(array(\'No\', \'Yes\'),'),
-
-            ('Use Bootstrap Additional Image Carousel', 'PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE', '0', 'Default is <b>0</b>, Opens images in an individual modal, <b>1</b> opens images in a single modal with carousel. <b>2</b> Uses main image as carousel', $cgi, now(), 301, NULL, 'zen_cfg_select_option(array(\'0\', \'1\', \'2\'),'),
-
-            ('Display the Manufacturer Box on Product Pages', 'PRODUCT_INFO_SHOW_MANUFACTURER_BOX', '1', 'Used by the ZCA Bootstrap template.  Default is <b>1</b>, Displays on Info Page, <b>0</b> Does not Display.', $cgi, now(), 302, NULL, 'zen_cfg_select_option(array(\'0\', \'1\'),'),
-
-            ('Display the Notifications Box on Product Pages', 'PRODUCT_INFO_SHOW_NOTIFICATIONS_BOX', '1', 'Used by the ZCA Bootstrap template. Default is <b>1</b>, Displays on Info Page, <b>0</b> Does not Display.', $cgi, now(), 303, NULL, 'zen_cfg_select_option(array(\'0\', \'1\'),')"
-        );
-
-// MJFB extras
-$db->Execute("INSERT IGNORE INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value,configuration_description, configuration_group_id, sort_order,last_modified, date_added, use_function, set_function) VALUES ('Define About Us Status', 'DEFINE_ABOUT_US_STATUS', '1', 'Enable the Defined About Us Link/Text?0= Link ON, Define Text OFF1= Link ON, Define Text ON2= Link OFF, Define Text ON3= Link OFF, Define Text OFF', 25, 90, '', '', NULL, 'zen_cfg_select_option(array(''0'', ''1'', ''2'', ''3''),');");
-// MJFB end
 define('ZCA_BOOTSTRAP_VERSION', '0.0.0');
 
 // -----

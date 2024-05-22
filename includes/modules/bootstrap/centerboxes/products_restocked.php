@@ -30,7 +30,7 @@ if ((($manufacturers_id > 0 && empty($_GET['filter_id'])) || !empty($_GET['music
             AND p.products_quantity > 0 " . $display_limit;
 } else {
     // get all products and cPaths in this subcat tree
-    $productsInCategory = zen_get_categories_products_list( (($manufacturers_id > 0 && !empty($_GET['filter_id'])) ? zen_get_generated_category_path_rev($_GET['filter_id']) : $cPath), false, true, 0, $display_limit);
+    $productsInCategory = zen_get_categories_products_list((($manufacturers_id > 0 && !empty($_GET['filter_id'])) ? zen_get_generated_category_path_rev($_GET['filter_id']) : $cPath), false, true, 0, $display_limit);
 
     if (is_array($productsInCategory) && count($productsInCategory) > 0) {
         // build products-list string to insert into SQL query

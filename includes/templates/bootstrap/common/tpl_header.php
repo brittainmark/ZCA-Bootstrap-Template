@@ -22,7 +22,7 @@ if (!empty($flag_disable_header)) {
 <!--bof-navigation display-->
     <div id="navMainWrapper">
         <div id="navMain">
-            <nav class="navbar fixed-top mx-3 navbar-expand-lg rounded-bottom"  aria-label="<?= TEXT_HEADER_ARIA_LABEL_NAVBAR; ?>">
+            <nav class="navbar fixed-top mx-3 navbar-expand-lg rounded-bottom" aria-label="<?= TEXT_HEADER_ARIA_LABEL_NAVBAR; ?>">
 <!-- MJFB
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
@@ -33,24 +33,21 @@ if (!empty($flag_disable_header)) {
                 <div class="navbar-expand" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
 <?php 
-if (!$this_is_home_page) { 
 // MJFB added strip_tags font awsome and titles to all below.    
 ?>        
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?=  HTTP_SERVER . DIR_WS_CATALOG ;?>">
-                                <i class="fas fa-home" title="<?= strip_tags(HEADER_TITLE_CATALOG); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CATALOG; ?></span>
+                        <li id="nav-home" class="nav-item" title="<?= strip_tags(HEADER_TITLE_CATALOG) ?>">
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_DEFAULT) ?>">
+                                <i class="fas fa-home" title="<?= strip_tags(HEADER_TITLE_CATALOG) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CATALOG ?></span>
                             </a>
                         </li>
 <?php
-}
-
 if (zen_is_logged_in() && !zen_in_guest_checkout()) { 
 ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL'); ?>"><i class="fas fa-sign-out-alt" title="<?= strip_tags(HEADER_TITLE_LOGOFF); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_LOGOFF; ?></span></a>
+                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_LOGOFF) ?>>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL') ?>"><i class="fas fa-sign-out-alt" title="<?= strip_tags(HEADER_TITLE_LOGOFF) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_LOGOFF; ?></span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL'); ?>"><i class="fas fa-user" title="<?= strip_tags(HEADER_TITLE_MY_ACCOUNT); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_MY_ACCOUNT; ?></span></a>
+                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_MY_ACCOUNT) ?>>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL') ?>"><i class="fas fa-user" title="<?= strip_tags(HEADER_TITLE_MY_ACCOUNT) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_MY_ACCOUNT; ?></span></a>
                         </li>
 <?php
 } else {
@@ -58,7 +55,7 @@ if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 ?>
                         <li class="nav-item" title="<?= HEADER_TITLE_LOGIN ?>">
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGIN, '', 'SSL') ?>">
-                                <i class="fas fa-sign-in-alt" title="<?= strip_tags(HEADER_TITLE_LOGIN); ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_LOGIN ?></span>
+                                <i class="fas fa-sign-in-alt" title="<?= strip_tags(HEADER_TITLE_LOGIN) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_LOGIN ?></span>
                             </a>
                         </li>
 <?php
@@ -67,10 +64,10 @@ if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 
 if ($_SESSION['cart']->count_contents() > 0) {
 ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL'); ?>"> <span class="hidden-xs hdr-cart-total"><?= $currencies->format($_SESSION['cart']->show_total()); ?></span> <i class="fas fa-shopping-basket" title="<?= strip_tags(HEADER_TITLE_CART_CONTENTS); ?>"></i><sup><span class="badge badge-light text-black ml-n2"><?= $_SESSION['cart']->count_contents(); ?></span></sup> <span class="d-none d-md-inline"><?= HEADER_TITLE_CART_CONTENTS; ?></span></a>
+                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_CART_CONTENTS) ?>>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL') ?>"> <span class="hidden-xs hdr-cart-total"><?= $currencies->format($_SESSION['cart']->show_total()); ?></span> <i class="fas fa-shopping-basket" title="<?= strip_tags(HEADER_TITLE_CART_CONTENTS) ?>"></i><sup><span class="badge badge-light text-black ml-n2"><?= $_SESSION['cart']->count_contents(); ?></span></sup> <span class="d-none d-md-inline"><?= HEADER_TITLE_CART_CONTENTS; ?></span></a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_CHECKOUT) ?>>
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL') ?>"> <i class="fa fa-check-square" title="<?= strip_tags(HEADER_TITLE_CHECKOUT) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CHECKOUT ?></span></a>
                         </li>
 <?php
@@ -80,8 +77,8 @@ if ($_SESSION['cart']->count_contents() > 0) {
 //require $template->get_template_dir('tpl_offcanvas_menu.php', DIR_WS_TEMPLATE, $current_page_base, 'common') . '/tpl_offcanvas_menu.php';
 // MJFB to </UL>
 ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ADVANCED_SEARCH) ?>"><i class="fa fa-search" title="Search"></i></a>
+                        <li class="nav-item" title="<?= strip_tags(HEADER_SEARCH_BUTTON) ?>">
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ADVANCED_SEARCH) ?>"><i class="fa fa-search" title="<?= strip_tags(HEADER_SEARCH_BUTTON) ?>></i> <span class="d-none d-md-inline"><?= HEADER__SEARCH_BUTTON ?></span></a>
                         </li>
                     </ul>
 <?php

@@ -16,6 +16,7 @@ class zcObserverMjfbObservers extends base {
                 'NOTIFY_HEADER_START_PRODUCT_FREE_SHIPPING_INFO',
                 'NOTIFY_HEADER_START_PRODUCT_INFO',
                 'NOTIFY_HEADER_START_PRODUCT_MUSIC_INFO',
+                'NOTIFY_INFORMATION_SIDEBOX_ADDITIONS',
             ]
         );
     }
@@ -71,6 +72,12 @@ class zcObserverMjfbObservers extends base {
         $this->redirectIncorrectTypeHandler();
     }
     
+    protected function updateNotifInformationSideboxAdditions(&$class, $eventID, $not_used, &$information)
+    {
+        $information[] = '<a class="' . $information_classes . '" href="' . zen_href_link(FILENAME_FAQ) . '">' . BOX_INFORMATION_FAQ . '</a>';
+    }
+
+
     protected function mjfb_zen_get_products_quantity_min_units_display($product_id, $include_break = true, $message_is_for_shopping_cart = false) {
         $result = zen_get_product_details($product_id);
 
