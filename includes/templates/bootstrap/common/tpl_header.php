@@ -43,10 +43,10 @@ if (!empty($flag_disable_header)) {
 <?php
 if (zen_is_logged_in() && !zen_in_guest_checkout()) { 
 ?>
-                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_LOGOFF) ?>>
+                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_LOGOFF) ?>">
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL') ?>"><i class="fas fa-sign-out-alt" title="<?= strip_tags(HEADER_TITLE_LOGOFF) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_LOGOFF; ?></span></a>
                         </li>
-                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_MY_ACCOUNT) ?>>
+                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_MY_ACCOUNT) ?>">
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL') ?>"><i class="fas fa-user" title="<?= strip_tags(HEADER_TITLE_MY_ACCOUNT) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_MY_ACCOUNT; ?></span></a>
                         </li>
 <?php
@@ -64,10 +64,10 @@ if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 
 if ($_SESSION['cart']->count_contents() > 0) {
 ?>
-                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_CART_CONTENTS) ?>>
+                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_CART_CONTENTS) ?>">
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL') ?>"> <span class="hidden-xs hdr-cart-total"><?= $currencies->format($_SESSION['cart']->show_total()); ?></span> <i class="fas fa-shopping-basket" title="<?= strip_tags(HEADER_TITLE_CART_CONTENTS) ?>"></i><sup><span class="badge badge-light text-black ml-n2"><?= $_SESSION['cart']->count_contents(); ?></span></sup> <span class="d-none d-md-inline"><?= HEADER_TITLE_CART_CONTENTS; ?></span></a>
                         </li>
-                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_CHECKOUT) ?>>
+                        <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_CHECKOUT) ?>">
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL') ?>"> <i class="fa fa-check-square" title="<?= strip_tags(HEADER_TITLE_CHECKOUT) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_CHECKOUT ?></span></a>
                         </li>
 <?php
@@ -78,7 +78,7 @@ if ($_SESSION['cart']->count_contents() > 0) {
 // MJFB to </UL>
 ?>
                         <li class="nav-item" title="<?= strip_tags(HEADER_SEARCH_BUTTON) ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ADVANCED_SEARCH) ?>"><i class="fa fa-search" title="<?= strip_tags(HEADER_SEARCH_BUTTON) ?>></i> <span class="d-none d-md-inline"><?= HEADER__SEARCH_BUTTON ?></span></a>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ADVANCED_SEARCH) ?>"><i class="fa fa-search" title="<?= strip_tags(HEADER_SEARCH_BUTTON) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_SEARCH_BUTTON ?></span></a>
                         </li>
                     </ul>
 <?php

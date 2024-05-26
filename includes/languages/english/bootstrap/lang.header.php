@@ -10,7 +10,6 @@ $define = [
     'HEADER_LOGO_WIDTH' => '51',
     'HEADER_LOGO_HEIGHT' => '58',
     'HEADER_LOGO_IMAGE' => 'logo.png',
-    'HEADER_SEARCH_BUTTON' => '<i class="fas fa-search"></i>',
 ];
 
 return $define;

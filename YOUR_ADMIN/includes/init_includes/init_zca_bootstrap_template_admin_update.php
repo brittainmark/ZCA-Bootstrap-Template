@@ -35,7 +35,6 @@ switch (true) {
               WHERE configuration_key = 'PRODUCT_LISTING_COLUMNS_PER_ROW'
               LIMIT 1"
         );    
-        
     // -----
     // v3.5.3 update PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE to for main image as carousel
     // Add option 2

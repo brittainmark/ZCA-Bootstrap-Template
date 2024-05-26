@@ -37,6 +37,9 @@
     #tagline {
         font-size:2.5rem;
     }
+     #tagline a {
+         text-decoration: none;
+     }
     /* dropdown on hover */
     .dropdown:hover>.dropdown-menu, .dropdown-submenu:hover>.dropdown-menu {
         display: block;

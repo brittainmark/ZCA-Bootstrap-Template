@@ -7,7 +7,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: init_bc_config.php
  *
- * BOOTSTRAP v3.5.2
+ * BOOTSTRAP v3.6.2
  */
 
 // -----
@@ -23,7 +23,7 @@ if (!isset($_SESSION['admin_id'])) {
 // is added, removed or updated.  Initially added for Bootstrap v3.5.2, note that
 // its setting might not be the same as the base template's version!
 //
-define('ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION', '3.5.3-beta1');
+define('ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION', '3.6.2');
 
 // -----
 // If this is an upgrade (or an initial install), load the installation/upgrade script to (at a minimum)

@@ -72,8 +72,9 @@ class zcObserverMjfbObservers extends base {
         $this->redirectIncorrectTypeHandler();
     }
     
-    protected function updateNotifInformationSideboxAdditions(&$class, $eventID, $not_used, &$information)
+    protected function updateNotifyInformationSideboxAdditions(&$class, $eventID, $not_used, &$information)
     {
+        global $information_classes;
         $information[] = '<a class="' . $information_classes . '" href="' . zen_href_link(FILENAME_FAQ) . '">' . BOX_INFORMATION_FAQ . '</a>';
     }
 
