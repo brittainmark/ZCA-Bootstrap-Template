@@ -145,7 +145,7 @@ require($template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, 
 //MJFB - end 
 if ($products_description != '') { ?>
             <div id="<?= $html_id_prefix ?>-productDescription" class="productDescription mb-3">
-                <??= stripslashes($products_description) ?>
+                <?= stripslashes($products_description) ?>
             </div>
 <?php 
 }
