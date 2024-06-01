@@ -472,7 +472,7 @@ if (!empty($order->info)) {
 <?php
 } else {
     // no information for invoice
-    echo INVOICE_ERROR_ORDER_DOES_NOT_EXIST . $oID;
+    echo ERROR_ORDER_DOES_NOT_EXIST . $oID;
 }
 ?>
     <!-- body_text_eof //-->

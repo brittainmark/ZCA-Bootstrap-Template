@@ -18,5 +18,6 @@ $define = [
     'EMAIL_SPAM_DISCLAIMER' => 'This email is sent in accordance with the US CAN-SPAM Law in effect 01/01/2004. Removal requests can be sent to this address and will be honoured and respected.',
     'OFFICE_EMAIL' => '<strong>Email:</strong>',
     'EMAIL_LOGO_ALT_TITLE_TEXT' => 'Inner Light Crystals Logo',
+    'ERROR_ORDER_DOES_NOT_EXIST' => 'Error: Order does not exist.',
 ];
 return $define;
