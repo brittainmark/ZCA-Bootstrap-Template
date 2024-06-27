@@ -3,14 +3,13 @@
  * additional_images module, modal version.  This module 'lists' thumbnails of each
  * additional image at the bottom of the modal.
  * 
- * BOOTSTRAP v3.5.0
+ * BOOTSTRAP v3.7.1
  *
  * Prepares list of additional product images to be displayed in template
  *
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Author: DrByte  Wed Jan 6 12:47:43 2016 -0500 Modified in v1.5.5 $
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
@@ -27,9 +26,13 @@ if ($products_image !== '' && $flag_show_product_info_additional_images !== '0')
     $products_image_directory = $products_image_info['dirname'];
 
     // -----
-    // Additional images in subdirectories require an intervening '_' to match.
+    // Additional images in subdirectories *always" require an intervening '_' to match.
+    // So do those in the /images root if we're running on zc210 or later and the
+    // additional images' "mode" setting indicates that we're running in 'strict' mode,
+    // in which case the intervening '_' is also needed.
     //
-    if ($products_image_directory === '.') {
+    zen_define_default('ADDITIONAL_IMAGES_MODE', 'legacy');
+    if (ADDITIONAL_IMAGES_MODE === 'legacy' && $products_image_directory === '.') {
         $products_image_base .= '?';
         $products_image_directory = '';
     } else {

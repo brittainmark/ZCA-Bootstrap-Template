@@ -68,8 +68,8 @@ img {
 </head>
 
 <body>
-    <h1>Bootstrap-4 Template for Zen Cart v1.5.8 and v2.0.0</h1>
-    <p>Version 3.7.0, by lat9, drbyte, scottcwilson, marco-pm, dbltoe, dennisns7d, brittainmark, torvista, proseLA and daphilli224</p>
+    <h1>Bootstrap-4 Template for Zen Cart v1.5.8 and v2.0.x</h1>
+    <p>Version 3.7.1, by lat9, drbyte, scottcwilson, marco-pm, dbltoe, dennisns7d, brittainmark, torvista, proseLA and daphilli224</p>
     <p>Current Support Thread at Zen Cart Forums: <a href="https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread" target="_blank">https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread</a></p>
     <p>Zen Cart Download Link: <a href="https://www.zen-cart.com/downloads.php?do=file&id=2191" target="_blank">https://www.zen-cart.com/downloads.php?do=file&id=2191</a></p>
     <p>GitHub repository: <a href="https://github.com/lat9/ZCA-Bootstrap-Template" target="_blank">https://github.com/lat9/ZCA-Bootstrap-Template</a></p>
@@ -162,6 +162,30 @@ img {
     <h2>Version History</h2>
     <p>This section identifies the template's version history and changes, starting with its v2.0.0c release.  Prior version changes can be found in the root of the template's distribution zip-file (<code>CHANGELOG.txt</code>).</p>
     <ul>
+        <li>v3.7.1, 2024-06-21 (lat9, brittainmark)<ul>
+            <li>BUGFIX: Correct PHP Warning on <code>checkout_payment</code> page.</li>
+            <li>BUGFIX: Remove extraneous comments from <samp>template_info.php</samp>.</li>
+            <li>INTROP: Support forthcoming zc210's additional-images' handling.</li>
+            <li>BUGFIX: Correct <samp>gv_faq</samp> page's form-entry default.</li>
+            <li>BUGFIX: Correct variable name for shipping-estimator display.</li>
+            <li>BUGFIX: Add styling to display non-Bootstrap-formatted checkbox inputs on checkout pages.</li>
+            <li>BUGFIX: Correct title of base image's additional-images' carousel-indicator.</li>
+            <li>BUGFIX: Pull in base ZC change for <samp>tpl_account_default.php</samp>.</li>
+            <li>BUGFIX: AJAX search's product count can be 'off' for variant-managed model-numbers.</li>
+            <li>The following files were changed or <span class="added">added</span>:<ol>
+                <li>/includes/classes/ajax/zcAjaxBootstrapSearch.php</li>
+                <li>/includes/modules/bootstrap/bootstrap_additional_images.php</li>
+                <li>/includes/modules/bootstrap/bootstrap_slide_additional_images.php</li>
+                <li>/includes/templates/bootstrap/template_info.php</li>
+                <li><span class="added">/includes/templates/bootstrap/css/stylesheet_365.css</span></li>
+                <li>/includes/templates/bootstrap/modalboxes/tpl_bootstrap_images.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_account_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_checkout_payment_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_gv_faq_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_shipping_estimator.php</li>
+                <li>/YOUR_ADMIN/includes/init_includes/init_zca_bootstrap_template_admin.php</li>
+            </ol></li>
+        </ul></li>
         <li>v3.7.0, 2024-05-19 (lat9, proseLA, brittainmark)<ul>
             <li>CHANGE: Add 'soft' configuration setting to exclude categories with no products from the display.</li>
             <li>BUGFIX: Correct layout for products' listings and category-row when displaying in 'columns'.</li>

@@ -2,7 +2,7 @@
 /**
  * additional_images module
  *
- * BOOTSTRAP v3.5.0
+ * BOOTSTRAP v3.7.1
  *
  * Prepares list of additional product images to be displayed in template
  *
@@ -28,9 +28,13 @@ if ($products_image !== '' && $flag_show_product_info_additional_images !== '0')
     $products_image_directory = $products_image_info['dirname'];
 
     // -----
-    // Additional images in subdirectories require an intervening '_' to match.
+    // Additional images in subdirectories *always" require an intervening '_' to match.
+    // So do those in the /images root if we're running on zc210 or later and the
+    // additional images' "mode" setting indicates that we're running in 'strict' mode,
+    // in which case the intervening '_' is also needed.
     //
-    if ($products_image_directory === '.') {
+    zen_define_default('ADDITIONAL_IMAGES_MODE', 'legacy');
+    if (ADDITIONAL_IMAGES_MODE === 'legacy' && $products_image_directory === '.') {
         $products_image_base .= '?';
         $products_image_directory = '';
     } else {
