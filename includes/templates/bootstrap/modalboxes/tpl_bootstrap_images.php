@@ -8,6 +8,8 @@
  * @copyright Copyright 2003-2016 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * 
+ *   brittainm added main page image as carousel
  */
 if (!defined('IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE')) {
     define('IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE', 'Yes');
@@ -27,6 +29,11 @@ if (!defined('IMAGE_ADDITIONAL_DISPLAY_LINK_EVEN_WHEN_NO_LARGE')) {
                     <!-- main slider carousel -->
                     <div class="row">
                         <div class="col-lg-8 offset-lg-2" id="slider">
+<?php 
+// MJFB Start
+require $template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, $current_page_base,'modalboxes'). '/tpl_bootstrap_slider_items.php';
+/* MJFB removed replaced with tpl_bootstrap_slider_items.php above.
+ * 
                             <div id="productImagesCarousel" class="carousel slide">
                                 <!-- main slider carousel items -->
                                 <div class="carousel-inner text-center">
@@ -91,9 +98,12 @@ if ($flag_show_product_info_additional_images !== '0' && $num_images > 0) {
         }
     }
 }
-?>
                                 </ul>
                             </div>
+
+ * END MJFB
+ */
+?>
                         </div>
                     </div>
                     <!--/main slider carousel-->

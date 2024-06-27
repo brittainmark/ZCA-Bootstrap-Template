@@ -21,7 +21,7 @@ $main_image_file = DIR_WS_IMAGES . $products_image ;
 ?>
 <div class="active item carousel-item imagezoom" data-slide-number="0">
     <a href="<?php echo DIR_WS_IMAGES . $products_image?>">
-        <?php echo zen_image($products_image_large, parameters:'loading="lazy"');?> 
+        <?php echo zen_image($products_image_large, $products_name, parameters:'loading="lazy"');?> 
    </a>
 </div>
 <div class="imageLink" >
