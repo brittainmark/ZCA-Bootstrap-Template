@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * BOOTSTRAP v3.7.0
+ * BOOTSTRAP v3.7.1
  *
  * Loaded automatically by index.php?main_page=checkout_payment.<br />
  * Displays the allowed payment modules, for selection by customer.

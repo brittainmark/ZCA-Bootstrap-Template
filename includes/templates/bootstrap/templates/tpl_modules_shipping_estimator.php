@@ -2,7 +2,7 @@
 /**
  * Module Template - for shipping-estimator display
  *
- * BOOTSTRAP v3.7.0
+ * BOOTSTRAP v3.7.1
  *
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -82,7 +82,7 @@ if ($_SESSION['cart']->count_contents() !== 0) {
             if (CART_SHIPPING_METHOD_ZIP_REQUIRED === 'true') {
 ?>
     <label class="inputLabel" for="postcode"><?php echo ENTRY_POST_CODE; ?></label>
-    <?php echo zen_draw_input_field('postcode', ${'postcode'}, 'size="7" id="postcode"'); ?>
+    <?php echo zen_draw_input_field('postcode', $postcode, 'size="7" id="postcode"'); ?>
     <div class="p-2"></div>
 <?php
             }
