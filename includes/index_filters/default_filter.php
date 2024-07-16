@@ -6,12 +6,16 @@
 * index filter for the default product type
 * show the products of a specified manufacturer
 *
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
 * @copyright Portions Copyright 2003 osCommerce
 * @todo Need to add/fine-tune ability to override or insert entry-points on a per-product-type basis
 * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: DrByte 2020 Jul 10 Modified in v1.5.8-alpha $
+ * @version $Id: Scott Wilson 2024 Apr 07 Modified in v2.0.1 $
 */
+/**
+ * @var queryFactory $db
+ * @var notifier $zco_notifier
+ */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
 }
@@ -29,36 +33,47 @@ if (!isset($select_column_list)) {
   if (!isset($do_filter_list)) {
     $do_filter_list = false;
   }
-$and = '';
+
+$and = $and ?? '';
+$sql_joins = $sql_joins ?? '';
+
 // show the products of a specified manufacturer
-if (isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] != '') {
-  // We show them all
-  $and = " AND m.manufacturers_id = " . (int)$_GET['manufacturers_id'] . " ";
-  if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id'])) {
-    // We are asked to show only a specific category
-    $and .= " AND p2c.categories_id = " . (int)$_GET['filter_id'] . " ";
-  } else {
-    $and .= ' AND p2c.categories_id = p.master_categories_id ';
-  }
+if (isset($_GET['manufacturers_id']) && $_GET['manufacturers_id'] > 0) {
+    // We show them all
+    $and .= " AND m.manufacturers_id = " . (int)$_GET['manufacturers_id'] . " ";
+    if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id'])) {
+        // We are asked to show only a specific category
+        $sql_joins .= " LEFT JOIN " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c ON p2c.products_id = p.products_id ";
+        $and .= " AND p2c.categories_id = " . (int)$_GET['filter_id'] . " ";
+    } else {
+        $sql_joins .= " LEFT JOIN " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c ON p2c.products_id = p.products_id ";
+        $and .= ' AND p2c.categories_id = p.master_categories_id ';
+    }
 } else {
-  // show the products in a given category
-  // We show them all
-  $and = " AND p2c.categories_id = " . (int)$current_category_id . " ";
-  if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id'])) {
-    // We are asked to show only specific category
-    $and .= " AND m.manufacturers_id = " . (int)$_GET['filter_id'] . " ";
-  }
+    if (empty($and) && !empty($current_category_id)) {
+      // show the products in a given category
+      // We show them all
+        $sql_joins .= " LEFT JOIN " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c ON p2c.products_id = p.products_id ";
+        $and .= " AND p2c.categories_id = " . (int)$current_category_id . " ";
+    }
+    if (isset($_GET['filter_id']) && zen_not_null($_GET['filter_id'])) {
+        // We are asked to show only specific category
+        $and .= " AND m.manufacturers_id = " . (int)$_GET['filter_id'] . " ";
+    }
 }
-$listing_sql = "SELECT " . $select_column_list . " p.products_id, p.products_type, p.master_categories_id, p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description,
+
+$listing_sql = "SELECT " . $select_column_list . " p.products_id, p.products_type, p.master_categories_id,
+                       p.manufacturers_id, p.products_price, p.products_tax_class_id, pd.products_description,
                        IF(s.status = 1, s.specials_new_products_price, NULL) AS specials_new_products_price,
                        IF(s.status = 1, s.specials_new_products_price, p.products_price) AS final_price,
                        p.products_sort_order, p.product_is_call, p.product_is_always_free_shipping, p.products_qty_box_status
                 FROM " . TABLE_PRODUCTS . " p
                 LEFT JOIN " . TABLE_SPECIALS . " s ON s.products_id = p.products_id
-                LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON pd.products_id = p.products_id
-                  AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
-                LEFT JOIN " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c ON p2c.products_id = p.products_id
+                LEFT JOIN " . TABLE_PRODUCTS_DESCRIPTION . " pd ON pd.products_id = p.products_id AND pd.language_id = " . (int)$_SESSION['languages_id'] . "
                 LEFT JOIN " . TABLE_MANUFACTURERS . " m ON m.manufacturers_id = p.manufacturers_id
+                ";
+$listing_sql .= $sql_joins ?? ' ';
+$where_str = "
                 WHERE p.products_status = 1
                 " . $and . "
                 " . $alpha_sort;

@@ -2,7 +2,7 @@
 /**
  * Specials
  * 
- * BOOTSTRAP v3.1.2
+ * BOOTSTRAP v3.6.5
  *
  * @package page
  * @copyright Copyright 2003-2006 Zen Cart Development Team
@@ -20,7 +20,7 @@
 if (!(function_exists('zca_bootstrap_active') && zca_bootstrap_active())) {
     return;
 }
-// MJFB added
+// MJFB restored sort
 require(DIR_WS_MODULES . zen_get_module_directory('require_languages.php'));
 
 // display order dropdown

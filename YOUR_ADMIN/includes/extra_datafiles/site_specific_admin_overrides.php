@@ -8,9 +8,9 @@
  * For use on YOUR site, make a copy of this file (which has all entries commented-out) to /admin/includes/extra_datafiles/site_specific_admin_overrides.php
  * and make your edits there.  Otherwise, your overrides might get "lost" on a future Zen Cart upgrade.
  *
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: brittainmark 2022 Dec 23 Modified in v1.5.8a $
+ * @version $Id: lat9 2024 Jan 29 Modified in v2.0.0-beta1 $
  */
 // -----
 // The flags to indicate if attribute images should be displayed in invoice and packing slip.
@@ -42,12 +42,12 @@ $show_attrib_images_pack = false;
 $show_product_images = false;
 $show_product_images_pack = false;
 
- // Flag to indicate if the product tax is displayed on the order details screen and invoice
- // Used in: admin/invoice.php, admin/orders.php
- //
- // true ..... Display the products tax amounts (the default).
- // false .... The products Tax amount is NOT displayed.
- //$show_product_tax = true;
+// Flag to indicate if the product tax is displayed on the order details screen and invoice
+// Used in: admin/invoice.php, admin/orders.php
+//
+// true ..... Display the products tax amounts (the default).
+// false .... The products Tax amount is NOT displayed.
+//$show_product_tax = true;
 
 // Indicate if the downloads manager page should show the file date.
 // Used in: admin/downloads_manager.php
@@ -69,12 +69,12 @@ $show_product_images_pack = false;
 // Change 25 below to the number of rows you require.
 //$recentOrdersMaxRows = 25;
 
- //Flag to indicate if the Quick view popup should be displayed on the order page.
+//Flag to indicate if the Quick view popup should be displayed on the order page.
 // Used in: admin/orders.php
- //
- // true ..... Quick view popup icon is displayed.
- // false .... Quick view popuo icon is NOT displayed (the default).
- //$quick_view_popover_enabled = false;
+//
+// true ..... Quick view popup icon is displayed.
+// false .... Quick view popup icon is NOT displayed (the default).
+//$quick_view_popover_enabled = false;
 
 // Flag to indicate if the attributes info is displayed in Order Quick view popup.
 // Has no effect if $quick_view_popover_enabled = false;
@@ -100,6 +100,25 @@ $show_product_images_pack = false;
 // true ..... no link will be created.
 // false .... a <link> element will load the v4-shims.min.css file.
 //$disableFontAwesomeV4Compatibility = true;
+
+// Display the registration IP address in the customer listing
+// Used in: admin/includes/customers.php
+//
+// true ..... show IP address
+// false .... hide IP address (default)
+// $show_registration_ip_in_listing = false;
+
+// Display an order's overall weight and the weight of each product?  Used
+// Used in: admin/orders.php
+//
+// Note: Orders placed on Zen Cart versions prior to 1.5.6 did not record
+// the order's overall weight.  If an order's overall weight isn't recorded,
+// this setting will automatically be set to (bool)false for that order.
+//
+// true .... (default) Show the overall and product-specific weights, if present.
+// false ... Don't show the weights
+// $show_orders_weights = true;
+
 
 //
 //Developer Debugging flags

@@ -1,16 +1,25 @@
 <?php
+/**
+ * A collection of site-specific overrides for the storefront operation.
+ *
+ * There are some features in the base Zen Cart processing that can be overridden for a specific
+ * site, as identified in this module.
+ *
+ * For use on YOUR site, make a copy of this file (which has all entries commented-out) to /includes/extra_datafiles/site_specific_overrides.php
+ * and make your edits there.  Otherwise, your overrides might get "lost" on a future Zen Cart upgrade.  The 'base' Zen Cart definitions
+ * for most of these variables are set by /includes/init_includes/init_common_elements.php.
+ *
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: Scott C Wilson 2024 Mar 01 Modified in v2.0.0-rc1 $
+ */
 // -----
-// Part of the ZCA Bootstrap template, @zcadditions, @lat9
+// Identify whether the link to the 'accessibility' page is included in the "Information" sidebox.
 //
-// BOOTSTRAP 3.7.0
+// true .... Show in the sidebox (default)
+// false ... Don't show in the sidebox
 //
-// A collection of 'soft' configuration settings for use by the ZCA Bootstrap Template
-// and its clones.
-//
-// For use on YOUR site, make a copy of this file (which has all entries commented-out) to
-// /includes/extra_datafiles/site-specific-bootstrap-settings.php and make your edits there.
-// Otherwise, your overrides might get "lost" on a future Bootstrap template update.
-//
+// $flag_show_accessibility_sidebox_link = false;
 
 // -----
 // This control instructs the zca_js_zone_list function whether to use a zone's zone_id (false, default)
@@ -79,6 +88,16 @@ $flag_show_brand_sidebox_link = false;
 // In this example, loading page "video" will not load "video_info" files
 // define('NO_LANGUAGE_SUBSTRING_MATCH', ['video']);
 
+// Flag to indicate that the FontAwesome v4 shim CSS file should NOT be loaded
+// in the head of every page, to make obsolete FontAwesome icon names
+// like fa-star-o work.
+// Useful when no addons using FontAwesome v4 are deployed.
+// Used in: includes/templates/responsive_classic/common/html_header.php
+//
+// true ..... no link will be created.
+// false .... a <link> element will load the v4-shims.min.css file.
+//$disableFontAwesomeV4Compatibility = true;
+
 // -----
 // Indicate whether or not a product's additional images should be displayed even if the product
 // has no 'main' image defined in the database.
@@ -93,3 +112,19 @@ $flag_show_brand_sidebox_link = false;
 // If a product is in two different sub categories of parent category it will only be counted once.
 //
 define('COUNT_DISTINCT_PRODUCTS', true);
+
+// -----
+// Checkout Shipping: when no shipping method is available, i.e. Checkout cannot proceed to Payment
+//
+// true .... Replace the "Continue" button with a "Contact Us" button/link.
+// false ... Maintain the "Continue" button, which redirects back to Checkout Shipping; this is the default.
+//
+//$show_contact_us_instead_of_continue = false;
+
+// -----
+// Product Listing: enable sorting by column heading
+// 
+// true .... Display the legacy clickable column headings to sort the product listing (in addition to the sorter dropdown)
+// false ... Do not show the column headings; this is the default.
+//
+//$show_table_header_row = false;
