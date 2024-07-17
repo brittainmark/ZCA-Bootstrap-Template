@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: brittainmark 2022 Dec 23 Modified in v1.5.8a $
+ * @version $Id: proseLA 2023 Aug 19 Modified in v2.0.0-alpha1 $
  */
 require('includes/application_top.php');
 
@@ -23,34 +23,32 @@ $oID = (int)$_GET['oID'];
 
 include DIR_FS_CATALOG . DIR_WS_CLASSES . 'order.php';
 $order = new order($oID);
-
-// prepare order-status pulldown list
-$orders_statuses = array();
-$orders_status_array = array();
-$orders_status = $db->Execute("SELECT orders_status_id, orders_status_name
-                               FROM " . TABLE_ORDERS_STATUS . "
-                               WHERE language_id = " . (int)$_SESSION['languages_id']);
-foreach ($orders_status as $order_status) {
-  $orders_statuses[] = array(
-    'id' => $order_status['orders_status_id'],
-    'text' => $order_status['orders_status_name'] . ' [' . $order_status['orders_status_id'] . ']');
-  $orders_status_array[$order_status['orders_status_id']] = $order_status['orders_status_name'];
-}
-
-$show_customer = false;
-if (isset($order->delivery['name']) && $order->billing['name'] != $order->delivery['name']) {
-  $show_customer = true;
-}
-if (isset($order->delivery['street_address']) && $order->billing['street_address'] != $order->delivery['street_address']) {
-  $show_customer = true;
-}
 ?>
 <!doctype html>
-<html <?php echo HTML_PARAMS; ?>>
+<html <?= HTML_PARAMS ?>>
   <head>
     <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
   </head>
   <body>
+<?php
+if (empty($order->info)) {
+?>
+      <p class="text-danger text-center"><?= ERROR_ORDER_DOES_NOT_EXIST . $oID ?></p>
+<?php
+} else {
+// prepare order-status pulldown list
+    $ordersStatus = zen_getOrdersStatuses();
+    $orders_statuses = $ordersStatus['orders_statuses'];
+    $orders_status_array = $ordersStatus['orders_status_array'];
+
+    $show_customer = false;
+    if (isset($order->delivery['name']) && $order->billing['name'] != $order->delivery['name']) {
+      $show_customer = true;
+    }
+    if (isset($order->delivery['street_address']) && $order->billing['street_address'] != $order->delivery['street_address']) {
+      $show_customer = true;
+    }
+?>
     <div class="container">
       <!-- body_text //-->
       <table class="table">
@@ -61,7 +59,6 @@ if (isset($order->delivery['street_address']) && $order->billing['street_address
       </table>
       <div><?php echo zen_draw_separator(); ?></div>
       <?php
-if (!empty($order->info)) {      
         $additional_content = false;
         $zco_notifier->notify('NOTIFY_ADMIN_ORDERS_PACKINGSLIP_ADDITIONAL_DATA_TOP', $oID, $additional_content);
           if ($additional_content !== false) {
@@ -341,9 +338,6 @@ if (!empty($order->info)) {
     </div>
       
 <?php
-} else {
-    // no information for invoice
-    echo ERROR_ORDER_DOES_NOT_EXIST . $oID;
 }
 ?>
     <!-- body_text_eof //-->
