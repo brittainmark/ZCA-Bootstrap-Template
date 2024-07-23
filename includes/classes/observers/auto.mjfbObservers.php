@@ -17,7 +17,6 @@ class zcObserverMjfbObservers extends base {
                 'NOTIFY_HEADER_START_PRODUCT_INFO',
                 'NOTIFY_HEADER_START_PRODUCT_MUSIC_INFO',
                 'NOTIFY_INFORMATION_SIDEBOX_ADDITIONS',
-                'NOTIFY_PRODUCT_LISTING_QUERY_STRING',
             ]
         );
     }
@@ -80,32 +79,6 @@ class zcObserverMjfbObservers extends base {
         $information[] = '<a class="' . $information_classes . '" href="' . zen_href_link(FILENAME_FAQ) . '">' . BOX_INFORMATION_FAQ . '</a>';
     }
 
-    protected function updateNotifyProductListingQueryString(&$class,$filterName, &$listing_sql, &$where_str, &$order_by)
-    {
-        // Modify display order to move sold items to end and list master category first. IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id, 0, 1) ASC ,
-        if ($filterName[0] !== 'default') {
-            return;
-        }
-        if (PRODUCT_LISTING_DEFAULT_SORT_ORDER === '') {
-            $order_by = str_replace('ORDER BY', 'ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC ,', $order_by);
-            return;
-        }
-        $sort_col = substr($_GET['sort'], 0, 1);
-        global $column_list;
-        switch ($column_list[$sort_col - 1]) {
-            case 'PRODUCT_LIST_MODEL':
-            case 'PRODUCT_LIST_NAME':
-            case 'PRODUCT_LIST_IMAGE':
-            case 'PRODUCT_LIST_WEIGHT':
-                $order_by = str_replace('ORDER BY', 'ORDER BY IF (p.products_quantity = 0, 1, 0) ASC , IF (p.master_categories_id = $current_category_id,  0, 1) ASC ,', $order_by);
-                break;
-            case 'PRODUCT_LIST_MANUFACTURER':
-            case 'PRODUCT_LIST_PRICE':
-                $order_by = str_replace('ORDER BY', 'ORDER BY IF (p.products_quantity = 0, 1, 0) ASC ,', $order_by);
-                $order_by = str_replace(', pd.products_name', ', IF (p.master_categories_id = $current_category_id, 0, 1) ASC , pd.products_name', $order_by);
-                break; 
-        }
-    }
     protected function mjfb_zen_get_products_quantity_min_units_display($product_id, $include_break = true, $message_is_for_shopping_cart = false) {
         $result = zen_get_product_details($product_id);
 
