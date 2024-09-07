@@ -2,7 +2,7 @@
 // -----
 // AJAX Search for the Zen Cart Bootstrap Template.
 //
-// Bootstrap v3.7.1
+// Bootstrap v3.7.3
 //
 class zcAjaxBootstrapSearch extends base
 {
@@ -20,7 +20,7 @@ class zcAjaxBootstrapSearch extends base
         // -----
         // First, check that the supplied keywords aren't empty (if so, there's nothing to be returned).
         //
-        if (!empty($_POST['keywords']) && !empty(trim($_POST['keywords']))) {
+        if (!empty($_POST['keywords']) && is_string($_POST['keywords']) && !empty(trim($_POST['keywords']))) {
             $keywords = trim($_POST['keywords']);
             if (zen_parse_search_string(stripslashes($keywords), $search_keywords)) {
                 $from_clause =
@@ -31,11 +31,14 @@ class zcAjaxBootstrapSearch extends base
 
                 $where_clause =
                     ' WHERE p.products_status = 1 ';
-                if (function_exists('zen_build_keyword_where_clause')) {
-                    $where_clause .= zen_build_keyword_where_clause(['pd.products_name', 'p.products_model'], $keywords);
-                } else {
-                    $where_clause .= 'AND (' . $this->buildWhereClause($search_keywords) . ' )';
+                $search_fields = [
+                    'pd.products_name',
+                    'p.products_model',
+                ];
+                if (defined('BS4_AJAX_SEARCH_INC_DESC') && BS4_AJAX_SEARCH_INC_DESC === 'true') {
+                    $search_fields[] = 'pd.products_description';
                 }
+                $where_clause .= zen_build_keyword_where_clause($search_fields, $keywords);
 
                 $select_clause = 'SELECT DISTINCT p.products_image, p.products_id, p.products_sort_order, pd.products_name, p.master_categories_id, p.products_model';
                 $order_by_clause = ' ORDER BY p.products_sort_order, pd.products_name';
@@ -46,8 +49,10 @@ class zcAjaxBootstrapSearch extends base
                 //
                 $this->notify('NOTIFY_AJAX_BOOTSTRAP_SEARCH_CLAUSES', $search_keywords, $select_clause, $from_clause, $where_clause, $order_by_clause, $limit_clause);
 
-                $results = $db->Execute($select_clause . $from_clause . $where_clause . $order_by_clause . $limit_clause);
-                if (!$results->EOF) {
+                $results = $db->Execute("SELECT COUNT(*) AS count FROM ($select_clause $from_clause $where_clause) AS items");
+                $search_results_count = (int)$results->fields['count'];
+                if ($search_results_count !== 0) {
+                    $results = $db->Execute($select_clause . $from_clause . $where_clause . $order_by_clause . $limit_clause);
                     $products_search = [];
                     foreach ($results as $next_item) {
                         $products_id = $next_item['products_id'];
@@ -69,7 +74,6 @@ class zcAjaxBootstrapSearch extends base
 
                         $products_search[] = $next_search_result;
                     }
-                    $search_results_count = count($products_search);
 
                     // get html
                     ob_start();
@@ -86,29 +90,5 @@ class zcAjaxBootstrapSearch extends base
         return [
             'searchHtml' => $search_html,
         ];
-    }
-
-    protected function buildWhereClause($search_keywords)
-    {
-        global $db;
-
-        $where_clause = '';
-        foreach ($search_keywords as $current_keyword) {
-            switch ($current_keyword) {
-                case '(':
-                case ')':
-                    break;
-
-                case 'and':
-                case 'or':
-                    $where_clause .= " $current_keyword ";
-                    break;
-
-                default:
-                    $where_clause .= $db->bindVars("(pd.products_name LIKE '%:keywords%' OR p.products_model LIKE '%:keywords%')", ':keywords', $current_keyword, 'noquotestring');
-                    break;
-            }
-        }
-        return $where_clause;
     }
 }

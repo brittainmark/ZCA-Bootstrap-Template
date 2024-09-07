@@ -2,7 +2,7 @@
 // -----
 // Part of the Bootstrap template, assigning colors based on those configured.
 //
-// BOOTSTRAP v3.7.0
+// BOOTSTRAP v3.7.4
 //
 // Starting with Bootstrap v3.5.2, any color-specifications defined in that and follow-on
 // versions start out, on an upgrade, with a value of 'not-set' to give the site a chance
@@ -312,7 +312,7 @@ nav.navbar .btn:hover {
 <?php
 //- Centerboxes
 ?>
-.centerBoxContents.card {
+.centerBoxWrapper {
     color: <?= ZCA_CENTERBOX_TEXT_COLOR ?>;
     background-color: <?= ZCA_CENTERBOX_BACKGROUND_COLOR ?>;
 }
@@ -323,14 +323,14 @@ nav.navbar .btn:hover {
 <?php
 //- Category cards
 ?>
-.categoryListBoxContents.card {
+#subCategory-card-body {
     color: <?= ZCA_CENTERBOX_TEXT_COLOR ?>;
     background-color: <?= ZCA_CENTERBOX_BACKGROUND_COLOR ?>;
 }
-.categoryListBoxContents {
+.categoryListBoxContents.card {
     background-color: <?= ZCA_CENTERBOX_CARD_BACKGROUND_COLOR ?>;
 }
-.categoryListBoxContents:hover {
+.categoryListBoxContents.card:hover {
     background-color: <?= ZCA_CENTERBOX_CARD_BACKGROUND_COLOR_HOVER ?>;
 }
 <?php
@@ -359,17 +359,14 @@ a.page-link:hover {
 .sideBoxContentItem:hover {
     background-color: <?= ZCA_SIDEBOX_CARD_BACKGROUND_COLOR_HOVER ?>;
 }
-.centerBoxContents {
+.centerBoxContents.card {
     background-color: <?= ZCA_CENTERBOX_CARD_BACKGROUND_COLOR ?>;
 }
-.centerBoxContents:hover {
+.centerBoxContents.card:hover {
     background-color: <?= ZCA_CENTERBOX_CARD_BACKGROUND_COLOR_HOVER ?>;
 }
-.centerBoxContentsListing:hover {
+.centerBoxContentsListing.card:hover {
     background-color: <?= ZCA_CENTERBOX_CARD_BACKGROUND_COLOR_HOVER ?>;
-}
-.listingProductImage {
-    min-width: <?= (int)IMAGE_PRODUCT_LISTING_WIDTH ?>px;
 }
 <?php
 //- Product reviews
