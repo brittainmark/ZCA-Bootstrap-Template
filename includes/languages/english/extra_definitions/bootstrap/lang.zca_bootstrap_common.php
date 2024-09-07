@@ -1,6 +1,6 @@
 <?php
 /*
- * BOOTSTRAP v3.6.5
+ * BOOTSTRAP v3.7.2
  */
 // -----
 // Part of the Bootstrap template, defining commonly-used phrases and phrases unique to the bootstrap template.
@@ -52,6 +52,8 @@ $define = [
 //
     'TEXT_CART_MODAL_HELP' => '[help (?)]',
     'HEADING_TITLE_CART_MODAL' => 'Visitors Cart / Members Cart',
+    'TEXT_CART_ARIA_HEADING_DELETE_COLUMN' => 'Click the icon in this column to delete it from your cart.',
+    'TEXT_CART_ARIA_HEADING_UPDATE_COLUMN' => 'Click the icon in this column to update the quantity in your cart.',
 
 // -----
 // Used on various pages that display the cart's contents.

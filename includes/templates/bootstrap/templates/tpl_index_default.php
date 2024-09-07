@@ -2,10 +2,10 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.7.0
+ * BOOTSTRAP v3.7.3
  *
  * Main index page
- * Displays greetings, welcome text (define-page content), and various centerboxes depending on switch settings in Admin<br />
+ * Displays greetings, welcome text (define-page content), and various centerboxes depending on switch settings in Admin
  * Centerboxes are called as necessary
  *
  * @copyright Copyright 2003-2020 Zen Cart Development Team
@@ -48,7 +48,7 @@ if ($heading_title === '') {
  * get the Define Main Page Text
  */
 ?>
-<div id="indexDefault-defineContent" class="defineContent"><?php require($define_page); ?></div>
+<div id="indexDefault-defineContent" class="defineContent"><?php require $define_page; ?></div>
 <?php } ?>
 
 <?php
@@ -56,40 +56,41 @@ if ($heading_title === '') {
   while (!$show_display_category->EOF) {
 ?>
 
-<?php if ($show_display_category->fields['configuration_key'] == 'SHOW_PRODUCT_INFO_MAIN_FEATURED_PRODUCTS') { ?>
+<?php if ($show_display_category->fields['configuration_key'] === 'SHOW_PRODUCT_INFO_MAIN_FEATURED_PRODUCTS') { ?>
 <?php
 /**
  * display the Featured Products Center Box
  */
 ?>
-<?php require($template->get_template_dir('tpl_modules_featured_products.php',DIR_WS_TEMPLATE, $current_page_base,'centerboxes'). '/tpl_modules_featured_products.php'); ?>
+<?php require $template->get_template_dir('tpl_modules_featured_products.php', DIR_WS_TEMPLATE, $current_page_base, 'centerboxes') . '/tpl_modules_featured_products.php'; ?>
 <?php } ?>
 
-<?php if ($show_display_category->fields['configuration_key'] == 'SHOW_PRODUCT_INFO_MAIN_SPECIALS_PRODUCTS') { ?>
+<?php if ($show_display_category->fields['configuration_key'] === 'SHOW_PRODUCT_INFO_MAIN_SPECIALS_PRODUCTS') { ?>
 <?php
 /**
  * display the Special Products Center Box
  */
 ?>
-<?php require($template->get_template_dir('tpl_modules_specials_default.php',DIR_WS_TEMPLATE, $current_page_base,'centerboxes'). '/tpl_modules_specials_default.php'); ?>
+<?php require $template->get_template_dir('tpl_modules_specials_default.php', DIR_WS_TEMPLATE, $current_page_base, 'centerboxes') . '/tpl_modules_specials_default.php'; ?>
 <?php } ?>
 
-<?php if ($show_display_category->fields['configuration_key'] == 'SHOW_PRODUCT_INFO_MAIN_NEW_PRODUCTS') { ?>
+<?php if ($show_display_category->fields['configuration_key'] === 'SHOW_PRODUCT_INFO_MAIN_NEW_PRODUCTS') { ?>
 <?php
 /**
  * display the New Products Center Box
  */
 ?>
-<?php require($template->get_template_dir('tpl_modules_whats_new.php',DIR_WS_TEMPLATE, $current_page_base,'centerboxes'). '/tpl_modules_whats_new.php'); ?>
+<?php require $template->get_template_dir('tpl_modules_whats_new.php', DIR_WS_TEMPLATE, $current_page_base, 'centerboxes') . '/tpl_modules_whats_new.php'; ?>
 <?php } ?>
 
-<?php if ($show_display_category->fields['configuration_key'] == 'SHOW_PRODUCT_INFO_MAIN_UPCOMING') { ?>
+<?php if ($show_display_category->fields['configuration_key'] === 'SHOW_PRODUCT_INFO_MAIN_UPCOMING') { ?>
 <?php
 /**
  * display the Upcoming Products Center Box
  */
 ?>
-<?php include(DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS)); ?><?php } ?>
+<?php include(DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS)); ?>
+<?php } ?>
 <?php
 // MJFB
 if ($show_display_category->fields['configuration_key'] == 'SHOW_PRODUCT_INFO_MAIN_FEATURED_PRODUCTS') { 
@@ -101,6 +102,14 @@ if ($show_display_category->fields['configuration_key'] == 'SHOW_PRODUCT_INFO_MA
  // MJFB End 
 ?>
 
+<?php if ($show_display_category->fields['configuration_key'] === 'SHOW_PRODUCT_INFO_MAIN_FEATURED_CATEGORIES') { ?>
+<?php
+/**
+ * display the Featured Categories Center Box
+ */
+?>
+<?php require $template->get_template_dir('tpl_modules_featured_categories.php', DIR_WS_TEMPLATE, $current_page_base, 'centerboxes') . '/tpl_modules_featured_categories.php'; ?>
+<?php } ?>
 
 <?php
   $show_display_category->MoveNext();

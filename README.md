@@ -1,4 +1,4 @@
-# ZCA Bootstrap Template v3.7.1 for zc158 and zc200
+# ZCA Bootstrap Template v3.7.3 for zc158, zc200 and zc210
 
 This Zen Cart template uses a [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/) foundation to provide an updated look-and-feel to your Zen Cart.  Since the template is standards-based, it's easier to make layout changes to your store.
 
@@ -10,13 +10,14 @@ This Zen Cart template uses a [Bootstrap](https://getbootstrap.com/docs/4.5/gett
 
 ## External Packages Used
 
-- [Bootstrap 4.6.0](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
-- [Font Awesome 5.15.1](https://fontawesome.com/)
-- [jQuery 3.5.1](https://jquery.com/download/)
+- [Bootstrap 4.6.2](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
+- [Font Awesome 6.5.2](https://fontawesome.com/)
+- [jQuery 3.7.1](https://jquery.com/download/)
+- [TinyColor](https://bgrins.github.io/TinyColor/), used by the admin `zca_bootstrap_colors.php` tool.
 
 ## Features:
 
-- Supports Zen Cart major versions **1.5.8** and **2.0.0**, best when run on a zc200 (or zc158**a**) installation.  Validated on PHP versions 7.4 through 8.3.
+- Supports Zen Cart major versions **1.5.8** through **2.1.0**, best when run on a zc210 (or zc158**a**) installation.  Validated on PHP versions 7.4 through 8.3.
 - Bootstrap 4 Framework.
 - Responsive.
 - 3 Column Layout (removes right column on product info, shopping cart & checkout pages).

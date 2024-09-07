@@ -68,15 +68,15 @@ img {
 </head>
 
 <body>
-    <h1>Bootstrap-4 Template for Zen Cart v1.5.8 and v2.0.x</h1>
-    <p>Version 3.7.1, by lat9, drbyte, scottcwilson, marco-pm, dbltoe, dennisns7d, brittainmark, torvista, proseLA and daphilli224</p>
+    <h1>Bootstrap-4 Template for Zen Cart v1.5.8, v2.0.x and v2.1.x</h1>
+    <p>Version 3.7.4, by lat9, drbyte, scottcwilson, marco-pm, dbltoe, dennisns7d, brittainmark, torvista, proseLA, daphilli224 and retched</p>
     <p>Current Support Thread at Zen Cart Forums: <a href="https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread" target="_blank">https://www.zen-cart.com/showthread.php?223910-ZCA-Bootstrap-4-Template-Support-Thread</a></p>
     <p>Zen Cart Download Link: <a href="https://www.zen-cart.com/downloads.php?do=file&id=2191" target="_blank">https://www.zen-cart.com/downloads.php?do=file&id=2191</a></p>
     <p>GitHub repository: <a href="https://github.com/lat9/ZCA-Bootstrap-Template" target="_blank">https://github.com/lat9/ZCA-Bootstrap-Template</a></p>
     <p>GitHub Wiki: <a href="https://github.com/lat9/ZCA-Bootstrap-Template/wiki" target="_blank">https://github.com/lat9/ZCA-Bootstrap-Template/wiki</a></p>
 
     <h2>What it does</h2>
-    <p>This template uses <a href="https://getbootstrap.com/docs/4.6/getting-started/introduction/" target="_blank">Bootstrap-4.6.2</a> to provide its styling and builds on the base that Raymond Barbour provided over the past few years, supporting Zen Cart versions 1.5.8 and later &mdash; <em>best supported</em> by zc158<b>a</b> and <b>zc200</b>.</p>
+    <p>This template uses <a href="https://getbootstrap.com/docs/4.6/getting-started/introduction/" target="_blank">Bootstrap-4.6.2</a> to provide its styling and builds on the base that Raymond Barbour provided over the past few years, supporting Zen Cart versions 1.5.8 and later &mdash; <em>best supported</em> by zc158<b>a</b> and later.</p>
     <p>Starting with v3.4.0 of the template, the template-related files needed when used with <a href="https://www.zen-cart.com/downloads.php?do=file&id=2095" target="_blank">One-Page Checkout</a> are also provided:</p>
     <ul>
         <li>These changes have been validated with v2.4.6 and v2.5.0 of <em>OPC</em>, I'll suggest upgrading to that version or later prior to upgrading to v3.4.0 or later of the Bootstrap-4 template.</li>
@@ -162,6 +162,75 @@ img {
     <h2>Version History</h2>
     <p>This section identifies the template's version history and changes, starting with its v2.0.0c release.  Prior version changes can be found in the root of the template's distribution zip-file (<code>CHANGELOG.txt</code>).</p>
     <ul>
+        <li>v3.7.4-beta1, 2024-09-05 (lat9, drbyte)<ul>
+            <li>INTROP: Include zc210's retirement of the use of `banners::banners_on_ssl`.</li>
+            <li>BUGFIX: Update matching-heights' jQuery script to the most recent.</li>
+            <li>BUGFIX: Correct product listing image 'overflow'.</li>
+            <li>The following files were changed:<ol>
+                <li>/includes/templates/bootstrap/common/tpl_zca_banners_carousel.php</li>
+                <li>/includes/templates/bootstrap/css/stylesheet_zca_colors.php</li>
+                <li>/includes/templates/bootstrap/jscript/jquery.matchHeight.js</li>
+                <li>/includes/templates/bootstrap/jscript/jquery.matchHeight.min.js</li>
+                <li>/YOUR_ADMIN/includes/init_includes/init_zca_bootstrap_template_admin.php</li>
+            </ol></li>
+        </ul></li>
+        <li>v3.7.3, 2024-08-30 (lat9, drbyte)<ul>
+            <li>BUGFIX: AJAX search's keywords submitted must be of type <samp>string</samp>.</li>
+            <li>BUGFIX: Display shipping-module errors in the shipping-estimator.</li>
+            <li>INTROP: Use <code>$template</code> class to locate 'site_specific_styles.php' (zc201+ <em>only</em>)</li>
+            <li>INTROP: Use Zen Cart 'base' CSS/JS loading, when available (i.e. zc210+).</li>
+            <li>INTROP: Add notification added to <samp>account_history_info</samp> page's template in zc210.</li>
+            <li>INTROP: Replace usage of <code>ezpages::page_is_ssl</code> with <code>'SSL'</code>; the field's being removed in zc210.</li>
+            <li>BUGFIX: Don't display back-to-top on small/medium screens; those devices <em>normally</em> have a touchscreen.</li>
+            <li>BUGFIX: Correct layout inconsistencies between the notifications and manufacturers_info centerboxes.</li>
+            <li>INTROP: Recognize mobile-menu settings for EZ-Pages, added in zc210.</li>
+            <li>BUGFIX: Correct background bleed-through on list-containing sideboxes and add-to-cart block.</li>
+            <li>BUGFIX: Correct <b>Centerbox Background Color</b> applied to containing cards, not the wrapper.</li>
+            <li>INTROP: Align with zc210's inclusion of the OPC <samp>order_status</samp> page processing.</li>
+            <li>INTROP: Include zc210's <em>Featured Categories</em> feature.</li>
+            <li>The following files were changed or <span class="added">added</span>:<ol>
+                <li>/includes/classes/ajax/zcAjaxBootstrapSearch.php</li>
+                <li><span class="added">/includes/modules/bootstrap/centerboxes/featured_categories.php</span></li>
+                <li><span class="added">/includes/templates/bootstrap/centerboxes/tpl_modules_featured_categories.php</span></li>
+                <li>/includes/templates/bootstrap/centerboxes/tpl_modules_manufacturer_info.php</li>
+                <li>/includes/templates/bootstrap/centerboxes/tpl_no_notifications.php</li>
+                <li>/includes/templates/bootstrap/centerboxes/tpl_yes_notifications.php</li>
+                <li>/includes/templates/bootstrap/common/html_header.php</li>
+                <li><span class="added">/includes/templates/bootstrap/common/html_header_css_loader.php</span></li>
+                <li><span class="added">/includes/templates/bootstrap/common/html_header_js_loader.php</span></li>
+                <li><span class="added">/includes/templates/bootstrap/css/stylesheet_373.css</span></li>
+                <li>/includes/templates/bootstrap/css/stylesheet_zca_colors.php</li>
+                <li>/includes/templates/bootstrap/common/tpl_main_page.php</li>
+                <li>/includes/templates/bootstrap/common/tpl_offcanvas_menu.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_account_history_info_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_index_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_shipping_estimator.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_order_status_default.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_site_map_default.php</li>
+                <li>/YOUR_ADMIN/includes/init_includes/init_zca_bootstrap_template_admin.php</li>
+            </ol></li>
+        </ul></li>
+        <li>v3.7.2, 2024-07-17 (lat9, retched)<ul>
+            <li>BUGFIX: AJAX search's product count can be 'off' (again); variant-managed products might again 'explode' the count!</li>
+            <li>BUGFIX: Correct HTML <samp>id</samp> parameter in shipping-estimator modal.</li>
+            <li>BUGFIX: Use language-constant for modal shipping-estimator instead of hard-coded English.</li>
+            <li>BUGFIX: Reformat shipping-estimator layout to use 2-column display on medium and above viewports.</li>
+            <li>BUGFIX: Correct AJAX search not including keywords in a product's description; note, new configuration setting added!.</li>
+            <li>BUGFIX: Correct accessibility issue with <samp>shopping_cart</samp> page's template.</li>
+            <li>BUGFIX: Remove pre-zc158 processing from AJAX search class.</li>
+            <li>BUGFIX: Restore product-pricing display when the site's running on PHP 7.4.</li>
+            <li>The following files were changed:<ol>
+                <li>/includes/classes/ajax/zcAjaxBootstrapSearch.php</li>
+                <li>/includes/languages/english/extra_definitions/bootstrap/lang.zca_bootstrap_common.php</li>
+                <li>/includes/templates/bootstrap/modalboxes/tpl_ajax_search.php</li>
+                <li>/includes/templates/bootstrap/modalboxes/tpl_shipping_estimator.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_modules_shipping_estimator.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_product_info_display.php</li>
+                <li>/includes/templates/bootstrap/templates/tpl_shopping_cart_default.php</li>
+                <li>/YOUR_ADMIN/includes/init_includes/init_zca_bootstrap_template_admin.php</li>
+                <li>/YOUR_ADMIN/includes/init_includes/init_zca_bootstrap_template_admin_update.php</li>
+            </ol></li>
+        </ul></li>
         <li>v3.7.1, 2024-06-21 (lat9, brittainmark)<ul>
             <li>BUGFIX: Correct PHP Warning on <code>checkout_payment</code> page.</li>
             <li>BUGFIX: Remove extraneous comments from <samp>template_info.php</samp>.</li>

@@ -2,7 +2,7 @@
 /**
  * Template for Mobile Header Drop Down
  * 
- * BOOTSTRAP v3.5.0
+ * BOOTSTRAP v3.7.3
  *
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -11,7 +11,7 @@
 ?>
 <li class="nav-item dropdown d-lg-none">
     <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <?php echo BOX_HEADING_CATEGORIES; ?>
+        <?= BOX_HEADING_CATEGORIES ?>
     </a>
     <div class="dropdown-menu" aria-labelledby="categoryDropdown">
         <ul class="m-0 p-0">
@@ -34,7 +34,7 @@ foreach ($categories_tab as $category_tab) {
         $cat_tab_name = '<span class="category-subs-selected">' . $cat_tab_name . '</span>';
     }
 ?>
-            <li><a class="dropdown-item" href="<?php echo $cat_tab_link; ?>"><?php echo $cat_tab_name; ?></a></li>
+            <li><a class="dropdown-item" href="<?= $cat_tab_link ?>"><?= $cat_tab_name ?></a></li>
 <?php
 }
 ?>
@@ -44,7 +44,10 @@ if (SHOW_CATEGORIES_BOX_SPECIALS === 'true') {
     $show_this = $db->Execute("SELECT s.products_id FROM " . TABLE_SPECIALS . " s WHERE s.status = 1 LIMIT 1");
     if (!$show_this->EOF) {
 ?>
-        <div class="dropdown-divider"></div><a class="dropdown-item" href="<?php echo zen_href_link(FILENAME_SPECIALS); ?>'"><?php echo CATEGORIES_BOX_HEADING_SPECIALS; ?></a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="<?= zen_href_link(FILENAME_SPECIALS) ?>'">
+            <?= CATEGORIES_BOX_HEADING_SPECIALS ?>
+        </a>
 <?php
     }
 }
@@ -55,7 +58,10 @@ if (SHOW_CATEGORIES_BOX_PRODUCTS_NEW === 'true') {
     $show_this = $db->Execute("SELECT p.products_id FROM " . TABLE_PRODUCTS . " p WHERE p.products_status = 1 " . $display_limit . " LIMIT 1");
     if (!$show_this->EOF) { 
 ?>
-        <div class="dropdown-divider"></div><a class="dropdown-item" href="<?php echo zen_href_link(FILENAME_PRODUCTS_NEW); ?>"><?php echo CATEGORIES_BOX_HEADING_WHATS_NEW; ?></a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="<?= zen_href_link(FILENAME_PRODUCTS_NEW) ?>">
+            <?= CATEGORIES_BOX_HEADING_WHATS_NEW ?>
+        </a>
 <?php
     }
 }
@@ -64,7 +70,10 @@ if (SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS === 'true') {
     $show_this = $db->Execute("SELECT products_id FROM " . TABLE_FEATURED . " WHERE status = 1 LIMIT 1");
     if (!$show_this->EOF) {
 ?>
-        <div class="dropdown-divider"></div><a class="dropdown-item" href="<?php echo zen_href_link(FILENAME_FEATURED_PRODUCTS); ?>"><?php echo CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS; ?></a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="<?= zen_href_link(FILENAME_FEATURED_PRODUCTS) ?>">
+            <?= CATEGORIES_BOX_HEADING_FEATURED_PRODUCTS ?>
+        </a>
 <?php
     }
 }
@@ -81,7 +90,10 @@ if (SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED == 'true') {
 // MJFB end
 if (SHOW_CATEGORIES_BOX_PRODUCTS_ALL === 'true') {
 ?>
-        <div class="dropdown-divider"></div><a class="dropdown-item" href="<?php echo zen_href_link(FILENAME_PRODUCTS_ALL); ?>"><?php echo CATEGORIES_BOX_HEADING_PRODUCTS_ALL; ?></a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="<?= zen_href_link(FILENAME_PRODUCTS_ALL) ?>">
+            <?= CATEGORIES_BOX_HEADING_PRODUCTS_ALL ?>
+        </a>
 <?php
 }
 ?>
@@ -111,14 +123,14 @@ if (!$information_sidebox->EOF) {
 ?>
 <li class="nav-item dropdown d-lg-none">
     <a class="nav-link dropdown-toggle" href="#" id="infoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <?php echo BOX_HEADING_INFORMATION; ?>
+        <?= BOX_HEADING_INFORMATION ?>
     </a>
     <div class="dropdown-menu" aria-labelledby="infoDropdown">
         <ul class="m-0 p-0">
 <?php
             foreach ($information as $next_information_link) {
 ?>
-            <li><?php echo $next_information_link; ?></li>
+            <li><?= $next_information_link ?></li>
 <?php
             }
 ?>
@@ -153,14 +165,14 @@ if (!$more_information_sidebox->EOF) {
 ?>
 <li class="nav-item dropdown d-lg-none">
     <a class="nav-link dropdown-toggle" href="#" id="moreInfoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <?php echo BOX_HEADING_MORE_INFORMATION; ?>
+        <?= BOX_HEADING_MORE_INFORMATION ?>
     </a>
     <div class="dropdown-menu" aria-labelledby="moreInfoDropdown">
         <ul class="m-0 p-0">
 <?php
             foreach ($more_information as $next_information_link) {
 ?>
-            <li><?php echo $next_information_link; ?></li>
+            <li><?= $next_information_link ?></li>
 <?php
             }
 ?>
@@ -178,16 +190,22 @@ if (EZPAGES_STATUS_SIDEBOX === '1' || (EZPAGES_STATUS_SIDEBOX === '2' && zen_is_
         unset($var_linksList);
     }
 
-    $page_query = $db->Execute(
-        "SELECT e.*, ec.*
-           FROM " . TABLE_EZPAGES . " e
+    $sql = "SELECT e.*, ec.*
+            FROM " . TABLE_EZPAGES . " e
                 INNER JOIN " . TABLE_EZPAGES_CONTENT . " ec
                     ON ec.pages_id = e.pages_id
-                   AND ec.languages_id = " . (int)$_SESSION['languages_id'] . "
-          WHERE e.status_sidebox = 1
-            AND e.sidebox_sort_order > 0
-          ORDER BY e.sidebox_sort_order, ec.pages_title"
-    );
+                   AND ec.languages_id = " . (int)$_SESSION['languages_id'];
+
+    $where_clause = " WHERE e.status_sidebox = 1
+                AND e.sidebox_sort_order > 0
+              ORDER BY e.sidebox_sort_order, ec.pages_title";
+
+    if ($sniffer->field_exists(TABLE_EZPAGES, 'status_mobile')) {
+        $where_clause = " WHERE e.status_mobile = 1
+              ORDER BY e.mobile_sort_order, e.sidebox_sort_order, ec.pages_title";
+    }
+
+    $page_query = $db->Execute($sql . $where_clause);
 
     if (!$page_query->EOF) {
         $page_query_list_sidebox = [];
@@ -207,7 +225,7 @@ if (EZPAGES_STATUS_SIDEBOX === '1' || (EZPAGES_STATUS_SIDEBOX === '2' && zen_is_
                     if (strpos($next_page['alt_url'], 'http') === 0) {
                         $offcanvasAltURL = $next_page['alt_url'];
                     } else {
-                        $offcanvasAltURL =  zen_href_link($next_page['alt_url'], '', ($next_page['page_is_ssl'] === '0') ? 'NONSSL' : 'SSL', true, true, true);
+                        $offcanvasAltURL =  zen_href_link($next_page['alt_url'], '', 'SSL', true, true, true);
                     }
                     break;
 
@@ -219,7 +237,7 @@ if (EZPAGES_STATUS_SIDEBOX === '1' || (EZPAGES_STATUS_SIDEBOX === '2' && zen_is_
             // if altURL is specified, use it; otherwise, use EZPage ID to create link
             if ($offcanvasAltURL === '') {
                 $toc_chapter = ($next_page['toc_chapter'] > 0) ? ('&chapter=' . $next_page['toc_chapter']) : '';
-                $next_page_entry['link'] = zen_href_link(FILENAME_EZPAGES, 'id=' . $next_page['pages_id'] . $toc_chapter, ($next_page['page_is_ssl'] === '0') ? 'NONSSL' : 'SSL');
+                $next_page_entry['link'] = zen_href_link(FILENAME_EZPAGES, 'id=' . $next_page['pages_id'] . $toc_chapter, 'SSL');
             } else {
                 $next_page_entry['link'] = $offcanvasAltURL;
             }
@@ -237,20 +255,20 @@ if (EZPAGES_STATUS_SIDEBOX === '1' || (EZPAGES_STATUS_SIDEBOX === '2' && zen_is_
 ?>
 <li class="nav-item dropdown d-lg-none">
     <a class="nav-link dropdown-toggle" href="#" id="ezpagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <?php echo BOX_HEADING_EZPAGES; ?>
+        <?= BOX_HEADING_EZPAGES ?>
     </a>
     <div class="dropdown-menu mb-2" aria-labelledby="ezpagesDropdown">
         <ul class="m-0 p-0">
 <?php
         foreach ($page_query_list_sidebox as $next_entry) {
 ?>
-            <li><a class="dropdown-item" href="<?php echo $next_entry['link']; ?>"><?php echo $next_entry['name']; ?></a></li>
+            <li><a class="dropdown-item" href="<?= $next_entry['link'] ?>"><?= $next_entry['name'] ?></a></li>
 <?php
         } // end FOR loop
 ?>
         </ul>
     </div>
-</li>  
+</li>
 <?php
     }
 } // eof ezpages
