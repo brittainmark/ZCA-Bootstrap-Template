@@ -2,6 +2,8 @@
 /**
  * Side Box Template
  *
+ * BOOTSTRAP 3.7.4
+ *
  * @package templateSystem
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -16,7 +18,7 @@ $is_carousel = in_array('best_sellers', $sidebox_carousels);
 if ($is_carousel === false) {
     $content = '<div id="' . str_replace('_', '-', $box_id . 'Content') . '" class="list-group-flush sideBoxContent">' . "\n";
 
-    for ($i = 1, $j = count($bestsellers_list); $i<$j; $i++) {
+    for ($i = 1, $j = count($bestsellers_list); $i <= $j; $i++) {
         $content .=
             '<a class="list-group-item list-group-item-action" href="' . zen_href_link(zen_get_info_page($bestsellers_list[$i]['id']), 'products_id=' . $bestsellers_list[$i]['id']) . '">' .
                 $i . '. ' .

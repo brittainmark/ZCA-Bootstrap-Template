@@ -2,7 +2,7 @@
 /**
  * Common Template - tpl_main_page.php
  * 
- * BOOTSTRAP v3.7.3
+ * BOOTSTRAP v3.7.4
  *
  * Governs the overall layout of an entire page
  * Normally consisting of a header, left side column. center column. right side column and footer
@@ -95,6 +95,9 @@ $body_id = ($this_is_home_page) ? 'indexHome' : str_replace('_', '', $_GET['main
 $body_onload = ($zv_onload !== '') ? ' onload="' . $zv_onload . '"' : '';
 ?>
 <body id="<?=  $body_id . 'Body' ?>"<?= $body_onload ?>>
+<?php /* add any start-of-body-section code via an observer class */
+$zco_notifier->notify('NOTIFY_PAGE_BODY_BEGIN', $current_page);
+?>
 <?php
 if (defined('BS4_AJAX_SEARCH_ENABLE') && BS4_AJAX_SEARCH_ENABLE === 'true') {
     require $template->get_template_dir('tpl_ajax_search.php', DIR_WS_TEMPLATE, $current_page_base, 'modalboxes') . '/tpl_ajax_search.php';
