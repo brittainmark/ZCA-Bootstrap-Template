@@ -19,5 +19,6 @@ $define = [
     'OFFICE_EMAIL' => '<strong>Email:</strong>',
     'EMAIL_LOGO_ALT_TITLE_TEXT' => 'Inner Light Crystals Logo',
     'ERROR_ORDER_DOES_NOT_EXIST' => 'Error: Order does not exist.',
+    'TEXT_PRODUCT_WEIGHT_UNIT' => 'Kgs',
 ];
 return $define;
