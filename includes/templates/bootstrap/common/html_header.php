@@ -56,14 +56,6 @@ $preloads = [
         'integrity' => 'sha512-Hp+WwK4QdKZk9/W0ViDvLunYjFrGJmNDt6sCflZNkjgvNq9mY+0tMbd6tWMiAlcf1OQyqL4gn2rYp7UsfssZPA==',
         'type' => 'style',
     ],
-// MJFB added Brands    
-    'fab' => [
-        'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css',
-        'integrity' => 'sha512-W/zrbCncQnky/EzL+/AYwTtosvrM+YG/V6piQLSe2HuKS6cmbw89kjYkp3tWFn1dkWV7L1ruvJyKbLz73Vlgfg==',
-        'type' => 'style',
-// MJFB End        
-    ],
-
 ];
 if (!empty($zca_load_fa_brands)) {
     $preloads['fa-brands'] = [

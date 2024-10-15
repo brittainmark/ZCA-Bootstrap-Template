@@ -17,6 +17,8 @@ class zcObserverMjfbObservers extends base {
                 'NOTIFY_HEADER_START_PRODUCT_INFO',
                 'NOTIFY_HEADER_START_PRODUCT_MUSIC_INFO',
                 'NOTIFY_INFORMATION_SIDEBOX_ADDITIONS',
+                'NOTIFY_PRODUCT_LISTING_QUERY_STRING',
+                'NOTIFY_SEARCH_REAL_ORDERBY_STRING',
             ]
         );
     }
@@ -79,6 +81,58 @@ class zcObserverMjfbObservers extends base {
         $information[] = '<a class="' . $information_classes . '" href="' . zen_href_link(FILENAME_FAQ) . '">' . BOX_INFORMATION_FAQ . '</a>';
     }
 
+    protected function updateNotifyProductListingQueryString(&$class, $eventID, $default, $listing_sql, $where_str, &$order_by)
+    {
+        // sort sold products to end and master category product to front.
+        $cPath = $_GET['cPath'] ?? TOPMOST_CATEGORY_PARENT_ID;
+        $cPath_array = zen_parse_category_path($cPath);
+        $current_category_id = $cPath_array[(count($cPath_array) - 1)];
+
+        $order = (int)($_GET['disp_order'] ?? 8);
+        switch ($order) {
+            case 1:
+                $order_by = " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC, IF (p.master_categories_id = $current_category_id,  0, 1) ASC, pd.products_name";
+                break;
+            case 2:
+                $order_by = " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC, IF (p.master_categories_id = $current_category_id,  0, 1) ASC, pd.products_name DESC";
+                break;
+            case 3:
+                $order_by = ' ORDER BY IF (p.products_quantity = 0, 1, 0) ASC, p.products_price_sorter, pd.products_name';
+                break;
+            case 4:
+                $order_by = ' ORDER BY IF (p.products_quantity = 0, 1, 0) ASC, p.products_price_sorter DESC, pd.products_name';
+                break;
+            case 5:
+                $order_by = " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC, IF (p.master_categories_id = $current_category_id,  0, 1) ASC, p.products_model";
+                break;
+            case 6:
+                $order_by = " ORDER BY p.products_date_added DESC, IF (p.products_quantity = 0, 1, 0) ASC, IF (p.master_categories_id = $current_category_id,  0, 1) ASC, pd.products_name";
+                break;
+            case 7:
+                $order_by = " ORDER BY p.products_date_added, IF (p.products_quantity = 0, 1, 0) ASC, IF (p.master_categories_id = $current_category_id, 0, 1) ASC, pd.products_name";
+                break;
+            case 8:
+            case 0:
+                if (empty($order_by)) {
+                    $order_by = " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC, p.products_sort_order, IF (p.master_categories_id = $current_category_id,  0, 1) ASC, pd.products_name ";
+                } else if (str_contains($order_by, 'IF (p.products_quantity') === false) {
+                    $order_by = ' ORDER BY IF (p.products_quantity = 0, 1, 0) ASC,' . substr($order_by, 9);
+                }
+                break;
+            default:
+                $order_by = " ORDER BY IF (p.products_quantity = 0, 1, 0) ASC, p.products_sort_order, IF (p.master_categories_id = $current_category_id,  0, 1) ASC, pd.products_name ";
+                break;
+        }
+    }
+    
+    protected function updateNotifySearchRealOrderbyString(&$class, $eventID, $not_used, &$order_by)
+    {
+        if (empty($order_by)) {
+            $order_by = ' ORDER BY IF (p.products_quantity = 0, 1, 0) ASC, pd.products_name ';
+        } else if (str_contains($order_by, 'IF (p.products_quantity') === false) {
+            $order_by = ' ORDER BY IF (p.products_quantity = 0, 1, 0) ASC,' . substr($order_by, 9);
+        }
+    }
     protected function mjfb_zen_get_products_quantity_min_units_display($product_id, $include_break = true, $message_is_for_shopping_cart = false) {
         $result = zen_get_product_details($product_id);
 
