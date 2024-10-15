@@ -65,6 +65,13 @@ $preloads = [
     ],
 
 ];
+if (!empty($zca_load_fa_brands)) {
+    $preloads['fa-brands'] = [
+        'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css',
+        'integrity' => 'sha512-DJLNx+VLY4aEiEQFjiawXaiceujj5GA7lIY8CHCIGQCBPfsEG0nGz1edb4Jvw1LR7q031zS5PpPqFuPA8ihlRA==',
+        'type' => 'style',
+    ];
+}
 ?>
 <!DOCTYPE html>
 <html <?php echo HTML_PARAMS; ?>>

@@ -2,7 +2,7 @@
 // -----
 // Part of the ZCA Bootstrap template, @zcadditions, @lat9
 //
-// BOOTSTRAP 3.7.0
+// BOOTSTRAP 3.7.4
 //
 // A collection of 'soft' configuration settings for use by the ZCA Bootstrap Template
 // and its clones.
@@ -48,3 +48,11 @@
 // false ... Maintain the "Continue" button, which redirects back to Checkout Shipping; this is the default.
 //
 //$zca_show_contact_us_instead_of_continue = false;
+
+// -----
+// Include fontawesome brands icons?
+//
+// true .... Load the brands icons.
+// false ... Don't load the brands icons; this is the default.
+//
+//$zca_load_fa_brands = false;
