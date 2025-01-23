@@ -19,6 +19,7 @@ class zcObserverMjfbObservers extends base {
                 'NOTIFY_INFORMATION_SIDEBOX_ADDITIONS',
                 'NOTIFY_PRODUCT_LISTING_QUERY_STRING',
                 'NOTIFY_SEARCH_REAL_ORDERBY_STRING',
+                'NOTIFY_SEARCH_WHERE_STRING',
             ]
         );
     }
@@ -133,6 +134,18 @@ class zcObserverMjfbObservers extends base {
             $order_by = ' ORDER BY IF (p.products_quantity = 0, 1, 0) ASC,' . substr($order_by, 9);
         }
     }
+    
+    protected function updateNotifySearchWhereString(&$class, $eventID, $keywords, &$where_str, $keyword_search_fields) 
+    {
+        if (!defined('EXCLUDE_SORT_CATEGORIES') || preg_match('#^[0-9 \,]+$#' , EXCLUDE_SORT_CATEGORIES) === 0) {
+            return;
+        }
+        if (!empty($where_str)) {
+            $where_str .=  ' AND';
+        }
+        $where_str .= ' p.master_categories_id NOT IN (' . EXCLUDE_SORT_CATEGORIES . ')';
+    }
+    
     protected function mjfb_zen_get_products_quantity_min_units_display($product_id, $include_break = true, $message_is_for_shopping_cart = false) {
         $result = zen_get_product_details($product_id);
 

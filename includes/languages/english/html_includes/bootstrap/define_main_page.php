@@ -11,9 +11,9 @@ healers and collectors - and in fact to anyone who loves and wants to buy crysta
 <!-- <h3>Privacy Policy</h3>
 <p><strong>As of 12 May 2020 we have updated our privacy policy to include Square payment processing. The policy can be found <a href="<?php echo zen_href_link(FILENAME_PRIVACY); ?>">here.</a></strong>
  -->
- <?php if (date('Y-m-d') < '2022-11-30') {?>
- <h2 class="pt-6">Autumn Sale</h2>
- <p>We are having an autumn sale from 1<sup>st</sup> October 2022 until 30<sup>th</sup> November 2022, with 40% off books and 15% off everything else, before postage and packing.</p>
+ <?php if (date('Y-m-d') < '2025-01-31') {?>
+ <h2 class="pt-6">Stock Clearance Sale</h2>
+ <p>We are having a stock clearance sale from 14<sup>th</sup> November 2024 until 31<sup>th</sup> January 2025, with 30% off books and crystals, before postage and packing.</p>
  <?php }?>
 <h2 class="pt-6">Despatches:</h2>
 <p>We normally despatch orders once a week on a THURSDAY. This is for all orders that have been placed and paid for by midnight on the day before (Wednesday).
