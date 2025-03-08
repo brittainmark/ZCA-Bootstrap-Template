@@ -2,8 +2,7 @@
 /**
  * Common Template - tpl_header.php
  *
- * BOOTSTRAP v3.7.0
- *
+ * BOOTSTRAP v3.7.6
  *
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -38,10 +37,10 @@ if (!empty($flag_disable_header)) {
 if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 ?>
                         <li class="nav-item" title="<?= HEADER_TITLE_LOGOFF ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL') ?>"><?= HEADER_TITLE_LOGOFF ?></a>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL') ?>"><i class="fas fa-sign-out-alt"></i> <?= HEADER_TITLE_LOGOFF ?></a>
                         </li>
                         <li class="nav-item" title="<?= HEADER_TITLE_MY_ACCOUNT ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL') ?>"><?= HEADER_TITLE_MY_ACCOUNT ?></a>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL') ?>"><i class="fa-solid fa-circle-user"></i> <?= HEADER_TITLE_MY_ACCOUNT ?></a>
                         </li>
 <?php
 } else {
@@ -59,10 +58,10 @@ if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 if ($_SESSION['cart']->count_contents() > 0) {
 ?>
                         <li class="nav-item" title="<?= HEADER_TITLE_CART_CONTENTS ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL') ?>"><?= HEADER_TITLE_CART_CONTENTS ?></a>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_SHOPPING_CART, '', 'NONSSL') ?>"><i class="fa-solid fa-cart-shopping"></i> <?= HEADER_TITLE_CART_CONTENTS ?></a>
                         </li>
                         <li class="nav-item" title="<?= HEADER_TITLE_CHECKOUT ?>">
-                            <a class="nav-link" href="<?= zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL') ?>"><?= HEADER_TITLE_CHECKOUT ?></a>
+                            <a class="nav-link" href="<?= zen_href_link(FILENAME_CHECKOUT_SHIPPING, '', 'SSL') ?>"><i class="fa-solid fa-credit-card"></i> <?= HEADER_TITLE_CHECKOUT ?></a>
                         </li>
 <?php
 }
