@@ -50,7 +50,7 @@ $preloads = [
         'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css',
         'integrity' => 'sha512-UuQ/zJlbMVAw/UU8vVBhnI4op+/tFOpQZVT+FormmIEhRSCnJWyHiBbEVgM4Uztsht41f3FzVWgLuwzUqOObKw==',
         'type' => 'style',
-        ],
+    ],
     'fa-solid' => [
         'link' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/solid.min.css',
         'integrity' => 'sha512-Hp+WwK4QdKZk9/W0ViDvLunYjFrGJmNDt6sCflZNkjgvNq9mY+0tMbd6tWMiAlcf1OQyqL4gn2rYp7UsfssZPA==',
@@ -82,11 +82,11 @@ $zco_notifier->notify('NOTIFY_HTML_HEAD_TAG_START', $current_page_base);
 // and uncomment "// $zca_no_preloading = false;" and change that variable's value to (bool)true.
 //
 if (empty($zca_no_preloading)) {
-      foreach ($preloads as $load) {
+    foreach ($preloads as $load) {
 ?>
     <link rel="preload" href="<?= $load['link'] ?>" integrity="<?= $load['integrity'] ?>" crossorigin="anonymous" as="<?= $load['type'] ?>">
 <?php
-      }
+    }
 }
 ?>
     <title><?php echo META_TAG_TITLE; ?></title>

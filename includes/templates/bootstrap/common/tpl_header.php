@@ -2,8 +2,7 @@
 /**
  * Common Template - tpl_header.php
  *
- * BOOTSTRAP v3.7.0
- *
+ * BOOTSTRAP v3.7.6
  *
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -104,6 +103,7 @@ require DIR_WS_MODULES . zen_get_module_sidebox_directory('search_header.php');
 <?php
 $tagline_banner_section_present = ((SHOW_BANNERS_GROUP_SET2 !== '' && $banner = zen_banner_exists('dynamic', SHOW_BANNERS_GROUP_SET2)) || HEADER_SALES_TEXT !== '');
 $sales_text_class = ($tagline_banner_section_present === true) ? 'col-sm-4' : 'col-sm-12';
+
 /* MJFB moved logo lower 
 ?>
             <div class="<?php echo $sales_text_class; ?>">

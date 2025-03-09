@@ -2,7 +2,7 @@
 /**
  * products_new header_php.php
  * 
- * BOOTSTRAP v3.6.3
+ * BOOTSTRAP v3.7.5
  *
  * @package page
  * @copyright Copyright 2003-2007 Zen Cart Development Team
@@ -25,7 +25,7 @@ if (!(function_exists('zca_bootstrap_active') && zca_bootstrap_active() === true
 $product_listing_max_results = MAX_DISPLAY_PRODUCTS_NEW;
 
 // -----
-// Nothing further to do if the all-products' raw SQL query is present (it no longer is in zc200).
+// Nothing further to do if the new-products' raw SQL query is not present (it no longer is as of zc200).
 //
 if (!isset($products_new_query_raw)) {
     return;
@@ -39,6 +39,7 @@ $obPos = stripos($products_new_query_raw, 'ORDER BY') - 1;
 $listing_sql = str_replace('p.master_categories_id', 'p.master_categories_id, p.manufacturers_id', substr($products_new_query_raw, 0, $obPos)) .
     substr($products_new_query_raw, $obPos);
 //MJFB - end
+$listing_sql = str_replace('p.master_categories_id', 'p.master_categories_id, p.manufacturers_id', $products_new_query_raw);
 
 $define_list = [
     'PRODUCT_LIST_MODEL' => PRODUCT_LIST_MODEL,

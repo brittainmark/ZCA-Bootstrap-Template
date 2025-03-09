@@ -89,7 +89,7 @@ if ($heading_title === '') {
  * display the Upcoming Products Center Box
  */
 ?>
-<?php include(DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS)); ?>
+<?php require DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS) ?>
 <?php } ?>
 <?php
 // MJFB

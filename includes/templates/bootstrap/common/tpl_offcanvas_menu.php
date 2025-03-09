@@ -77,6 +77,7 @@ if (SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS === 'true') {
 <?php
     }
 }
+
 // MJFB
 if (SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED == 'true') {
     $display_limit = mjfb_get_restocked_date_range();
@@ -88,6 +89,7 @@ if (SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED == 'true') {
     }
 }
 // MJFB end
+
 if (SHOW_CATEGORIES_BOX_PRODUCTS_ALL === 'true') {
 ?>
         <div class="dropdown-divider"></div>

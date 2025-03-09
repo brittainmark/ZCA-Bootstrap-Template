@@ -54,9 +54,11 @@ $listing_sql =
                    AND pd.language_id = :languageID
             )
       WHERE p.products_status = 1
-        AND s.status = 1
-        AND pd.language_id = :languageID " . $order_by;
+        AND s.status = 1"
+      . $order_by;
+//      ORDER BY s.specials_date_added DESC";
 // MJFb end
+
 $listing_sql = $db->bindVars($listing_sql, ':languageID', $_SESSION['languages_id'], 'integer');
 
 //check to see if we are in normal mode ... not showcase, not maintenance, etc

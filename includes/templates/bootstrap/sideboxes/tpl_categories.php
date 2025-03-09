@@ -112,5 +112,4 @@ if (SHOW_CATEGORIES_BOX_SPECIALS === 'true' || SHOW_CATEGORIES_BOX_PRODUCTS_NEW 
         }
     }
 // MJFB End    
-}
 $content .= '</div>';
