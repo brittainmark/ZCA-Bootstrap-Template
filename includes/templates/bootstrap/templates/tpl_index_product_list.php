@@ -33,7 +33,6 @@ if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS === 'true') {
 <?php
 // categories_description
 if ($current_categories_description != '') {
-
 // MJFB added shorten me script
 ?>
 <script>
@@ -181,7 +180,6 @@ if ($error_categories) {
         if ($content_box_to_display['configuration_key'] === 'SHOW_PRODUCT_INFO_MISSING_UPCOMING') {
             require DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS);
         }
-
 // MJFB        
         if ($content_box_to_display['configuration_key'] == 'SHOW_PRODUCT_INFO_MISSING_PRODUCTS_RESTOCKED') {
             /**
@@ -190,6 +188,7 @@ if ($error_categories) {
             require $template->get_template_dir('tpl_modules_products_restocked.php', DIR_WS_TEMPLATE, $current_page_base, 'centerboxes') . '/tpl_modules_products_restocked.php';
         }
 // MJFB End
+
     }
 } else {
     $show_display_category = $db->Execute(SQL_SHOW_PRODUCT_INFO_LISTING_BELOW);
@@ -218,7 +217,6 @@ if ($error_categories) {
         if ($content_box_to_display['configuration_key'] === 'SHOW_PRODUCT_INFO_LISTING_BELOW_UPCOMING') {
             require DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS);
         }
- 
 // MJFB
         if ($content_box_to_display['configuration_key'] == 'SHOW_PRODUCT_INFO_LISTING_BELOW_PRODUCTS_RESTOCKED') {
             /**

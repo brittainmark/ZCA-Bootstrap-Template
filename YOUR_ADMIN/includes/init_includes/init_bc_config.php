@@ -32,7 +32,6 @@ define('ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION', '3.6.2');
 if (!defined('ZCA_BOOTSTRAP_COLORS_VERSION') || ZCA_BOOTSTRAP_COLORS_VERSION !== ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION) {
     require DIR_WS_INCLUDES . 'init_includes/init_bc_config_install_or_upgrade.php';
 }
-
 // MJFB----
 // Add product restocked settings
 //

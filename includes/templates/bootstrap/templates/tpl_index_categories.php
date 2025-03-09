@@ -47,6 +47,7 @@ if ($show_welcome === true) {
 <?php
 // MJFB added ' && $show_welcome === true'
     if ((DEFINE_MAIN_PAGE_STATUS === '1' || DEFINE_MAIN_PAGE_STATUS === '2') && $show_welcome === true) {
+//MJFB end
 ?>
     <div id="indexCategories-defineContent" class="defineContent">
 <?php
@@ -106,8 +107,10 @@ foreach ($show_display_category as $next_display_category) {
         case 'SHOW_PRODUCT_INFO_CATEGORY_UPCOMING':
             require DIR_WS_MODULES . zen_get_module_directory('centerboxes/' . FILENAME_UPCOMING_PRODUCTS);
             break;
+// MJFB added restocked products
         case 'SHOW_PRODUCT_INFO_CATEGORY_PRODUCTS_RESTOCKED':
             require $template->get_template_dir('tpl_modules_products_restocked.php', DIR_WS_TEMPLATE, $current_page_base, 'centerboxes') . '/tpl_modules_products_restocked.php';
+// MJFB end
         default:
             break;
     }
