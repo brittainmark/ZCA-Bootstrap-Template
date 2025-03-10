@@ -240,7 +240,7 @@ class zca_splitPageResults extends base
     }
 
     // display number of total products found
-    public function display_count($text_output)d
+    public function display_count($text_output)
     {
         $to_num = $this->number_of_rows_per_page * $this->current_page_number;
         if ($to_num > $this->number_of_rows) {

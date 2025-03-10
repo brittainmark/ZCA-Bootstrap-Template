@@ -1,4 +1,5 @@
 <?php
+
 /**
  * categories_tabs.php module
  *
@@ -11,41 +12,37 @@
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
+// MJFB complete rewrite
+require_once (DIR_WS_CLASSES . 'BootstrapCategoryMenuBuilder.php');
+$parent_id = TOPMOST_CATEGORY_PARENT_ID;
+$zen_CategoriesUL = new BootstrapCategoryMenuBuilder;
 
-$order_by = " ORDER BY c.sort_order, cd.categories_name ";
-
-$includeAllCategories = $zca_include_zero_product_categories ?? true;
-
-$categories_tab_query =
-    "SELECT c.sort_order, c.categories_id, cd.categories_name
-       FROM " . TABLE_CATEGORIES . " c, " . TABLE_CATEGORIES_DESCRIPTION . " cd
-      WHERE c.categories_id = cd.categories_id
-        AND c.parent_id = 0
-        AND cd.language_id = " . (int)$_SESSION['languages_id'] . "
-        AND c.categories_status = 1" .
-        $order_by;
-$categories_tab = $db->Execute($categories_tab_query);
-
-$links_list = [];
-$current_category_tab = (int)$cPath;
-foreach ($categories_tab as $category) {
-    // currently selected category
-    if ($current_category_tab === (int)$category['categories_id']) {
-        $new_style = 'nav-item nav-link m-1 activeLink';
-        $categories_tab_current = $category['categories_name'];
-    } else {
-        if (!$includeAllCategories) {
-            $count = zen_products_in_category_count($category['categories_id']);
-            if ($count === 0) {
-                continue;
-            }
-        }
-        $new_style = 'nav-item nav-link m-1';
-        $categories_tab_current = $category['categories_name'];
-    }
-    // create link to top level category
-    $links_list[] =
-        '<a class="' . $new_style . '" href="' . zen_href_link(FILENAME_DEFAULT, 'cPath=' . (int)$category['categories_id']) . '">' .
-            $categories_tab_current .
-        '</a> ';
+$menulist = $zen_CategoriesUL->buildBootstrapMenu($parent_id, 0, true);
+/*
+ * remove closing ul and add specials and new arrivals
+ */
+rtrim($menulist);
+if (substr($menulist,-5) === '</ul>') {
+    $menulist = substr($menulist, 0, -5);
 }
+if (SHOW_CATEGORIES_BOX_PRODUCTS_NEW == 'true') {
+    // display limits
+    //      $display_limit = zen_get_products_new_timelimit();
+    $display_limit = zen_get_new_date_range();
+
+    $show_this = $db->Execute("select p.products_id
+ from " . TABLE_PRODUCTS . " p
+ where p.products_status = 1 " . $display_limit . " limit 1");
+    if ($show_this->RecordCount() > 0) {
+        $menulist .= "\n" . '<li class="navbar-nav"><a class="dropdown-item" href="' . zen_href_link(FILENAME_PRODUCTS_NEW) . '">' . CATEGORIES_BOX_HEADING_WHATS_NEW . '</a></li>';
+    }
+}
+if (SHOW_CATEGORIES_BOX_SPECIALS == 'true') {
+    if (SHOW_CATEGORIES_BOX_SPECIALS == 'true') {
+        $show_this = $db->Execute("select s.products_id from " . TABLE_SPECIALS . " s where s.status= 1 limit 1");
+        if ($show_this->RecordCount() > 0) {
+            $menulist .= "\n" . '<li class="navbar-nav"><a class="dropdown-item" href="' . zen_href_link(FILENAME_SPECIALS) . '">' . CATEGORIES_BOX_HEADING_SPECIALS . '</a></li>';
+        }
+    }
+}
+$menulist .= "</ul>\n";

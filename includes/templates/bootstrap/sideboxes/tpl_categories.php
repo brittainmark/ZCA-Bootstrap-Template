@@ -111,5 +111,6 @@ if (SHOW_CATEGORIES_BOX_SPECIALS === 'true' || SHOW_CATEGORIES_BOX_PRODUCTS_NEW 
             $content .= '<a class="list-group-item list-group-item-action list-group-item-secondary" href="' . zen_href_link(FILENAME_PRODUCTS_RESTOCKED) . '">' . CATEGORIES_BOX_HEADING_PRODUCTS_RESTOCKED . '</a>';
         }
     }
-// MJFB End    
+// MJFB End
+}
 $content .= '</div>';
