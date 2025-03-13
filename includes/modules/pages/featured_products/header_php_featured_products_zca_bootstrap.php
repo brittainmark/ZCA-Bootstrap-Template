@@ -35,11 +35,11 @@ if (!isset($featured_products_query_raw)) {
 // Add manufacturers_id to the query; required by the common product_listing.php module.
 //
 //MJFB Start - Do not change order by clause
+//$listing_sql = str_replace('p.master_categories_id', 'p.master_categories_id, p.manufacturers_id', $featured_products_query_raw);
 $obPos = stripos($featured_products_query_raw, 'ORDER BY') - 1;
 $listing_sql = str_replace('p.master_categories_id', 'p.master_categories_id, p.manufacturers_id', substr($featured_products_query_raw, 0, $obPos)) .
     substr($featured_products_query_raw, $obPos);
 //MJFB - end
-$listing_sql = str_replace('p.master_categories_id', 'p.master_categories_id, p.manufacturers_id', $featured_products_query_raw);
 
 $define_list = [
     'PRODUCT_LIST_MODEL' => PRODUCT_LIST_MODEL,
