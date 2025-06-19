@@ -110,7 +110,7 @@
     }
     /*Set min width for links on categories page*/
     .categoryListBoxContents.card  {
-        min-width:120px;
+        min-width:200px;
     }
     /* carousel images*/
     #productImagesCarousel .carousel-indicators > li.active img {
