@@ -1,5 +1,4 @@
 <?php
-// -----
 // Since the languages are now loaded via classes, the $locales definition
 // needs to be globalized for use in payment-methods (e.g. paypalwpp) and
 // other processing.
@@ -56,6 +55,7 @@ $define = [
 //    'TEXT_INFO_SORT_BY_PRODUCTS_MODEL' => 'Item Code',
 //    'TEXT_INFO_SORT_BY_PRODUCTS_QUANTITY_DESC' => 'Quantity Descending',
 //    'TEXT_INFO_SORT_BY_PRODUCTS_QUANTITY' => 'Quantity',
+    'TEXT_MISSING_SHIPPING_INFO' => 'WARNING: missing shipping details',
     'TEXT_PRODUCT_COLLECTIONS' => 'Music Samples: ',
     'TEXT_PRODUCT_MODEL' => 'Code No: ',
     'TEXT_PRODUCT_WEIGHT_UNIT' => 'Kg',
@@ -63,5 +63,4 @@ $define = [
     'TEXT_SHIPPING_WEIGHT' => 'Kg',
     'WARNING_SHOPPING_CART_COMBINED' => 'NOTICE: For your convenience, your current shopping basket has been combined with your basket from your last visit. Please review your shopping basket before checking out.',
 ];
-
 return $define;
