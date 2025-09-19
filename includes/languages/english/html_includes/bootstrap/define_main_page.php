@@ -44,9 +44,9 @@ on the day before (Wednesdays). <br>
 <table id="minmax" class="table">
     <thead>
         <tr>
-            <th>Delivery<br>Address</th>
-            <th>Mimimum<br>Order</th>
-            <th>Maximum<br>Order</th>
+            <th scope="col">Delivery<br>Address</th>
+            <th scope="col">Mimimum<br>Order</th>
+            <th scope="col">Maximum<br>Order</th>
         </tr>
     </thead>
     <tbody>
@@ -64,7 +64,7 @@ on the day before (Wednesdays). <br>
 		for the goods, as shown on your invoice and in accordance with the
 		selling price(s) shown in our shop.</li>
 	<li>You (the customer) are responsible for the payment of any and all
-		import duties / taxes that are currently in effect in the country /
+		tariffs / import duties / taxes that are currently in effect in the country /
 		location of your despatch address. We therefore strongly suggest that
 		you check the limits and rates that will be applied in that country
 		before placing an order with us: these rates and limits vary widely

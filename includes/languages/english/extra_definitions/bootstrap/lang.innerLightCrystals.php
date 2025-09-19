@@ -3,7 +3,7 @@
 $define = [
     'TITLE_SHIPPING'=>'Delivery',
     'TEXT_SHIPPING_INFO'=>'We deliver to all UK postal addresses and to delivery addresses in AUSTRALIA, CANADA, CYPRUS, the EU, ICELAND, JAPAN,
-		LIECHTENSTEIN, NEW ZEALAND, NORWAY, SINGAPORE, SOUTH AFRICA, SOUTH KOREA, USA ... If we don\'t deliver to your country contact us and we will see what we can do.<br><strong>Please note, we have a minimum order requirement of £15.00 (£150 EU) excluding
+		LIECHTENSTEIN, NEW ZEALAND, NORWAY, SINGAPORE, SOUTH AFRICA, SOUTH KOREA, USA (books only) ... If we don\'t deliver to your country contact us and we will see what we can do.<br><strong>Please note, we have a minimum order requirement of £15.00 (£150 EU) excluding
 		carriage & packing.</strong><br>Non UK customers: please also note that you will be responsible for settlement of any applicable import
 		duties/local taxes.',
     'TITLE_CONFIDENCE'=>'Shop with Confidence',
