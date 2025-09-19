@@ -4,7 +4,7 @@ If despatches are delayed for any reason, notification of this will appear in yo
 <h2>Deliveries:</h2>
 <ul>
 	<li>We mainly deliver to addresses within the UK and to
-		Australia, Canada, Cyprus, New Zealand, the USA, Hong Kong, Singapore, South
+		Australia, Canada, Cyprus, New Zealand, the USA (books only), Hong Kong, Singapore, South
 		Africa, South Korea, and Western Europe<sup>*</sup> (<sup>*</sup>for full
 		list of European countries see below)... If we don't deliver to your country contact 
         us and we will see what we can do.
