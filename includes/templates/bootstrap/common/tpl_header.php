@@ -40,7 +40,7 @@ if (!empty($flag_disable_header)) {
                             </a>
                         </li>
 <?php
-if (zen_is_logged_in() && !zen_in_guest_checkout()) { 
+if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 ?>
                         <li class="nav-item" title="<?= strip_tags(HEADER_TITLE_LOGOFF) ?>">
                             <a class="nav-link" href="<?= zen_href_link(FILENAME_LOGOFF, '', 'SSL') ?>"><i class="fas fa-sign-out-alt" title="<?= strip_tags(HEADER_TITLE_LOGOFF) ?>"></i> <span class="d-none d-md-inline"><?= HEADER_TITLE_LOGOFF; ?></span></a>

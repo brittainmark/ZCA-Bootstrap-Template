@@ -79,7 +79,7 @@ if (SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS === 'true') {
 }
 
 // MJFB
-if (SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED == 'true') {
+if (SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED === 'true') {
     $display_limit = mjfb_get_restocked_date_range();
     $show_this = $db->Execute("SELECT p.products_id FROM " . TABLE_PRODUCTS . " p WHERE p.products_status = 1 AND p.products_quantity > 0 " . $display_limit . " LIMIT 1");      
     if (!$show_this->EOF) {

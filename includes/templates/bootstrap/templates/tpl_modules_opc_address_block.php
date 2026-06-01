@@ -12,7 +12,7 @@
 // Sanitize module input values.
 //
 if (!isset($opc_address_type) || !in_array($opc_address_type, ['bill', 'ship'])) {
-    trigger_error("Unknown value for opc_address_type ($opc_address_type).", E_USER_ERROR);
+    trigger_error("FATAL ERROR: Unknown value for opc_address_type ($opc_address_type).", E_USER_WARNING);
     exit();
 }
 
@@ -96,7 +96,7 @@ if (ACCOUNT_GENDER === 'true') {
     "<label class=\"custom-control-label radioButtonLabel\" for=\"$male_id\">" . MALE . '</label></span><span class="custom-control custom-radio custom-control-inline">' .
     zen_draw_radio_field ($field_name, 'f', ($address['gender'] === 'f'), "id=\"$female_id\"") .
     "<label class=\"custom-control-label radioButtonLabel\" for=\"$female_id\">" . FEMALE . '</label></span>' .
-    (!empty(ENTRY_GENDER_TEXT) ? '<span class="alert">' . ENTRY_GENDER_TEXT . '</span>': '');
+    (!empty(ENTRY_GENDER_TEXT) ? '<span class="alert">' . ENTRY_GENDER_TEXT . '</span>': ''); 
 
     echo $clear_both;
 }

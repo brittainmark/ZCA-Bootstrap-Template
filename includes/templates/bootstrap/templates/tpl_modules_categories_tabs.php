@@ -25,10 +25,8 @@ if (CATEGORIES_TABS_STATUS == '1' ) {
         <div class="collapse navbar-collapse hover-dropdown" id="header2">
             <ul class="navbar-nav mr-auto">
                 <li class="dropdown nav-link">
-                    <a class="nav-item dropdown-toggle" id="categoryDropdown" href ="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo BOX_HEADING_CATEGORIES;?></a>
-<?php
-    echo $menulist;
- ?>
+                    <a class="nav-item dropdown-toggle" id="categoryDropdown" href ="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= BOX_HEADING_CATEGORIES;?></a>
+<?= $menulist; ?>
                 </li>
 <?php
     if (DEFINE_SHIPPINGINFO_STATUS <= 1) {
@@ -40,14 +38,14 @@ if (CATEGORIES_TABS_STATUS == '1' ) {
                         <li>
                             <div class="dropdown_customer_service">
                                 <div id="header-shipping">
-                                    <h2><?php echo TITLE_SHIPPING; ?></h2>
-                                    <p><?php echo TEXT_SHIPPING_INFO; ?></p>
+                                    <h2><?= TITLE_SHIPPING; ?></h2>
+                                    <p><?= TEXT_SHIPPING_INFO; ?></p>
                                 </div>
                                 <div id="header-confidence">
-                                    <h2><?php echo TITLE_CONFIDENCE; ?></h2>
-                                    <p class="mega-confidence"><?php echo TEXT_CONFIDENCE; ?></p>
+                                    <h2><?= TITLE_CONFIDENCE; ?></h2>
+                                    <p class="mega-confidence"><?= TEXT_CONFIDENCE; ?></p>
                                     <div id="header-icons">
-                                        <?php echo PAYMENT_ICON; ?>
+                                        <?= PAYMENT_ICON; ?>
                                     </div>
                                 </div>
                             </div>
@@ -81,14 +79,14 @@ if (CATEGORIES_TABS_STATUS == '1' ) {
                 <!-- bof information -->
                 <li class="nav-link dropdown">
                     <a class="nav-item dropdown-toggle" href="#" id="infoDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <?php echo BOX_HEADING_INFORMATION; ?>
+                        <?= BOX_HEADING_INFORMATION; ?>
                     </a>
                     <div class="dropdown-menu m-0 p-0" aria-labelledby="infoDropdown">
                         <ul class="m-0 p-0">
 <?php
                 foreach ($information as $next_link) {
 ?>
-                            <li><?php echo $next_link; ?></li>
+                            <li><?= $next_link; ?></li>
 <?php
                 }
 ?>
@@ -103,7 +101,7 @@ if (CATEGORIES_TABS_STATUS == '1' ) {
 ?>
                 <!-- bof contact us -->
                  <li class="nav-link">
-                    <a href="<?php echo zen_href_link(FILENAME_CONTACT_US, '', 'SSL');?>" class="drop">Contact Us</a>
+                    <a href="<?= zen_href_link(FILENAME_CONTACT_US, '', 'SSL');?>" class="drop">Contact Us</a>
                     <!-- eof contact us -->
                 </li>
             </ul>

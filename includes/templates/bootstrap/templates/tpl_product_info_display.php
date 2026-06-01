@@ -40,11 +40,11 @@ if ($module_show_categories !== '0') {
 
 if (PRODUCT_INFO_PREVIOUS_NEXT === '1' || PRODUCT_INFO_PREVIOUS_NEXT === '3') {
 ?>
-<!--bof Prev/Next top position -->
+    <!--bof Prev/Next top position -->
     <div id="<?= $html_id_prefix ?>-productPrevNextTop" class="productPrevNextTop">
         <?php require $template->get_template_dir('/tpl_products_next_previous.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_products_next_previous.php'; ?>
-</div>
-<!--eof Prev/Next top position-->
+    </div>
+    <!--eof Prev/Next top position-->
 <?php
 }
 ?>
@@ -101,7 +101,7 @@ require($template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, 
                 <?php require $template->get_template_dir('/tpl_modules_main_product_image.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_main_product_image.php'; ?>
             </div>
 <?php
-    }
+}
 ?>
             <!--eof Main Product Image-->
 
@@ -111,11 +111,11 @@ require($template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, 
 /**
  * display the products additional images in a model carousel
  */
-    if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes' && PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE === '1') {
-        require $template->get_template_dir('tpl_bootstrap_images.php', DIR_WS_TEMPLATE, $current_page_base, 'modalboxes') . '/tpl_bootstrap_images.php';
+if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes' && PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE === '1') {
+    require $template->get_template_dir('tpl_bootstrap_images.php', DIR_WS_TEMPLATE, $current_page_base, 'modalboxes') . '/tpl_bootstrap_images.php';
 
-        if ($num_images > 0) {
-            $buttonText = $num_images . TEXT_MULTIPLE_IMAGES;
+    if ($num_images > 0) {
+        $buttonText = $num_images . TEXT_MULTIPLE_IMAGES;
 ?>
                 <div class="p-1"></div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bootstrap-slide-modal-lg">
@@ -123,18 +123,20 @@ require($template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, 
                 </button>
                 <div class="p-3"></div>
 <?php
-        }
+    }
 /**
  * display the products additional images in individual modal
  */
-    } else {
+} else {
 ?>
                 <div class="p-3"></div>
                 <?php require $template->get_template_dir('/tpl_modules_additional_images.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_additional_images.php';
-    }
+}
 ?>
             </div>
-<!--eof Additional Product Images -->
+            <!--eof Additional Product Images -->
+
+            <!--bof Product description -->
 <?php
 // MJFB - start
 }
@@ -147,7 +149,7 @@ if ($products_description != '') { ?>
             <div id="<?= $html_id_prefix ?>-productDescription" class="productDescription mb-3">
                 <?= stripslashes($products_description) ?>
             </div>
-<?php 
+<?php
 }
 ?>
             <!--eof Product description -->

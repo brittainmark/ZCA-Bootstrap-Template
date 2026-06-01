@@ -143,7 +143,7 @@ if (PROJECT_VERSION_MAJOR > 1) {
 ?>
     </div>
 <?php
-    /**
+/**
  * require the code for listing products
  */
 require $template->get_template_dir('tpl_modules_product_listing.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_product_listing.php';
