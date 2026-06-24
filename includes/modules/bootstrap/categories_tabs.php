@@ -21,7 +21,7 @@ $menulist = $zen_CategoriesUL->buildBootstrapMenu($parent_id, 0, true);
 /*
  * remove closing ul and add specials and new arrivals
  */
-rtrim($menulist);
+$menulist = rtrim($menulist);
 if (substr($menulist,-5) === '</ul>') {
     $menulist = substr($menulist, 0, -5);
 }
