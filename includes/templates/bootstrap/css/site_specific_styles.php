@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * BOOTSTRAP 3.3.0
  *
@@ -70,7 +70,7 @@
         color: #003366;
         padding: 0.5rem 0;
     }
-    
+
     #btnCallPrice {
         background-color: <?php echo ZCA_CHECKOUT_CONFIRM_BACKGROUND_COLOR ; ?>;
     }
@@ -125,5 +125,8 @@
     .form-inline {
         padding-bottom: 10px;
     }
-
+    /*Set backgroung to white on zoomed image*/
+    .zoomImg {
+	background: white;
+}
 </style>

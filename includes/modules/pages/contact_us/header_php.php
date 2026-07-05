@@ -2,10 +2,10 @@
 /**
  * Contact Us Page
  *
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Scott Wilson 2024 Apr 07 Modified in v2.0.1 $
+ * @version $Id: Scott Wilson 2024 Nov 23 Modified in v2.2.0 $
  */
 
 // This should be first line of the script:
@@ -95,8 +95,9 @@ if (isset($_GET['action']) && ($_GET['action'] === 'send')) {
             '------------------------------------------------------' . "\n\n" .
             $extra_info['TEXT'];
             // Prepare HTML-portion of message
-            $html_msg['EMAIL_MESSAGE_HTML'] = $enquiry;
-            $html_msg['CONTACT_US_OFFICE_FROM'] = OFFICE_FROM . ' ' . $name . '<br>' . OFFICE_EMAIL . '(' . $email_address . ')';
+            $html_msg['EMAIL_MESSAGE_HTML'] = zen_output_string_protected($enquiry);
+            $html_msg['CONTACT_US_OFFICE_FROM'] = OFFICE_FROM . ' ' . $name . '<br>' . OFFICE_EMAIL . ' ' . $email_address .
+                (!empty($telephone) ? '<br>' . OFFICE_LOGIN_PHONE . ' ' . $telephone : '');
             $html_msg['EXTRA_INFO'] = $extra_info['HTML'];
             // Send message
             zen_mail($send_to_name, $send_to_email, EMAIL_SUBJECT, $text_message, $name, $email_address, $html_msg, 'contact_us');
@@ -111,7 +112,7 @@ if (isset($_GET['action']) && ($_GET['action'] === 'send')) {
         if (empty($subject)) {
             $messageStack->add('contact', ENTRY_EMAIL_SUBJECT_CHECK_ERROR);
         }
-        if ($zc_validate_email == false) {
+        if ($zc_validate_email === false) {
             $messageStack->add('contact', ENTRY_EMAIL_ADDRESS_CHECK_ERROR);
         }
         if (empty($enquiry)) {

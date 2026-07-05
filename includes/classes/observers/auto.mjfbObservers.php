@@ -241,7 +241,7 @@ class zcObserverMjfbObservers extends base {
     /*
      * Delayed despatch processing
      */
-    protected function update(&$class, $eventID, $p1, &$p2, &$p3) {
+    protected function updateNotifyHeaderStartCheckoutSuccess(&$class, $eventID, $p1, &$p2, &$p3) {
         global $db, $mjfb_products_date;
         $orders_id = $_POST['order_number_created'] ?? 0;
         $mjfb_products_available_query = 'SELECT max(products_date_available) as products_date' .
