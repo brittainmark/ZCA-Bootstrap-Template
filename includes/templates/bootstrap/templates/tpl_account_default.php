@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.7.1
+ * BOOTSTRAP v3.8.0
  *
  * Loaded automatically by index.php?main_page=account.<br />
  * Displays previous orders and options to change various Customer Account settings
@@ -46,7 +46,7 @@ if ($messageStack->size('account') > 0) {
         </div>
 <!--eof my account card links-->
 <?php
-if ((int)ACCOUNT_NEWSLETTER_STATUS > 0 || CUSTOMERS_PRODUCTS_NOTIFICATION_STATUS !== '0') {
+if ((int)zen_config('ACCOUNT_NEWSLETTER_STATUS') > 0 || zen_config('CUSTOMERS_PRODUCTS_NOTIFICATION_STATUS') !== '0') {
 ?>
 <!--bof email notifications card links-->
         <div id="emailNotifications-card" class="card">
@@ -54,7 +54,7 @@ if ((int)ACCOUNT_NEWSLETTER_STATUS > 0 || CUSTOMERS_PRODUCTS_NOTIFICATION_STATUS
             <div id="emailNotifications-card-body" class="card-body p-3">
                 <ul id="emailNotifications-list-group" class="list-group list-group-flush">
 <?php
-    if ((int)ACCOUNT_NEWSLETTER_STATUS > 0) {
+    if ((int)zen_config('ACCOUNT_NEWSLETTER_STATUS') > 0) {
 ?>
                     <li class="list-group-item">
                         <?= zca_button_link(zen_href_link(FILENAME_ACCOUNT_NEWSLETTERS, '', 'SSL'), EMAIL_NOTIFICATIONS_NEWSLETTERS) ?>
@@ -62,7 +62,7 @@ if ((int)ACCOUNT_NEWSLETTER_STATUS > 0 || CUSTOMERS_PRODUCTS_NOTIFICATION_STATUS
 <?php 
     } //endif newsletter unsubscribe
 
-    if (CUSTOMERS_PRODUCTS_NOTIFICATION_STATUS === '1') {
+    if (zen_config('CUSTOMERS_PRODUCTS_NOTIFICATION_STATUS') === '1') {
 ?>
                     <li class="list-group-item">
                         <?= zca_button_link(zen_href_link(FILENAME_ACCOUNT_NOTIFICATIONS, '', 'SSL'), EMAIL_NOTIFICATIONS_PRODUCTS) ?>

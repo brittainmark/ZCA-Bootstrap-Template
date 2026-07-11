@@ -2,10 +2,10 @@
 /**
  * Common Template
  *
- * BOOTSTRAP 3.7.3
+ * BOOTSTRAP 3.8.0
  *
  * NOTE: This module can be removed from the template once support for Zen Cart
- * versions less than v2.1.0 is dropped! Unless, of course, there are site-specific
+ * versions less than v3.0.0 is dropped! Unless, of course, there are site-specific
  * changes made!
  *
  * Outputs the html header's CSS files.
@@ -14,16 +14,21 @@
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: DrByte 2024 Feb 11 Modified in v2.0.0-beta1 $
- 
  */
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
 // -----
-// If the site's Zen Cart version provides the 'common' CSS loader is present(i.e. zc210+), use that.
+// First, load the template's CSS variables formatter.
 //
-if (file_exists(DIR_WS_TEMPLATES . 'template_default/common/html_header_css_loader.php')) {
+require $template->get_template_dir('^bootstrap_color_vars.php', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/bootstrap_color_vars.php';
+
+// -----
+// zc300's version of the common file provides the zen_add_filemtime "cache buster".
+// If running under an older version, the zc300 processing is provided by this module.
+//
+if (zen_get_zcversion()[0] > '2') {
     require DIR_WS_TEMPLATES . 'template_default/common/html_header_css_loader.php';
     return;
 }
@@ -31,10 +36,11 @@ if (file_exists(DIR_WS_TEMPLATES . 'template_default/common/html_header_css_load
 /**
  * load all template-specific stylesheets, named like "style*.css", alphabetically
  */
-$directory_array = $template->get_template_part($template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css'), '/^style/', '.css');
+$directory_array = $template->get_template_part($template->get_template_dir('^style.*\.css', DIR_WS_TEMPLATE, $current_page_base, 'css'), '/^style/', '.css');
 foreach ($directory_array as $value) {
-    echo '<link rel="stylesheet" href="' . $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $value . '">' . "\n";
+    echo '<link rel="stylesheet" href="' . zen_add_filemtime($template->get_template_dir('^' . $value, DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $value) . '">' . "\n";
 }
+
 /**
  * load stylesheets on a per-page/per-language/per-product/per-manufacturer/per-category basis. Concept by Juxi Zoza.
  */
@@ -56,9 +62,9 @@ $sheets_array = [
     '/' . $_SESSION['language'] . '_p_' . $tmp_products_id,
 ];
 foreach ($sheets_array as $value) {
-    $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . $value . '.css';
+    $perpagefile = $template->get_template_dir('^' . $value . '.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . $value . '.css';
     if (file_exists($perpagefile)) {
-        echo '<link rel="stylesheet" href="' . $perpagefile . '">' . "\n";
+        echo '<link rel="stylesheet" href="' . zen_add_filemtime($perpagefile) . '">' . "\n";
     }
 }
 
@@ -69,13 +75,15 @@ $tmp_cats = explode('_', $cPath);
 $value = '';
 foreach ($tmp_cats as $val) {
     $value .= $val;
-    $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/c_' . $value . '_children.css';
+    $ppfile = 'c_' . $value . '_children.css';
+    $perpagefile = $template->get_template_dir('^' . $ppfile, DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $ppfile;
     if (file_exists($perpagefile)) {
-        echo '<link rel="stylesheet" href="' . $perpagefile . '">' . "\n";
+        echo '<link rel="stylesheet" href="' . zen_add_filemtime($perpagefile) . '">' . "\n";
     }
-    $perpagefile = $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $_SESSION['language'] . '_c_' . $value . '_children.css';
+    $ppfile = $_SESSION['language'] . '_c_' . $value . '_children.css';
+    $perpagefile = $template->get_template_dir('^' . $ppfile, DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $ppfile;
     if (file_exists($perpagefile)) {
-        echo '<link rel="stylesheet" href="' . $perpagefile . '">' . "\n";
+        echo '<link rel="stylesheet" href="' . zen_add_filemtime($perpagefile) . '">' . "\n";
     }
     $value .= '_';
 }
@@ -83,17 +91,17 @@ foreach ($tmp_cats as $val) {
 /**
  * load printer-friendly stylesheets -- named like "print*.css", alphabetically
  */
-$directory_array = $template->get_template_part($template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css'), '/^print/', '.css');
+$directory_array = $template->get_template_part($template->get_template_dir('^print.*\.css', DIR_WS_TEMPLATE, $current_page_base, 'css'), '/^print/', '.css');
 foreach ($directory_array as $value) {
-    echo '<link rel="stylesheet" media="print" href="' . $template->get_template_dir('.css', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $value . '">' . "\n";
+    echo '<link rel="stylesheet" media="print" href="' . zen_add_filemtime($template->get_template_dir('^' . $value, DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $value) . '">' . "\n";
 }
 
 /**
  * load all DYNAMIC template-specific stylesheets, named like "style*.php", alphabetically
  */
-$directory_array = $template->get_template_part($template->get_template_dir('.php', DIR_WS_TEMPLATE, $current_page_base, 'css'), '/^style/', '.php');
+$directory_array = $template->get_template_part($template->get_template_dir('^style.*\.php', DIR_WS_TEMPLATE, $current_page_base, 'css'), '/^style/', '.php');
 foreach ($directory_array as $value) {
-    require $template->get_template_dir('.php', DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $value;
+    require $template->get_template_dir('^' . $value, DIR_WS_TEMPLATE, $current_page_base, 'css') . '/' . $value;
 }
 
 // -----

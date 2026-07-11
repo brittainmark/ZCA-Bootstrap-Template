@@ -1,8 +1,8 @@
 <?php
 /**
  * also_purchased_products module
- * 
- * BOOTSTRAP v3.6.4
+ *
+ * BOOTSTRAP v3.8.0
  *
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -12,22 +12,25 @@
 if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
-if (isset($_GET['products_id']) && SHOW_PRODUCT_INFO_COLUMNS_ALSO_PURCHASED_PRODUCTS > 0 && MIN_DISPLAY_ALSO_PURCHASED > 0) {
-    $also_purchased_products = $db->ExecuteRandomMulti(sprintf(SQL_ALSO_PURCHASED, (int)$_GET['products_id'], (int)$_GET['products_id']), (int)MAX_DISPLAY_ALSO_PURCHASED);
+
+$columns_also_purchased_products = (int)$tplSetting->SHOW_PRODUCT_INFO_COLUMNS_ALSO_PURCHASED_PRODUCTS;
+$min_display_also_purchased = (int)$tplSetting->MIN_DISPLAY_ALSO_PURCHASED;
+if (isset($_GET['products_id']) && $columns_also_purchased_products > 0 && $min_display_also_purchased > 0) {
+    $also_purchased_products = $db->ExecuteRandomMulti(sprintf(SQL_ALSO_PURCHASED, (int)$_GET['products_id'], (int)$_GET['products_id']), $min_display_also_purchased);
 
     $num_products_ordered = $also_purchased_products->RecordCount();
 
     $row = 0;
     $col = 0;
-    $list_box_contents = array();
+    $list_box_contents = [];
     $title = '';
 
     // show only when 1 or more and equal to or greater than minimum set in admin
-    if ($num_products_ordered >= MIN_DISPLAY_ALSO_PURCHASED && $num_products_ordered > 0) {
-        if ($num_products_ordered < SHOW_PRODUCT_INFO_COLUMNS_ALSO_PURCHASED_PRODUCTS) {
-            $col_width = floor(100/$num_products_ordered);
+    if ($num_products_ordered >= $min_display_also_purchased && $num_products_ordered > 0) {
+        if ($num_products_ordered < $columns_also_purchased_products) {
+            $col_width = floor(100 / $num_products_ordered);
         } else {
-            $col_width = floor(100/SHOW_PRODUCT_INFO_COLUMNS_ALSO_PURCHASED_PRODUCTS);
+            $col_width = floor(100 / $columns_also_purchased_products);
         }
 
         while (!$also_purchased_products->EOF) {
@@ -46,12 +49,12 @@ if (isset($_GET['products_id']) && SHOW_PRODUCT_INFO_COLUMNS_ALSO_PURCHASED_PROD
             /** eof products name */
 
             /** bof products image */
-            if (empty($also_purchased_products->fields['products_image']) && PRODUCTS_IMAGE_NO_IMAGE_STATUS === '0') {
+            if (empty($also_purchased_products->fields['products_image']) && $tplSetting->PRODUCTS_IMAGE_NO_IMAGE_STATUS === '0') {
                 $also_purchased_products_image = '';
             } else {
                 $also_purchased_products_image =
                     '<div class="centerBoxContentsItem-image text-center"><a href="' . $app_products_link . '" title="' . zen_output_string_protected($app_products_name) . '">' .
-                        zen_image(DIR_WS_IMAGES . $also_purchased_products->fields['products_image'], $app_products_name, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT) .
+                        zen_image(DIR_WS_IMAGES . $also_purchased_products->fields['products_image'], $app_products_name, $tplSetting->SMALL_IMAGE_WIDTH, $tplSetting->SMALL_IMAGE_HEIGHT) .
                     '</a></div>';
             }
             /** eof products image */
@@ -62,14 +65,14 @@ if (isset($_GET['products_id']) && SHOW_PRODUCT_INFO_COLUMNS_ALSO_PURCHASED_PROD
             ];
 
             $col++;
-            if ($col >= (int)SHOW_PRODUCT_INFO_COLUMNS_ALSO_PURCHASED_PRODUCTS) {
+            if ($col >= $columns_also_purchased_products) {
                 $col = 0;
                 $row++;
             }
             $also_purchased_products->MoveNextRandom();
         }
     }
-    if ($also_purchased_products->RecordCount() > 0 && $also_purchased_products->RecordCount() >= MIN_DISPLAY_ALSO_PURCHASED) {
+    if ($also_purchased_products->RecordCount() >= $min_display_also_purchased) {
         $title = '<p id="alsoPurchasedCenterbox-card-header" class="centerBoxHeading card-header h3">' . TEXT_ALSO_PURCHASED_PRODUCTS . '</p>';
         $zc_show_also_purchased = true;
     }

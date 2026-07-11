@@ -3,7 +3,7 @@
 // Part of the One-Page Checkout plugin, provided under GPL 2.0 license by lat9
 // Copyright (C) 2017-2026, Vinos de Frutas Tropicales.  All rights reserved.
 //
-// Last updated: OPC v2.6.0/Bootstrap v3.7.9
+// Last updated: OPC v2.6.0/Bootstrap v3.8.0
 //
 ?>
 <div class="centerColumn" id="registerDefault">
@@ -20,7 +20,7 @@ if ($messageStack->size('create_account') > 0) {
 ?>
     <div class="required-info text-right"><?= FORM_REQUIRED_INFORMATION ?></div>
 <?php
-if (DISPLAY_PRIVACY_CONDITIONS === 'true') {
+if (zen_config('DISPLAY_PRIVACY_CONDITIONS') === 'true') {
 ?>
     <div class="card mb-3 w-100">
         <h4 class="card-header"><?= TABLE_HEADING_PRIVACY_CONDITIONS ?></h4>
@@ -35,14 +35,14 @@ if (DISPLAY_PRIVACY_CONDITIONS === 'true') {
 <?php
 }
 
-if (ACCOUNT_COMPANY === 'true') {
+if (zen_config('ACCOUNT_COMPANY') === 'true') {
     $company_field_length = zen_set_field_length(TABLE_ADDRESS_BOOK, 'entry_company', '40');
 ?>
     <div class="card mb-3">
         <h4 class="card-header"><?= CATEGORY_COMPANY ?></h4>
         <div class="card-body">
             <label class="inputLabel" for="company"><?= ENTRY_COMPANY ?></label>
-            <?= zen_draw_input_field('company', '', $company_field_length . ' id="company" placeholder="' . ENTRY_COMPANY_TEXT . '"'. ((int)ENTRY_COMPANY_MIN_LENGTH > 0 ? ' required' : '')) ?>
+            <?= zen_draw_input_field('company', '', $company_field_length . ' id="company" placeholder="' . ENTRY_COMPANY_TEXT . '"'. ((int)zen_config('ENTRY_COMPANY_MIN_LENGTH') > 0 ? ' required' : '')) ?>
         </div>
     </div>
 <?php
@@ -52,7 +52,7 @@ if (ACCOUNT_COMPANY === 'true') {
         <h4 class="card-header"><?= HEADING_CONTACT_DETAILS ?></h4>
         <div class="card-body">
 <?php
-if (ACCOUNT_GENDER === 'true') {
+if (zen_config('ACCOUNT_GENDER') === 'true') {
 ?>
             <label class="inputLabel"><?= ENTRY_GENDER ?></label><br>
             <div class="custom-control custom-radio custom-control-inline">
@@ -75,24 +75,24 @@ $telephone_field_length = zen_set_field_length(TABLE_CUSTOMERS, 'customers_telep
 // Set by OPC's v2.6.0 additional header for the create_account page. Set the defaults
 // if running with an earlier version of OPC.
 //
-$telephone_min_length ??= (int)ENTRY_TELEPHONE_MIN_LENGTH;
+$telephone_min_length ??= (int)zen_config('ENTRY_TELEPHONE_MIN_LENGTH');
 $telephone_placeholder ??= ENTRY_TELEPHONE_NUMBER_TEXT;
 
 $telephone_required = ($telephone_min_length > 0) ? ' required' : '';
 ?>
             <label class="inputLabel" for="firstname"><?= ENTRY_FIRST_NAME ?></label>
-            <?= zen_draw_input_field('firstname', '', $firstname_field_length . ' id="firstname" placeholder="' . ENTRY_FIRST_NAME_TEXT . '"' . ((int)ENTRY_FIRST_NAME_MIN_LENGTH > 0 ? ' required' : '')) ?>
+            <?= zen_draw_input_field('firstname', '', $firstname_field_length . ' id="firstname" placeholder="' . ENTRY_FIRST_NAME_TEXT . '"' . ((int)zen_config('ENTRY_FIRST_NAME_MIN_LENGTH') > 0 ? ' required' : '')) ?>
             <label class="inputLabel" for="lastname"><?= ENTRY_LAST_NAME ?></label>
-            <?= zen_draw_input_field('lastname', '', $lastname_field_length . ' id="lastname" placeholder="' . ENTRY_LAST_NAME_TEXT . '"'. ((int)ENTRY_LAST_NAME_MIN_LENGTH > 0 ? ' required' : '')) ?>
+            <?= zen_draw_input_field('lastname', '', $lastname_field_length . ' id="lastname" placeholder="' . ENTRY_LAST_NAME_TEXT . '"'. ((int)zen_config('ENTRY_LAST_NAME_MIN_LENGTH') > 0 ? ' required' : '')) ?>
             <label class="inputLabel phone" for="telephone"><?= ENTRY_TELEPHONE_NUMBER ?></label>
             <?= zen_draw_input_field('telephone', '', $telephone_field_length . ' id="telephone" class="phone" placeholder="' . $telephone_placeholder . '"' . $telephone_required, 'tel') ?>
 <?php
 unset($company_field_length, $firstname_field_length, $lastname_field_length, $telephone_field_length);
 
-if (ACCOUNT_DOB === 'true') {
+if (zen_config('ACCOUNT_DOB') === 'true') {
 ?>
             <label class="inputLabel" for="dob"><?= ENTRY_DATE_OF_BIRTH ?></label>
-            <?= zen_draw_input_field('dob','', 'id="dob" placeholder="' . ENTRY_DATE_OF_BIRTH_TEXT . '"' . ((int)ENTRY_DOB_MIN_LENGTH > 0 ? ' required' : '')) ?>
+            <?= zen_draw_input_field('dob','', 'id="dob" placeholder="' . ENTRY_DATE_OF_BIRTH_TEXT . '"' . ((int)zen_config('ENTRY_DOB_MIN_LENGTH') > 0 ? ' required' : '')) ?>
 <?php
 }
 
@@ -112,7 +112,7 @@ if ($display_nick_field === true) {
             <label class="inputLabel" for="email-address"><?= ENTRY_EMAIL_ADDRESS ?></label>
 <?php
 $email_field_length = zen_set_field_length(TABLE_CUSTOMERS, 'customers_email_address', '40');
-$email_required = ((int)ENTRY_EMAIL_ADDRESS_MIN_LENGTH > 0 ? ' required' : '');
+$email_required = ((int)zen_config('ENTRY_EMAIL_ADDRESS_MIN_LENGTH') > 0 ? ' required' : '');
 echo zen_draw_input_field('email_address', '', $email_field_length . ' id="email-address" placeholder="' . ENTRY_EMAIL_ADDRESS_TEXT . '"' . $email_required, 'email'); 
 ?>
             <label class="inputLabel" for="email-address-confirm"><?= ENTRY_EMAIL_ADDRESS_CONFIRM ?></label>
@@ -131,7 +131,7 @@ echo zen_draw_input_field('email_address', '', $email_field_length . ' id="email
             <label class="inputLabel" for="password-new"><?= ENTRY_PASSWORD ?></label>
 <?php
 $password_field_length = zen_set_field_length(TABLE_CUSTOMERS, 'customers_password', '20');
-$password_required = ((int)ENTRY_PASSWORD_MIN_LENGTH > 0 ? ' required' : '');
+$password_required = ((int)zen_config('ENTRY_PASSWORD_MIN_LENGTH') > 0 ? ' required' : '');
 echo zen_draw_password_field('password', '', $password_field_length . ' id="password-new" autocomplete="off" placeholder="' . ENTRY_PASSWORD_TEXT . '"'. $password_required); 
 ?>
             <label class="inputLabel" for="password-confirm"><?= ENTRY_PASSWORD_CONFIRMATION ?></label>
@@ -140,7 +140,7 @@ echo zen_draw_password_field('password', '', $password_field_length . ' id="pass
     </div>
     
 <?php
-if (ACCOUNT_NEWSLETTER_STATUS !== '0') {
+if (zen_config('ACCOUNT_NEWSLETTER_STATUS') !== '0') {
 ?>
     <div class="card mb-3">
         <h4 class="card-header"><?= ENTRY_EMAIL_PREFERENCE ?></h4>
@@ -155,7 +155,7 @@ if (ACCOUNT_NEWSLETTER_STATUS !== '0') {
 <?php
 } 
 
-if (CUSTOMERS_REFERRAL_STATUS === '2') {
+if (zen_config('CUSTOMERS_REFERRAL_STATUS') === '2') {
 ?>
     <div class="card mb-3">
         <h4 class="card-header"><?= TABLE_HEADING_REFERRAL_DETAILS ?></div>

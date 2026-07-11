@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.6.1
+ * BOOTSTRAP v3.8.0
  *
  * This is the template used for EZ-Pages content display.  It is named "tpl_page_default" instead of ezpage for friendlier appearance
  *
@@ -14,26 +14,26 @@
  */
 ?>
 <div id="pageDefault" class="centerColumn">
-    <h1 id="pageDefault-pageHeading" class="pageHeading"><?php echo $var_pageDetails->fields['pages_title']; ?></h1>
+    <h1 id="pageDefault-pageHeading" class="pageHeading"><?= $var_pageDetails->fields['pages_title'] ?></h1>
 <?php
-if (EZPAGES_SHOW_PREV_NEXT_BUTTONS === '2' && $counter > 1) {
+if ($tplSetting->EZPAGES_SHOW_PREV_NEXT_BUTTONS === '2' && $counter > 1) {
 ?>
     <div id="pageDefault-btn-group" class="btn-group my-3 text-center d-none d-sm-block" role="group">
-        <a href="<?php echo $prev_link; ?>"><?php echo $previous_button; ?></a>
-        <?php echo zen_back_link() . $home_button; ?></a>
-        <a href="<?php echo $next_link; ?>"><?php echo $next_item_button; ?></a>
+        <a href="<?= $prev_link ?>"><?= $previous_button ?></a>
+        <?= zen_back_link() . $home_button ?></a>
+        <a href="<?= $next_link ?>"><?= $next_item_button ?></a>
     </div>
 
     <div id="pageDefault-btn-group2" class="btn-group my-3 text-center d-block d-sm-none" role="group">
-        <a href="<?php echo $prev_link; ?>"><span class="btn btn-primary"><?php echo '<i class="fas fa-angle-left" title="' . BUTTON_PREVIOUS_ALT . '"></i>'; ?></span></a>
-        <?php echo zen_back_link() . $home_button; ?></a>
-        <a href="<?php echo $next_link; ?>"><span class="btn btn-primary"><?php echo '<i class="fas fa-angle-right" title="' . BUTTON_NEXT_ALT . '"></i>'; ?></span></a>
+        <a href="<?= $prev_link ?>"><span class="btn btn-primary"><?= '<i class="fas fa-angle-left" title="' . BUTTON_PREVIOUS_ALT . '"></i>' ?></span></a>
+        <?= zen_back_link() . $home_button ?></a>
+        <a href="<?= $next_link ?>"><span class="btn btn-primary"><?= '<i class="fas fa-angle-right" title="' . BUTTON_NEXT_ALT . '"></i>' ?></span></a>
     </div>
 <?php
-} elseif (EZPAGES_SHOW_PREV_NEXT_BUTTONS === '1') {
+} elseif ($tplSetting->EZPAGES_SHOW_PREV_NEXT_BUTTONS === '1') {
 ?>
     <div id="pageDefault-btn-toolbar" class="btn-toolbar justify-content-center my-3" role="toolbar">
-        <?php echo zen_back_link() . $home_button . '</a>'; ?>
+        <?= zen_back_link() . $home_button . '</a>' ?>
     </div>
 <?php
 }
@@ -42,10 +42,10 @@ if (EZPAGES_SHOW_PREV_NEXT_BUTTONS === '2' && $counter > 1) {
 <?php
 // vertical TOC listing
 // create a table of contents for chapter when more than 1 page in the TOC
-if (count($toc_links) > 1 && EZPAGES_SHOW_TABLE_CONTENTS === '1') {
+if (count($toc_links) > 1 && $tplSetting->EZPAGES_SHOW_TABLE_CONTENTS === '1') {
 ?>
     <ul id="pageDefault-list-group" class="list-group mb-3">
-        <li class="list-group-item list-group-item-secondary"><?php echo TEXT_EZ_PAGES_TABLE_CONTEXT; ?></li>
+        <li class="list-group-item list-group-item-secondary"><?= TEXT_EZ_PAGES_TABLE_CONTEXT ?></li>
 <?php
     foreach($toc_links as $link) {
         // could be used to change classes on current link and toc (table of contents) links
@@ -58,7 +58,7 @@ if (count($toc_links) > 1 && EZPAGES_SHOW_TABLE_CONTENTS === '1') {
         }
 ?>
         <li class="list-group-item">
-            <?php echo $current_page_indicator; ?><a href="<?php echo zen_ez_pages_link($link['pages_id']);?>"<?php echo $page_link_params; ?>><?php echo $link['pages_title']; ?></a>
+            <?= $current_page_indicator ?><a href="<?= zen_ez_pages_link($link['pages_id']);?>"<?= $page_link_params ?>><?= $link['pages_title'] ?></a>
         </li>
 <?php
     }
@@ -68,6 +68,6 @@ if (count($toc_links) > 1 && EZPAGES_SHOW_TABLE_CONTENTS === '1') {
 }
 ?>
     <div id="pageDefault-content" class="content">
-        <?php echo $var_pageDetails->fields['pages_html_text']; ?>
+        <?= $var_pageDetails->fields['pages_html_text'] ?>
     </div>
 </div>

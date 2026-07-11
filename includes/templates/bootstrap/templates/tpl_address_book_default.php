@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP 3.6.4
+ * BOOTSTRAP 3.8.0
  *
  * Loaded automatically by index.php?main_page=address_book.
  * Allows customer to manage entries in their address book
@@ -80,7 +80,7 @@ foreach ($addressArray as $addresses) {
     <div id="addressBookDefault-btn-toolbar" class="btn-toolbar justify-content-between" role="toolbar">
         <?= zca_button_link(zen_href_link(FILENAME_ACCOUNT, '', 'SSL'), BUTTON_BACK_ALT, 'button_back') ?>
 <?php
-if (count($addressArray) < MAX_ADDRESS_BOOK_ENTRIES) {
+if (count($addressArray) < zen_config('MAX_ADDRESS_BOOK_ENTRIES')) {
     echo zca_button_link(zen_href_link(FILENAME_ADDRESS_BOOK_PROCESS, '', 'SSL'),  BUTTON_ADD_ADDRESS_ALT, 'button_add_address');
 }
 ?>

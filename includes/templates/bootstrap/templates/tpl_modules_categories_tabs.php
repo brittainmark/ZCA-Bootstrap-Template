@@ -2,7 +2,7 @@
 /**
  * Module Template - categories_tabs
  *
- * BOOTSTRAP v1.0.BETA
+ * Bootstrap 3.8.0
  *
  * Template stub used to display categories-tabs output
  *
@@ -13,8 +13,10 @@
  * @version $Id: tpl_modules_categories_tabs.php 3395 2006-04-08 21:13:00Z ajeh $
  */
 // MJFB complete rewrite
-if (CATEGORIES_TABS_STATUS == '1' ) {
-    include(DIR_WS_MODULES . zen_get_module_directory(FILENAME_CATEGORIES_TABS));
+
+include DIR_WS_MODULES . zen_get_module_directory(FILENAME_CATEGORIES_TABS);
+
+if ($tplSetting->CATEGORIES_TABS_STATUS === '1' && (!empty($links_list) || !empty($links_list_by_category))) {
 ?>
 <div id="categoriesTabs" class="d-lg-block">
 <nav class="navbar navbar-expand-lg h2-nav" id="navCatTabs">

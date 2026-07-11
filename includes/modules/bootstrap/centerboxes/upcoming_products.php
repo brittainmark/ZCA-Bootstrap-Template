@@ -2,7 +2,7 @@
 /**
  * upcoming_products module
  *
- * BOOTSTRAP v3.4.0
+ * BOOTSTRAP v3.8.0
  *
  * @copyright Copyright 2003-2018 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -22,10 +22,10 @@ $display_limit = zen_get_upcoming_date_range();
 
 $limit_clause =
     "  ORDER BY " .
-    (EXPECTED_PRODUCTS_FIELD === 'date_expected' ? 'date_expected' : 'products_name') .
+    ($tplSetting->EXPECTED_PRODUCTS_FIELD === 'date_expected' ? 'date_expected' : 'products_name') .
     ' ' .
-    (EXPECTED_PRODUCTS_SORT === 'asc' ? 'ASC' : 'DESC') .
-    " LIMIT " . (int)MAX_DISPLAY_UPCOMING_PRODUCTS;
+    ($tplSetting->EXPECTED_PRODUCTS_SORT === 'asc' ? 'ASC' : 'DESC') .
+    " LIMIT " . (int)$tplSetting->MAX_DISPLAY_UPCOMING_PRODUCTS;
 
 if ((($manufacturers_id > 0 && empty($_GET['filter_id'])) || !empty($_GET['music_genre_id']) || !empty($_GET['record_company_id'])) || empty($new_products_category_id)) {
     $expected_query =

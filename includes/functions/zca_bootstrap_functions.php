@@ -2,21 +2,21 @@
 /**
  * @author ZCAdditions.com, ZCA Bootstrap Template
  *
- * BOOTSTRAP v3.7.0
+ * BOOTSTRAP v3.8.0
  *
 */
  
 // -----
 // This function returns a boolean value indicating whether (true) or not (false)
 // the ZCA bootstrap template is the currently-active template.  The definition is
-// present in the template's /includes/languages/english/extra_definitions/zca_bootstrap_id.php,
+// present in the template's /includes/languages/english/extra_definitions/lang.zca_bootstrap_id.php,
 //
 function zca_bootstrap_active()
 {
     return (defined('IS_ZCA_BOOTSTRAP_TEMPLATE'));
 }
 
-function zca_js_zone_list($varname = 'c2z')
+function zca_js_zone_list(string $varname = 'c2z'): string
 {
     global $db;
 
@@ -59,26 +59,12 @@ function zca_js_zone_list($varname = 'c2z')
 // Loads a language-file for the requested modal page.  Some of the "core" Zen Cart pop-up pages
 // are replaced by modals for the Bootstrap template.
 //
-// NOTE: This function, introduced in v3.4.0, replaces the zca_get_language_dir function to enable
-// a single template distribution to support both the zc157 series and its zc158+ follow-on.
-//
-function zca_load_language_for_modal($modal_pagename)
+function zca_load_language_for_modal(string $modal_pagename): void
 {
-    if (zen_get_zcversion() >= '1.5.8') {
-        global $languageLoader;
+    global $languageLoader;
 
-        $languageLoader->setCurrentPage($modal_pagename);
-        $languageLoader->loadLanguageForView();
-    } else {
-        global $language_page_directory, $template_dir;
-
-        $modal_language_filename = $modal_pagename . '.php';
-        $language_dir = '';
-        if (file_exists($language_page_directory . $template_dir . '/' . $modal_language_filename)) {
-            $language_dir = "$template_dir/";
-        }
-        require $language_page_directory . $language_dir . $modal_language_filename;
-    }
+    $languageLoader->setCurrentPage($modal_pagename);
+    $languageLoader->loadLanguageForView();
 }
 
 // -----
@@ -88,7 +74,7 @@ function zca_load_language_for_modal($modal_pagename)
 // $size ..... A character string to identify the relative 'size' of the generated stars, one of the font-awesome size suffixes:
 //             'xs', 'sm', 'lg', '2x', '3x', '5x', '7x' or '10x'.  Note that this value is unchecked!
 //
-function zca_get_rating_stars($rating, $size = '')
+function zca_get_rating_stars(int|string $rating, string $size = ''): string
 {
     $rating = (int)$rating;
     $rating = ($rating < 0) ? 0 : $rating;
@@ -104,26 +90,20 @@ function zca_get_rating_stars($rating, $size = '')
 }
 
 // -----
-// A function to provide compatability for the template's use for 'strftime' formatted
-// dates; that function is deprecated in PHP 8.1 and will be removed in a future version.
-// zc158 has defined a class that can be used to provide that compatibility.
+// A function to return the current month's translated name.
 //
 function zca_get_translated_month_name()
 {
-    if (zen_get_zcversion() >= '1.5.8') {
-        global $zcDate;
-        $month_name = $zcDate->output('%B');
-    } else {
-        $month_name = strftime('%B');
-    }
-    return $month_name;
+    global $zcDate;
+    return $zcDate->output('%B');
 }
 
 // -----
 // A function to return a button-styled anchor link, used in the majority of the
 // templates.  Added in v3.5.0.
 //
-function zca_button_link($link, $text, $extra_classes = '', $parameters = '') {
+function zca_button_link(string $link, string $text, string $extra_classes = '', string $parameters = ''): string
+{
     $extra_classes = ($extra_classes !== '') ? ' ' . trim($extra_classes) : '';
     $parameters = ($parameters !== '') ? ' ' . trim($parameters) : '';
     return '<a class="p-2 btn' . $extra_classes . '" href="' . $link . '"' . $parameters . '>' . $text . '</a>';
@@ -133,7 +113,8 @@ function zca_button_link($link, $text, $extra_classes = '', $parameters = '') {
 // A function to return a button-styled 'back-link', used in many of the
 // templates.  Added in v3.5.0.
 //
-function zca_back_link($extra_classes = '', $parameters = '', $button_name = '') {
+function zca_back_link(string $extra_classes = '', string $parameters = '', string $button_name = ''): string
+{
     $extra_classes = ($extra_classes !== '') ? ' ' . trim($extra_classes) : '';
     $parameters = ($parameters !== '') ? ' ' . trim($parameters) : '';
     $button_name = ($button_name === '') ? BUTTON_BACK_ALT : $button_name;

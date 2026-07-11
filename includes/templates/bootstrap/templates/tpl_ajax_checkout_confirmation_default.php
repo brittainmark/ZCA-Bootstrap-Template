@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * BOOTSTRAP v3.6.5
+ * BOOTSTRAP v3.8.0
  *
  * Loaded automatically by index.php?main_page=checkout_confirmation.
  * Displays final checkout details, cart, payment and shipping info details.
@@ -141,7 +141,7 @@ if ($_SESSION['sendto'] != false) {
                 <?= HEADING_ORDER_COMMENTS ?>
             </h4>
             <div id="orderComment-card-body" class="card-body p-3">
-                <?= (empty($order->info['comments']) ? NO_COMMENTS_TEXT : nl2br(zen_output_string_protected($order->info['comments'])) . zen_draw_hidden_field('comments', $order->info['comments'])) ?>
+                <?= (empty($order->info['comments']) ? NO_COMMENTS_TEXT : nl2br(zen_output_string_protected($order->info['comments']), false) . zen_draw_hidden_field('comments', $order->info['comments'])) ?>
 
                 <div id="orderComment-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
                     <?= zca_button_link(zen_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'), BUTTON_EDIT_SMALL_ALT, 'small_edit') ?>
@@ -209,7 +209,7 @@ for ($i = 0, $n = count($order->products); $i < $n; $i++) {
         foreach ($order->products[$i]['attributes'] as $next_attrib) {
 ?>
                                         <li>
-                                            <?= $next_attrib['option'] . ': ' . nl2br(zen_output_string_protected($next_attrib['value'])) ?>
+                                            <?= $next_attrib['option'] . ': ' . nl2br(zen_output_string_protected($next_attrib['value']), false) ?>
                                         </li>
 <?php
         } // end loop
@@ -242,7 +242,7 @@ for ($i = 0, $n = count($order->products); $i < $n; $i++) {
 <?php
 }  // end for loopthru all products
 
-if (MODULE_ORDER_TOTAL_INSTALLED) {
+if (zen_config('MODULE_ORDER_TOTAL_INSTALLED')) {
     $_SESSION['zca_bootstrap_ot_colspan'] = ($tax_column_present === true) ? '3' : '2';
     $order_totals = $order_total_modules->process();
     $order_total_modules->output();
@@ -287,7 +287,7 @@ $(document).ready(function () {
             }
         }
     }
-    if (isset($processButtonOptions['extraFields']) && count($processButtonOptions['extraFields'])> 0 ) {
+    if (count($processButtonOptions['extraFields'] ?? []) > 0 ) {
         foreach ($processButtonOptions['extraFields'] as $fieldName => $fieldValue) {
            echo zen_draw_hidden_field($fieldName, $fieldValue);
         }

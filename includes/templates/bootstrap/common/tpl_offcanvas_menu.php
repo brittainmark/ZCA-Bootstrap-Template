@@ -1,8 +1,8 @@
 <?php
 /**
  * Template for Mobile Header Drop Down
- * 
- * BOOTSTRAP v3.7.9
+ *
+ * BOOTSTRAP v3.8.0
  *
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -17,10 +17,10 @@
         <ul class="m-0 p-0">
 <?php
 $categories_tab = $db->Execute(
-    "SELECT c.categories_id, cd.categories_name 
-       FROM " . TABLE_CATEGORIES . " c 
+    "SELECT c.categories_id, cd.categories_name
+       FROM " . TABLE_CATEGORIES . " c
             INNER JOIN " . TABLE_CATEGORIES_DESCRIPTION . " cd
-                ON cd.categories_id = c.categories_id 
+                ON cd.categories_id = c.categories_id
                AND cd.language_id = " . (int)$_SESSION['languages_id'] . "
       WHERE c.categories_status = 1
         AND c.parent_id = 0
@@ -40,7 +40,7 @@ foreach ($categories_tab as $category_tab) {
 ?>
         </ul>
 <?php
-if (SHOW_CATEGORIES_BOX_SPECIALS === 'true') {
+if ($tplSetting->SHOW_CATEGORIES_BOX_SPECIALS === 'true') {
     $show_this = $db->Execute("SELECT s.products_id FROM " . TABLE_SPECIALS . " s WHERE s.status = 1 LIMIT 1");
     if (!$show_this->EOF) {
 ?>
@@ -52,11 +52,11 @@ if (SHOW_CATEGORIES_BOX_SPECIALS === 'true') {
     }
 }
 
-if (SHOW_CATEGORIES_BOX_PRODUCTS_NEW === 'true') {
+if ($tplSetting->SHOW_CATEGORIES_BOX_PRODUCTS_NEW === 'true') {
       // display limits
     $display_limit = zen_get_new_date_range();
     $show_this = $db->Execute("SELECT p.products_id FROM " . TABLE_PRODUCTS . " p WHERE p.products_status = 1 " . $display_limit . " LIMIT 1");
-    if (!$show_this->EOF) { 
+    if (!$show_this->EOF) {
 ?>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="<?= zen_href_link(FILENAME_PRODUCTS_NEW) ?>">
@@ -66,7 +66,7 @@ if (SHOW_CATEGORIES_BOX_PRODUCTS_NEW === 'true') {
     }
 }
 
-if (SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS === 'true') {
+if ($tplSetting->SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS === 'true') {
     $show_this = $db->Execute("SELECT products_id FROM " . TABLE_FEATURED . " WHERE status = 1 LIMIT 1");
     if (!$show_this->EOF) {
 ?>
@@ -79,18 +79,18 @@ if (SHOW_CATEGORIES_BOX_FEATURED_PRODUCTS === 'true') {
 }
 
 // MJFB
-if (SHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED === 'true') {
+if ($tplSetting->SSHOW_CATEGORIES_BOX_PRODUCTS_RESTOCKED === 'true') {
     $display_limit = mjfb_get_restocked_date_range();
-    $show_this = $db->Execute("SELECT p.products_id FROM " . TABLE_PRODUCTS . " p WHERE p.products_status = 1 AND p.products_quantity > 0 " . $display_limit . " LIMIT 1");      
+    $show_this = $db->Execute("SELECT p.products_id FROM " . TABLE_PRODUCTS . " p WHERE p.products_status = 1 AND p.products_quantity > 0 " . $display_limit . " LIMIT 1");
     if (!$show_this->EOF) {
 ?>
         <div class="dropdown-divider"></div><a class="dropdown-item" href="<?php echo zen_href_link(FILENAME_PRODUCTS_RESTOCKED); ?>"><?php echo CATEGORIES_BOX_HEADING_PRODUCTS_RESTOCKED; ?></a>
-<?php          
+<?php
     }
 }
 // MJFB end
 
-if (SHOW_CATEGORIES_BOX_PRODUCTS_ALL === 'true') {
+if ($tplSetting->SHOW_CATEGORIES_BOX_PRODUCTS_ALL === 'true') {
 ?>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="<?= zen_href_link(FILENAME_PRODUCTS_ALL) ?>">
@@ -115,12 +115,12 @@ $information_sidebox = $db->Execute(
       LIMIT 1"
 );
 if (!$information_sidebox->EOF) {
-    $information_box = DIR_WS_MODULES . zen_get_module_sidebox_directory('information.php'); 
+    $information_box = DIR_WS_MODULES . zen_get_module_sidebox_directory('information.php');
     if (file_exists($information_box)) {
         $information_sidebox_class = 'dropdown-item';
         require $information_box;
         unset($information_sidebox_class);
-        
+
         if (count($information) > 0) {
 ?>
 <li class="nav-item dropdown d-lg-none">
@@ -157,12 +157,12 @@ $more_information_sidebox = $db->Execute(
       LIMIT 1"
 );
 if (!$more_information_sidebox->EOF) {
-    $more_information_box = DIR_WS_MODULES . zen_get_module_sidebox_directory('more_information.php'); 
+    $more_information_box = DIR_WS_MODULES . zen_get_module_sidebox_directory('more_information.php');
     if (file_exists($more_information_box)) {
         $more_information_sidebox_class = 'dropdown-item';
         require $more_information_box;
         unset($more_information_sidebox_class);
-        
+
         if (count($more_information) > 0) {
 ?>
 <li class="nav-item dropdown d-lg-none">
@@ -187,7 +187,7 @@ if (!$more_information_sidebox->EOF) {
 }
 
 // test if ez-pages links should display
-if (EZPAGES_STATUS_SIDEBOX === '1' || (EZPAGES_STATUS_SIDEBOX === '2' && zen_is_whitelisted_admin_ip())) {
+if ($tplSetting->EZPAGES_STATUS_SIDEBOX === '1' || ($tplSetting->EZPAGES_STATUS_SIDEBOX === '2' && zen_is_whitelisted_admin_ip())) {
     if (isset($var_linksList)) {
         unset($var_linksList);
     }
@@ -212,10 +212,10 @@ if (EZPAGES_STATUS_SIDEBOX === '1' || (EZPAGES_STATUS_SIDEBOX === '2' && zen_is_
     if (!$page_query->EOF) {
         $page_query_list_sidebox = [];
         foreach ($page_query as $next_page) {
-            $next_page_entry = array(
+            $next_page_entry = [
                 'name' => htmlspecialchars($next_page['pages_title'], ENT_COMPAT, CHARSET, true),
-            );
-            
+            ];
+
             switch (true) {
                 // external link new window or same window
                 case ($next_page['alt_url_external'] !== ''):
@@ -249,7 +249,7 @@ if (EZPAGES_STATUS_SIDEBOX === '1' || (EZPAGES_STATUS_SIDEBOX === '2' && zen_is_
             // generated in the loop below!
             //
             $next_page_entry['link'] .= ($next_page['page_open_new_window'] === '1') ? '" target="_blank" rel="noopener' : '';
-            
+
             $page_query_list_sidebox[] = $next_page_entry;
         }
     }

@@ -2,7 +2,7 @@
 // -----
 // account_history: Use the template-specific splitPageResults formatting, if the ZCA Bootstrap template is installed and active.
 //
-// Last updated: Bootstrap 3.4.0
+// Last updated: Bootstrap 3.8.0
 //
 if ($accountHasHistory && function_exists('zca_bootstrap_active') && zca_bootstrap_active()) {
     // -----
@@ -12,5 +12,5 @@ if ($accountHasHistory && function_exists('zca_bootstrap_active') && zca_bootstr
     //
     $history_query = $history_split->getSqlQuery();
     $history_query = substr($history_query, 0, strripos($history_query, ' limit'));
-    $history_split = new zca_splitPageResults($history_query, MAX_DISPLAY_ORDER_HISTORY);
+    $history_split = new zca_splitPageResults($history_query, $tplSetting->MAX_DISPLAY_ORDER_HISTORY);
 }

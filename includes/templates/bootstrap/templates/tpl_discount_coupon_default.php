@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * BOOTSTRAP v3.5.0
+ * BOOTSTRAP v3.8.0
  *
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -11,11 +11,11 @@
  */
 ?>
 <div id="discountCouponDefault" class="centerColumn">
-    <h1 id="discountCouponDefault-pageHeading" class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
+    <h1 id="discountCouponDefault-pageHeading" class="pageHeading"><?= HEADING_TITLE ?></h1>
 
     <div id="discountCouponDefault-defineContent" class="defineContent mb-3">
 <?php
-if ((DEFINE_DISCOUNT_COUPON_STATUS === '1' || DEFINE_DISCOUNT_COUPON_STATUS === '2') && $text_coupon_help === '') {
+if (in_array($tplSetting->DEFINE_DISCOUNT_COUPON_STATUS, ['1', '2'], true) && $text_coupon_help === '') {
     require $define_page;
  } else {
     echo $text_coupon_help;
@@ -23,13 +23,13 @@ if ((DEFINE_DISCOUNT_COUPON_STATUS === '1' || DEFINE_DISCOUNT_COUPON_STATUS === 
 ?>
     </div>
 
-    <?php echo zen_draw_form('discount_coupon', zen_href_link(FILENAME_DISCOUNT_COUPON, 'action=lookup', 'SSL', false)); ?>
+    <?= zen_draw_form('discount_coupon', zen_href_link(FILENAME_DISCOUNT_COUPON, 'action=lookup', 'SSL', false)) ?>
 
         <div id="lookupDiscountCoupon-card" class="card">
-            <h4 id="lookupDiscountCoupon-card-header" class="card-header"><?php echo TEXT_DISCOUNT_COUPON_ID_INFO; ?></h4>
+            <h4 id="lookupDiscountCoupon-card-header" class="card-header"><?= TEXT_DISCOUNT_COUPON_ID_INFO ?></h4>
             <div id="lookupDiscountCoupon-card-body" class="card-body">
-                <label class="inputLabel" for="lookup-discount-coupon"><?php echo TEXT_DISCOUNT_COUPON_ID; ?></label>
-                <?php echo zen_draw_input_field('lookup_discount_coupon', isset($_POST['lookup_discount_coupon']) ? $_POST['lookup_discount_coupon'] : '', 'size="40" id="lookup-discount-coupon" autofocus', 'search'); ?>
+                <label class="inputLabel" for="lookup-discount-coupon"><?= TEXT_DISCOUNT_COUPON_ID ?></label>
+                <?= zen_draw_input_field('lookup_discount_coupon', isset($_POST['lookup_discount_coupon']) ? $_POST['lookup_discount_coupon'] : '', 'size="40" id="lookup-discount-coupon" autofocus', 'search') ?>
 
                 <div id="lookupDiscountCoupon-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
 <?php
@@ -45,8 +45,8 @@ if ($text_coupon_help === '') {
         </div>
 
         <div id="discountCouponDefault-btn-toolbar" class="btn-toolbar my-3" role="toolbar">
-            <?php echo zca_back_link(); ?>
+            <?= zca_back_link() ?>
         </div>
 
-    <?php echo '</form>'; ?>
+    <?= '</form>' ?>
 </div>

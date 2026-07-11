@@ -1,9 +1,9 @@
 <?php
 // -----
 // Part of the One-Page Checkout plugin, provided under GPL 2.0 license by lat9 (cindy@vinosdefrutastropicales.com).
-// Copyright (C) 2017-2022, Vinos de Frutas Tropicales.  All rights reserved.
+// Copyright (C) 2017-2026, Vinos de Frutas Tropicales.  All rights reserved.
 //
-// Last updated: OPC v2.4.2/Bootstrap 3.5.0
+// Last updated: OPC v2.4.2/Bootstrap 3.8.0
 //
 // This template is loaded for the address_book page by /includes/modules/pages/address_book/main_template_vars.php
 // when the One-Page Checkout plugin is installed, its "account registration" processing is enabled and the currently
@@ -14,7 +14,7 @@
 // a 'simple' definition to one that requires insertion of the alt-text.
 //
 $text_no_addresses = TEXT_NO_ADDRESSES;
-if (version_compare(CHECKOUT_ONE_MODULE_VERSION, '2.4.2', '>=')) {
+if (version_compare(zen_config('CHECKOUT_ONE_MODULE_VERSION'), '2.4.2', '>=')) {
     $text_no_addresses = sprintf(TEXT_NO_ADDRESSES, BUTTON_ADD_ADDRESS_ALT);
 }
 ?>

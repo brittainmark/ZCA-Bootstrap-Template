@@ -2,7 +2,7 @@
 /**
  * Module Template
  * 
- * BOOTSTRAP v3.7.0
+ * BOOTSTRAP v3.8.0
  *
  * @copyright Copyright 2003-2005 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -22,7 +22,7 @@ $card_body_id = 'featuredCenterbox-card-body';
 ?>
 <!-- bof: featured products  -->
 <?php
-if (BS4_FEATURED_CENTERBOX_CAROUSEL === '') {
+if ($tplSetting->BS4_FEATURED_CENTERBOX_CAROUSEL === '') {
     // -----
     // If not rendering as a carousel, output the columnar display.
     //
@@ -31,7 +31,7 @@ if (BS4_FEATURED_CENTERBOX_CAROUSEL === '') {
     // -----
     // Otherwise, rendering as a carousel.
     //
-    $carousel_config = BS4_FEATURED_CENTERBOX_CAROUSEL;
+    $carousel_config = $tplSetting->BS4_FEATURED_CENTERBOX_CAROUSEL;
     require $template->get_template_dir('tpl_columnar_display_carousel.php', DIR_WS_TEMPLATE, $current_page_base, 'common') . '/tpl_columnar_display_carousel.php';
 }
 ?>

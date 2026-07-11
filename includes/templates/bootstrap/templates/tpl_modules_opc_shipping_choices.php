@@ -1,9 +1,9 @@
 <?php
 // -----
 // Part of the One-Page Checkout plugin, provided under GPL 2.0 license by lat9
-// Copyright (C) 2013-2024, Vinos de Frutas Tropicales.  All rights reserved.
+// Copyright (C) 2013-2026, Vinos de Frutas Tropicales.  All rights reserved.
 //
-// Last updated: OPC v2.5.0/Bootstrap v3.6.4
+// Last updated: OPC v2.5.0/Bootstrap v3.8.0
 //
 ?>
 <div id="checkoutShippingMethod" class="card mb-3">
@@ -42,7 +42,9 @@ if ($is_virtual_order === true) {
             <?= FREE_SHIPPING_TITLE ?>
         </div>
         <div id="defaultSelected">
-            <?= (!empty(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)) ? sprintf(FREE_SHIPPING_DESCRIPTION, $currencies->format(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER)) : '' ?>
+            <?= (!empty(zen_config('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER')))
+                ? sprintf(FREE_SHIPPING_DESCRIPTION, $currencies->format(zen_config('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER')))
+                : '' ?>
         </div>
         <?= zen_draw_hidden_field('shipping', 'free_free') ?>
 <?php

@@ -7,7 +7,7 @@
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
  * @version $Id: init_bc_config.php
  *
- * BOOTSTRAP v3.7.4
+ * BOOTSTRAP v3.8.0
  */
 // -----
 // Brought in by /admin/init_includes/init_bc_config.php for an initial installation or upgrade to the colors. 
@@ -819,54 +819,42 @@ $zca_bc_colors = [
 
 // -----
 // Prior to Bootstrap/Bootstrap Colors v3.5.2, there was no versioning for the colors' configuration. The
-// initial 'upgrade' for v3.5.2 will start by applying *all* current color configurations if the
+// initial 'upgrade' for v3.5.2 and later starts by applying *all* current color configurations if the
 // Bootstrap Colors' version setting isn't yet defined, implying either a pre-v3.5.2 or initial installation that
 // we're starting with.
 //
 // NOTE: No 'use_function' or 'set_function' needed for any of these human-enterable settings!
 //
 $zca_bc_installed = false;
-if (!defined('ZCA_BOOTSTRAP_COLORS_VERSION')) {
+if (zen_config('ZCA_BOOTSTRAP_COLORS_VERSION') === null) {
     // -----
     // Further, if this is an _initial_ install of the Bootstrap template and its associated colors, all
     // current colors' default values are set as their color selection.  If that color-setting *is* defined,
     // then any colors added on or after v3.5.2 will be added with a 'not-set' value to enable a
     // site to choose the best color for their store's color-scheme prior to use on the storefront.
     //
-    if (!defined('ZCA_BODY_TEXT_COLOR')) {
+    if (zen_config('ZCA_BODY_TEXT_COLOR') !== null) {
         $zca_bc_installed = true;
     }
-    $configuration_values = '';
+
     foreach ($zca_bc_colors as $key => $values) {
         $default_value = $values['configuration_value'];
         $added_version = (isset($values['added']) && $values['added'] >= '3.5.2') ? (' (Added in v'. $values['added'] . ')') : '';
-        $default_color = ($zca_bc_installed === false && $added_version !== '' && empty($values['set_default'])) ? 'not-set' : $default_value;
-        $configuration_values .= "('" . $values['configuration_title'] . "', '$key', '$default_color', 'Default: $default_value.$added_version', $bccid, " . $values['sort_order'] . ", now()),";
+        $default_color = ($zca_bc_installed === true && $added_version !== '' && empty($values['set_default'])) ? 'not-set' : $default_value;
+        $db->Execute(
+            "INSERT IGNORE INTO " . TABLE_CONFIGURATION . "
+                (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added)
+             VALUES
+                ('" . $values['configuration_title'] . "', '$key', '$default_color', 'Default: $default_value.$added_version', $bccid, " . $values['sort_order'] . ", now())"
+        );
     }
-    $configuration_values = rtrim($configuration_values, ',');
-    $db->Execute(
-        "INSERT IGNORE INTO " . TABLE_CONFIGURATION . "
-            (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added)
-         VALUES
-            $configuration_values"
-    );
-    unset($configuration_values);
+}
 
-    // -----
-    // Create the menu item for the ZCA Bootstrap Colors tool, if it's not already there.
-    //
-    if (!zen_page_key_exists('toolsZCABootstrapColors')) {
-        zen_register_admin_page('toolsZCABootstrapColors', 'BOX_TOOLS_ZCA_BOOTSTRAP_COLORS', 'FILENAME_ZCA_BOOTSTRAP_COLORS', '', 'tools', 'Y');
-    }
-
-    // -----
-    // Let the admin know that the initial installation was successfully completed.  The configuration value checked
-    // has been there since the initial release, so defer the message output to the upgrade section if it's currently
-    // defined.
-    //
-    if ($zca_bc_installed === true) {
-        $messageStack->add_session(sprintf(SUCCESS_ZCA_BOOTSTRAP_COLORS_INSTALLED, ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION), 'success');
-    }
+// -----
+// Create the menu item for the ZCA Bootstrap Colors tool, if it's not already there.
+//
+if (!zen_page_key_exists('toolsZCABootstrapColors')) {
+    zen_register_admin_page('toolsZCABootstrapColors', 'BOX_TOOLS_ZCA_BOOTSTRAP_COLORS', 'FILENAME_ZCA_BOOTSTRAP_COLORS', '', 'tools', 'Y');
 }
 
 // -----
@@ -883,7 +871,7 @@ switch (true) {
     // v3.5.2+: Major restructuring of the colors' titles and sort-orders.  The initialization section above has recorded
     // all of the newly-added color settings for an initial installation.
     //
-    // Go back through each, updating each setting to use the now-current version of the colors' settings.
+    // Go back through each, updating the setting to use the now-current version of the colors' settings.
     //
     // Note: Left as a 'case' statement just in case some future version needs to remove a setting.
     //
@@ -891,7 +879,7 @@ switch (true) {
         foreach ($zca_bc_colors as $key => $values) {
             $default_value = $values['configuration_value'];
             $added_version = (isset($values['added']) && $values['added'] >= '3.5.2') ? (' (Added in v'. $values['added'] . ')') : '';
-            $default_color = ($zca_bc_installed === false && $added_version !== '' && empty($values['set_default'])) ? 'not-set' : $default_value;
+            $default_color = ($added_version !== '' && empty($values['set_default'])) ? 'not-set' : $default_value;
             $description = "Default: $default_value.$added_version";
             if (isset($values['added'])) {
                 $db->Execute(
@@ -925,7 +913,8 @@ unset($zca_bc_colors);
 // setting is recorded in the 'Modules' configuration group, so it's not displayed as a row
 // within the Tools :: ZCA Bootstrap Colors tool.
 //
-if (!defined('ZCA_BOOTSTRAP_COLORS_VERSION')) {
+if (zen_config('ZCA_BOOTSTRAP_COLORS_VERSION') === null) {
+    $messageStack->add_session(sprintf(SUCCESS_ZCA_BOOTSTRAP_COLORS_INSTALLED, ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION), 'success');
     $db->Execute(
         "INSERT INTO " . TABLE_CONFIGURATION . "
             (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, date_added, sort_order, set_function)
@@ -933,6 +922,7 @@ if (!defined('ZCA_BOOTSTRAP_COLORS_VERSION')) {
             ('Bootstrap Colors Version', 'ZCA_BOOTSTRAP_COLORS_VERSION', '" . ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION . "', 'Displays the current version of the <em>ZCA Bootstrap Colors</em> tool.', 6, now(), 0, 'zen_cfg_read_only(')"
     );
 } else {
+    $messageStack->add_session(sprintf(SUCCESS_ZCA_BOOTSTRAP_COLORS_UPDATED, ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION), 'success');
     $db->Execute(
         "UPDATE " . TABLE_CONFIGURATION . "
             SET configuration_value = '" . ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION . "',
@@ -940,11 +930,4 @@ if (!defined('ZCA_BOOTSTRAP_COLORS_VERSION')) {
           WHERE configuration_key = 'ZCA_BOOTSTRAP_COLORS_VERSION'
           LIMIT 1"
     );
-}
-
-// -----
-// If an initial installation wasn't also run, let the admin know that the upgrade was successfully completed.
-//
-if ($zca_bc_installed === false) {
-    $messageStack->add_session(sprintf(SUCCESS_ZCA_BOOTSTRAP_COLORS_UPDATED, ZCA_BOOTSTRAP_COLORS_CURRENT_VERSION), 'success');
 }

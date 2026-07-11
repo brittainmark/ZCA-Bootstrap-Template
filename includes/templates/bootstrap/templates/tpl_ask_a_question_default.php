@@ -1,6 +1,6 @@
 <?php
 /**
- * BOOTSTRAP v3.7.9
+ * BOOTSTRAP v3.8.0
  *
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
@@ -11,39 +11,35 @@
 // product.  Since this template supports zc157 and the full zc158 family, honor those
 // variables, if set, but default to the legacy values if not.
 //
-if (!isset($heading_title)) {
-    $heading_title = HEADING_TITLE;
-}
-if (!isset($form_title)) {
-    $form_title = FORM_TITLE;
-}
+$heading_title ??= HEADING_TITLE;
+$form_title ??= FORM_TITLE;
 ?>
 <div class="centerColumn" id="askAQuestion">
-    <?php echo zen_draw_form('ask_a_question', zen_href_link(FILENAME_ASK_A_QUESTION, 'action=send&pid=' . (int)$pid, 'SSL')); ?>
+    <?= zen_draw_form('ask_a_question', zen_href_link(FILENAME_ASK_A_QUESTION, 'action=send&pid=' . (int)$pid, 'SSL')) ?>
 
 <?php
-if (CONTACT_US_STORE_NAME_ADDRESS === '1') {
+if (zen_config('CONTACT_US_STORE_NAME_ADDRESS') === '1') {
 ?>
-    <address><?php echo nl2br(STORE_NAME_ADDRESS); ?></address>
+    <address><?= nl2br(STORE_NAME_ADDRESS, false) ?></address>
 <?php
 }
 ?>
-    <h1><?php echo $heading_title . $product_details['products_name']; ?></h1>
+    <h1><?= $heading_title . $product_details['products_name'] ?></h1>
 
 <?php
-if (isset($_GET['action']) && ($_GET['action'] === 'success')) {
+if (($_GET['action'] ?? false) === 'success') {
 ?>
-    <div class="content"><?php echo TEXT_SUCCESS; ?></div>
+    <div class="content"><?= TEXT_SUCCESS ?></div>
 
     <div class="btn-toolbar my-3" role="toolbar">
-        <?php echo '<a class="p-2 btn button_back" href="' . zen_back_link(true) . '">' . BUTTON_BACK_ALT . '</a>'; ?>
+        <?= '<a class="p-2 btn button_back" href="' . zen_back_link(true) . '">' . BUTTON_BACK_ALT . '</a>' ?>
     </div>
 
 <?php
 } else {
 ?>
-    <a href="<?php echo zen_href_link(zen_get_info_page((int)$pid), 'products_id=' . (int)$pid, 'SSL'); ?>">
-        <?php echo zen_image(DIR_WS_IMAGES . $product_details['products_image'], $product_details['products_name'], IMAGE_PRODUCT_LISTING_WIDTH, IMAGE_PRODUCT_LISTING_HEIGHT); ?>
+    <a href="<?= zen_href_link(zen_get_info_page((int)$pid), 'products_id=' . (int)$pid, 'SSL') ?>">
+        <?= zen_image(DIR_WS_IMAGES . $product_details['products_image'], $product_details['products_name'], $tplSetting->IMAGE_PRODUCT_LISTING_WIDTH, $tplSetting->IMAGE_PRODUCT_LISTING_HEIGHT) ?>
     </a>
 
     <div id="contactUsNoticeContent" class="definecontent">
@@ -60,15 +56,15 @@ if ($messageStack->size('contact') > 0) {
 }
 ?>
     <div id="contactUsForm" class="card">
-        <h2 class="card-header"><?php echo $form_title; ?></h2>
+        <h2 class="card-header"><?= $form_title ?></h2>
         <div class="card-body">
-            <div class="required-info text-right my-3"><?php echo FORM_REQUIRED_INFORMATION; ?></div>
+            <div class="required-info text-right my-3"><?= FORM_REQUIRED_INFORMATION ?></div>
 <?php
 // show dropdown if set
-    if (CONTACT_US_LIST !== '') {
+    if (zen_config('CONTACT_US_LIST') !== '') {
 ?>
-            <label class="inputLabel" for="send-to"><?php echo SEND_TO_TEXT; ?></label><span class="alert"><?php echo ENTRY_REQUIRED_SYMBOL; ?></span>
-            <?php echo zen_draw_pull_down_menu('send_to',  $send_to_array, 0, 'id="send-to"'); ?>
+            <label class="inputLabel" for="send-to"><?= SEND_TO_TEXT ?></label><span class="alert"><?= ENTRY_REQUIRED_SYMBOL ?></span>
+            <?= zen_draw_pull_down_menu('send_to',  $send_to_array, 0, 'id="send-to"') ?>
             <div class="p-2"></div>
 <?php
     }
@@ -77,36 +73,36 @@ if ($messageStack->size('contact') > 0) {
     // zc158 adds a new definition for telephone-number labels; use that if present, otherwise
     // fall-back to the previous definition.
     //
-    $telephone_label = (defined('ENTRY_TELEPHONE_NUMBER')) ? ENTRY_TELEPHONE_NUMBER : ENTRY_TELEPHONE;
+    $telephone_label = zen_config('ENTRY_TELEPHONE_NUMBER') ?? zen_config('ENTRY_TELEPHONE');
 ?>
-            <label class="inputLabel" for="contactname"><?php echo ENTRY_NAME; ?></label>
-            <?php echo zen_draw_input_field('contactname', $name, ' size="40" id="contactname" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" autofocus required'); ?>
+            <label class="inputLabel" for="contactname"><?= ENTRY_NAME ?></label>
+            <?= zen_draw_input_field('contactname', $name, ' size="40" id="contactname" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" autofocus required') ?>
             <div class="p-2"></div>
 
-            <label class="inputLabel" for="email-address"><?php echo ENTRY_EMAIL; ?></label>
-            <?php echo zen_draw_input_field('email', ($email_address), ' size="40" id="email-address" autocomplete="off" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required', 'email'); ?>
+            <label class="inputLabel" for="email-address"><?= ENTRY_EMAIL ?></label>
+            <?= zen_draw_input_field('email', ($email_address), ' size="40" id="email-address" autocomplete="off" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required', 'email') ?>
             <div class="p-2"></div>
 
-            <label class="inputLabel" for="telephone"><?php echo $telephone_label; ?></label>
-            <?php echo zen_draw_input_field('telephone', ($telephone), ' size="20" id="telephone" autocomplete="off" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required', 'tel'); ?>
+            <label class="inputLabel" for="telephone"><?= $telephone_label ?></label>
+            <?= zen_draw_input_field('telephone', ($telephone), ' size="20" id="telephone" autocomplete="off" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required', 'tel') ?>
             <div class="p-2"></div>
 
-            <label for="enquiry"><?php echo ENTRY_ENQUIRY; ?></label>
-            <?php echo zen_draw_textarea_field('enquiry', '30', '7', $enquiry, 'id="enquiry" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required'); ?>
+            <label for="enquiry"><?= ENTRY_ENQUIRY ?></label>
+            <?= zen_draw_textarea_field('enquiry', '30', '7', $enquiry, 'id="enquiry" placeholder="' . ENTRY_REQUIRED_SYMBOL . '" required') ?>
 
-            <?php echo zen_draw_input_field($antiSpamFieldName, '', ' size="40" id="CUAS" style="visibility:hidden; display:none;" autocomplete="off"'); ?>
+            <?= zen_draw_input_field($antiSpamFieldName, '', ' size="40" id="CUAS" style="visibility:hidden; display:none;" autocomplete="off"') ?>
             
             <div class="btn-toolbar justify-content-end mt-3" role="toolbar">
-                <?php echo zen_image_submit(BUTTON_IMAGE_SEND, BUTTON_SEND_ALT); ?>
+                <?= zen_image_submit(BUTTON_IMAGE_SEND, BUTTON_SEND_ALT) ?>
             </div>
         </div>
     </div>
 
     <div class="btn-toolbar my-3" role="toolbar">
-        <?php echo zca_back_link(); ?>
+        <?= zca_back_link() ?>
     </div>
 <?php
 }
 ?>
-    <?php echo '</form>'; ?>
+    <?= '</form>' ?>
 </div>

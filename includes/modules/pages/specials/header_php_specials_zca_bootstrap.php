@@ -2,7 +2,7 @@
 /**
  * Specials
  * 
- * BOOTSTRAP v3.6.5
+ * BOOTSTRAP v3.8.0
  *
  * @package page
  * @copyright Copyright 2003-2006 Zen Cart Development Team
@@ -15,9 +15,9 @@
  */
 // -----
 // specials: Provide updated processing **ONLY IF** the ZCA bootstrap is the active template and
-// running on a Zen Cart version < 2.0.0.
+// running on a Zen Cart version < 2.1.0 (when all product listings were merged into one).
 //
-if (!(function_exists('zca_bootstrap_active') && zca_bootstrap_active()) || PROJECT_VERSION_MAJOR > 1) {
+if (!(function_exists('zca_bootstrap_active') && zca_bootstrap_active()) || version_compare(zen_get_zcversion(), '2.1.0', '>=')) {
     return;
 }
 // MJFB restored sort
@@ -32,7 +32,7 @@ require(DIR_WS_MODULES . zen_get_module_directory(FILENAME_LISTING_DISPLAY_ORDER
 // Set the maximum number of products in a page's listing to that defined for
 // the 'specials' page.
 //
-$product_listing_max_results = MAX_DISPLAY_SPECIAL_PRODUCTS;
+$product_listing_max_results = $tplSetting->MAX_DISPLAY_SPECIAL_PRODUCTS;
 
 // ------
 // Note: Once support is dropped for Zen Cart versions less than v2.0.0, all the following
@@ -64,17 +64,17 @@ $listing_sql = $db->bindVars($listing_sql, ':languageID', $_SESSION['languages_i
 //check to see if we are in normal mode ... not showcase, not maintenance, etc
 $show_submit = zen_run_normal();
 $define_list = [
-    'PRODUCT_LIST_MODEL' => PRODUCT_LIST_MODEL,
-    'PRODUCT_LIST_NAME' => PRODUCT_LIST_NAME,
-    'PRODUCT_LIST_MANUFACTURER' => PRODUCT_LIST_MANUFACTURER,
-    'PRODUCT_LIST_PRICE' => PRODUCT_LIST_PRICE,
-    'PRODUCT_LIST_QUANTITY' => PRODUCT_LIST_QUANTITY,
-    'PRODUCT_LIST_WEIGHT' => PRODUCT_LIST_WEIGHT,
-    'PRODUCT_LIST_IMAGE' => PRODUCT_LIST_IMAGE,
+    'PRODUCT_LIST_MODEL' => $tplSetting->PRODUCT_LIST_MODEL,
+    'PRODUCT_LIST_NAME' => $tplSetting->PRODUCT_LIST_NAME,
+    'PRODUCT_LIST_MANUFACTURER' => $tplSetting->PRODUCT_LIST_MANUFACTURER,
+    'PRODUCT_LIST_PRICE' => $tplSetting->PRODUCT_LIST_PRICE,
+    'PRODUCT_LIST_QUANTITY' => $tplSetting->PRODUCT_LIST_QUANTITY,
+    'PRODUCT_LIST_WEIGHT' => $tplSetting->PRODUCT_LIST_WEIGHT,
+    'PRODUCT_LIST_IMAGE' => $tplSetting->PRODUCT_LIST_IMAGE,
 ];
 
 asort($define_list);
-$column_list = array();
+$column_list = [];
 foreach ($define_list as $key => $value) {
     if ((int)$value > 0) {
         $column_list[] = $key;

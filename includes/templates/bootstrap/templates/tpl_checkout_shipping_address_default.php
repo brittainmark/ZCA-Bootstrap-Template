@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.7.6
+ * BOOTSTRAP v3.8.0
  *
  * Loaded automatically by index.php?main_page=checkout_shipping_adresss.
  * Allows customer to change the shipping address.
@@ -20,7 +20,7 @@ if ($messageStack->size('checkout_address') > 0) {
     echo $messageStack->output('checkout_address');
 }
 
-if ($process == false || $error == true) {
+if ($process === false || $error === true) {
 ?>
 <!--bof shipping address card-->
     <div id="shippingAddress-card" class="card mb-3">
@@ -33,7 +33,7 @@ if ($process == false || $error == true) {
                 <div class="col-sm-7">
                     <div id="shippingAddress-content" class="content">
 <?php
-    if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
+    if ($addresses_count < zen_config('MAX_ADDRESS_BOOK_ENTRIES')) {
         echo TEXT_CREATE_NEW_SHIPPING_ADDRESS;
     }
 ?>
@@ -54,7 +54,7 @@ if ($process == false || $error == true) {
     //
     $title_continue_checkout = str_replace(['<strong>', '</strong>'], '', TITLE_CONTINUE_CHECKOUT_PROCEDURE);
 
-    if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
+    if ($addresses_count < zen_config('MAX_ADDRESS_BOOK_ENTRIES')) {
 ?>
         <div class="col-lg-6">
             <div id="checkoutNewAddress-card" class="card mb-3">
@@ -97,7 +97,7 @@ if ($process == false || $error == true) {
 <?php
 }
 
-if ($process == true) {
+if ($process === true) {
 ?>
     <div id="checkoutShippingAddressDefault-back-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
         <?= zca_button_link(zen_href_link(FILENAME_CHECKOUT_SHIPPING_ADDRESS, '', 'SSL'), BUTTON_BACK_ALT, 'button_back') ?>

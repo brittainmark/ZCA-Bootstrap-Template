@@ -2,7 +2,7 @@
 /**
  * Module Template - for shipping-estimator display
  *
- * BOOTSTRAP v3.7.3
+ * BOOTSTRAP v3.8.0
  *
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -28,7 +28,7 @@ if (empty($extra)) {
 <div id="shippingEstimatorContent" class="mx-auto">
     <a id="seView"></a>
 <?php
-if (SHOW_SHIPPING_ESTIMATOR_BUTTON === '2') {
+if ($tplSetting->SHOW_SHIPPING_ESTIMATOR_BUTTON === '2') {
 ?>
     <h2 class="text-center"><?= CART_SHIPPING_OPTIONS ?></h2>
 <?php
@@ -62,7 +62,7 @@ if (zen_is_logged_in() && !zen_in_guest_checkout()) {
             <address><?= zen_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<br>') ?></address>
 <?php
 } elseif ($_SESSION['cart']->get_content_type() !== 'virtual') {
-    $flag_show_pulldown_states = (ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN === 'true');
+    $flag_show_pulldown_states = (zen_config('ACCOUNT_STATE_DRAW_INITIAL_DROPDOWN') === 'true');
 ?>
             <label class="inputLabel" for="country"><?= ENTRY_COUNTRY ?></label>
             <?= zen_get_country_list('zone_country_id', $selected_country, 'id="country"' . (($flag_show_pulldown_states === true) ? ' onchange="update_zone(this.form);"' : '')) ?>
@@ -99,7 +99,7 @@ if (zen_is_logged_in() && !zen_in_guest_checkout()) {
 if ($_SESSION['cart']->get_content_type() === 'virtual') {
     echo CART_SHIPPING_METHOD_FREE_TEXT .  ' ' . CART_SHIPPING_METHOD_ALL_DOWNLOADS;
 } elseif ($free_shipping == 1) {
-    echo sprintf(FREE_SHIPPING_DESCRIPTION, $currencies->format(MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER));
+    echo sprintf(FREE_SHIPPING_DESCRIPTION, $currencies->format(zen_config('MODULE_ORDER_TOTAL_SHIPPING_FREE_SHIPPING_OVER')));
 } else {
     if (!zen_is_logged_in() || zen_in_guest_checkout()) {
 ?>
@@ -107,9 +107,9 @@ if ($_SESSION['cart']->get_content_type() === 'virtual') {
                 <div class="pb-2"><?= CART_SHIPPING_QUOTE_CRITERIA ?></div>
                 <div class="pb-2">
                     <?= zen_get_zone_name((int)$selected_country, (int)$state_zone_id, '') .
-                              ($selectedState != '' ? ' ' . $selectedState : '') . ' ' .
-                              ($order->delivery['postcode'] ?? '') . ' ' .
-                              zen_get_country_name($order->delivery['country_id']) ?>
+                        ($selectedState != '' ? ' ' . $selectedState : '') . ' ' .
+                        ($order->delivery['postcode'] ?? '') . ' ' .
+                        zen_get_country_name($order->delivery['country_id']) ?>
                 </div>
             </div>
 <?php 

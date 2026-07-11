@@ -1,8 +1,8 @@
 <?php
 /**
  * Override Modal for popup_attributes_qty_prices
- * 
- * BOOTSTRAP v3.7.0
+ *
+ * BOOTSTRAP v3.8.0
  *
  * @package templateSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
@@ -22,8 +22,8 @@ if ($processing_completed === true) {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="attributesQtyPricesModalLabel"><?php echo TEXT_ATTRIBUTES_QTY_PRICES_HELP; ?></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="<?php echo TEXT_MODAL_CLOSE; ?>">
+        <h5 class="modal-title" id="attributesQtyPricesModalLabel"><?= TEXT_ATTRIBUTES_QTY_PRICES_HELP ?></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="<?= TEXT_MODAL_CLOSE ?>">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -32,7 +32,7 @@ if ($processing_completed === true) {
 $show_onetime = 'false';
 
 // attributes_qty_price
-if (PRODUCTS_OPTIONS_SORT_ORDER == '0') {
+if (zen_config('PRODUCTS_OPTIONS_SORT_ORDER') === '0') {
     $options_order_by = " ORDER BY LPAD(popt.products_options_sort_order,11,'0')";
 } else {
     $options_order_by = ' ORDER BY popt.products_options_name';
@@ -48,7 +48,7 @@ $sql =
       $options_order_by;
 $products_options_names_lookup = $db->Execute($sql);
 
-if (PRODUCTS_OPTIONS_SORT_BY_PRICE === '1') {
+if (zen_config('PRODUCTS_OPTIONS_SORT_BY_PRICE') === '1') {
     $order_by = " ORDER BY LPAD(pa.products_options_sort_order,11,'0'), pov.products_options_values_name";
 } else {
     $order_by = " ORDER BY LPAD(pa.products_options_sort_order,11,'0'), pa.options_values_price";
@@ -125,17 +125,17 @@ foreach ($products_options_names_lookup as $next_option) {
         <div class="table-responsive">
           <table class="table table-bordered table-striped">
             <tr>
-              <td colspan="<?php echo $cnt_qty_prices + 1; ?>">
-                <b><?php echo $next_option['products_options_name']; ?></b>: <em><?php echo $next_option_value['products_options_values_name']; ?></em>
+              <td colspan="<?= $cnt_qty_prices + 1 ?>">
+                <b><?= $next_option['products_options_name'] ?></b>: <em><?= $next_option_value['products_options_values_name'] ?></em>
               </td>
             </tr>
             <tr>
-              <td><?php echo TABLE_ATTRIBUTES_QTY_PRICE_QTY; ?></td>
-              <?php echo $attribute_quantity; ?>
+              <td><?= TABLE_ATTRIBUTES_QTY_PRICE_QTY ?></td>
+              <?= $attribute_quantity ?>
             </tr>
             <tr>
-              <td><?php echo TABLE_ATTRIBUTES_QTY_PRICE_PRICE; ?></td>
-              <?php echo $attribute_quantity_price; ?>
+              <td><?= TABLE_ATTRIBUTES_QTY_PRICE_PRICE ?></td>
+              <?= $attribute_quantity_price ?>
             </tr>
           </table>
         </div>
@@ -149,7 +149,7 @@ foreach ($products_options_names_lookup as $next_option) {
 //
 if ($show_onetime === 'true') {
 ?>
-        <h2 class="pageHeading"><?php echo TEXT_ATTRIBUTES_QTY_PRICES_ONETIME_HELP ?></h2>
+        <h2 class="pageHeading"><?= TEXT_ATTRIBUTES_QTY_PRICES_ONETIME_HELP ?></h2>
 <?php
     foreach ($products_options_names_lookup as $next_option) {
         $sql =
@@ -191,17 +191,17 @@ if ($show_onetime === 'true') {
         <div class="table-responsive">
           <table class="table table-bordered table-striped">
             <tr>
-              <td colspan="<?php echo $cnt_qty_prices + 1; ?>">
-                <b><?php echo $next_option['products_options_name']; ?></b>: <em><?php echo $next_option_value['products_options_values_name']; ?></em>
+              <td colspan="<?= $cnt_qty_prices + 1 ?>">
+                <b><?= $next_option['products_options_name'] ?></b>: <em><?= $next_option_value['products_options_values_name'] ?></em>
               </td>
             </tr>
             <tr>
-              <td><?php echo TABLE_ATTRIBUTES_QTY_PRICE_QTY; ?></td>
-              <?php echo $attribute_quantity; ?>
+              <td><?= TABLE_ATTRIBUTES_QTY_PRICE_QTY ?></td>
+              <?= $attribute_quantity ?>
             </tr>
             <tr>';
-              <td><?php echo TABLE_ATTRIBUTES_QTY_PRICE_PRICE; ?></td>
-              <?php echo $attribute_quantity_price; ?>
+              <td><?= TABLE_ATTRIBUTES_QTY_PRICE_PRICE ?></td>
+              <?= $attribute_quantity_price ?>
             </tr>
           </table>
         </div>
@@ -213,7 +213,7 @@ if ($show_onetime === 'true') {
 ?>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo TEXT_MODAL_CLOSE; ?></button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= TEXT_MODAL_CLOSE ?></button>
       </div>
     </div>
   </div>

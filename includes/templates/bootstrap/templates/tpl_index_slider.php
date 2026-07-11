@@ -1,18 +1,23 @@
 <?php
 // -----
 // Part of the Bootstrap 4 Template Home-Page Carousel by lat9.
-// Copyright (C) 2021-2025, Vinos de Frutas Tropicales.
+// Copyright (C) 2021-2026, Vinos de Frutas Tropicales.
 //
-// BOOTSTRAP v3.7.7
+// BOOTSTRAP v3.8.0
 //
 // -----
 // Zen Cart's 'base' banner management requires that a 'banners_history' record be present for a 'banner' if that banner is
 // to be expired.  Add a dummy record for any slider banners that don't already have such a record.
 //
+$bs4_slider_banner_group = trim((string)$tplSetting->BS4_SLIDER_BANNER_GROUP);
+if ($bs4_slider_banner_group === '') {
+    return;
+}
+
 $slider_banner_check = $db->Execute(
     "SELECT b.banners_id
        FROM " . TABLE_BANNERS . " b
-      WHERE b.banners_group = '" . BS4_SLIDER_BANNER_GROUP . "'
+      WHERE b.banners_group = '" . $bs4_slider_banner_group . "'
         AND b.banners_id NOT IN (SELECT bh.banners_id FROM " . TABLE_BANNERS_HISTORY . " bh)"
 );
 foreach ($slider_banner_check as $banner_history) {
@@ -27,7 +32,7 @@ $bs4_hp_banners = $db->Execute(
     "SELECT banners_id, banners_title, banners_image, banners_url, banners_open_new_windows
        FROM " . TABLE_BANNERS . "
       WHERE status = 1
-        AND banners_group = '" . BS4_SLIDER_BANNER_GROUP . "'
+        AND banners_group = '" . $bs4_slider_banner_group . "'
       ORDER BY banners_sort_order, banners_id"
 );
 if ($bs4_hp_banners->EOF) {
@@ -59,7 +64,7 @@ foreach ($bs4_hp_banners as $row) {
 ?>
         <div class="carousel-item <?= $hp_class ?>">
             <a href="<?= $banner_href ?>" <?= $anchor_target ?>>
-                <?= zen_image(DIR_WS_IMAGES . $row['banners_image'], $row['banners_title'], BS4_SLIDER_WIDTH, BS4_SLIDER_HEIGHT, ' class="mx-auto d-block"') ?>
+                <?= zen_image(DIR_WS_IMAGES . $row['banners_image'], $row['banners_title'], $tplSetting->BS4_SLIDER_WIDTH, $tplSetting->BS4_SLIDER_HEIGHT, ' class="mx-auto d-block"') ?>
             </a>
         </div>
 <?php

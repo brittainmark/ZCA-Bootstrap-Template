@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.7.9
+ * BOOTSTRAP v3.8.0
  *
  * Loaded by main_page=index
  * Displays product-listing when a particular category/subcategory is selected for browsing
@@ -18,12 +18,12 @@
 
     <div id="indexProductList-cat-wrap">
 <?php
-if (PRODUCT_LIST_CATEGORIES_IMAGE_STATUS === 'true') {
+if ($tplSetting->PRODUCT_LIST_CATEGORIES_IMAGE_STATUS === 'true') {
 // categories_image
     if ($categories_image = zen_get_categories_image($current_category_id)) {
 ?>
         <div id="indexProductList-categoryImage" class="categoryImage">
-            <?= zen_image(DIR_WS_IMAGES . $categories_image, '', CATEGORY_ICON_IMAGE_WIDTH, CATEGORY_ICON_IMAGE_HEIGHT) ?>
+            <?= zen_image(DIR_WS_IMAGES . $categories_image, '', $tplSetting->CATEGORY_ICON_IMAGE_WIDTH, $tplSetting->CATEGORY_ICON_IMAGE_HEIGHT) ?>
         </div>
 <?php
     }
@@ -59,7 +59,7 @@ if ($current_categories_description != '') {
 $check_for_alpha = $listing_sql;
 $check_for_alpha = $db->Execute($check_for_alpha);
 
-if ($do_filter_list || isset($_GET['alpha_filter_id']) || (PRODUCT_LIST_ALPHA_SORTER === 'true' && !$check_for_alpha->EOF)) {
+if ($do_filter_list || isset($_GET['alpha_filter_id']) || ($tplSetting->PRODUCT_LIST_ALPHA_SORTER === 'true' && !$check_for_alpha->EOF)) {
     echo
         zen_draw_form('filter', zen_href_link(FILENAME_DEFAULT), 'get', 'class="form-inline"') .
         '<label class="inputLabel">' . TEXT_SHOW . '</label>' .
@@ -126,21 +126,12 @@ if ($do_filter_list || isset($_GET['alpha_filter_id']) || (PRODUCT_LIST_ALPHA_SO
     <?= '</form>' ?>
 <?php
 }
-
-// -----
-// Zen Cart versions prior to 2.0.0 don't include the display-order sort, so neither
-// does this template when run on an earlier version.
-//
-if (PROJECT_VERSION_MAJOR > 1) {
 ?>
         <div class="col-sm-4">
 <?php
-    require $template->get_template_dir('/tpl_modules_listing_display_order.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_listing_display_order.php';
+require $template->get_template_dir('/tpl_modules_listing_display_order.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_listing_display_order.php';
 ?>
         </div>
-<?php
-}
-?>
     </div>
 <?php
 /**

@@ -2,7 +2,7 @@
 /**
  * Module Template
  * 
- * BOOTSTRAP v3.6.4
+ * BOOTSTRAP v3.8.0
  *
  * @copyright Copyright 2003-2020 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
@@ -15,10 +15,7 @@ require DIR_WS_MODULES . zen_get_module_directory(FILENAME_PRODUCT_LISTING);
 // v3.6.4 adds a configuration setting to override the "Add Selected to Cart"
 // button's default positioning.  The default, if not yet configured, is 'Always'.
 //
-if (!defined('BS4_FLOAT_ADD_SELECTED')) {
-    define('BS4_FLOAT_ADD_SELECTED', 'Always');
-}
-switch (BS4_FLOAT_ADD_SELECTED) {
+switch ($tplSetting->BS4_FLOAT_ADD_SELECTED) {
     case 'Never':
         $top_button_extra_class = '';
         $bottom_button_extra_class = '';
@@ -42,9 +39,8 @@ if ($show_top_submit_button === true) {
     </div>
 <?php
 } // show top submit
-?>
-<?php 
-if ($listing_split->number_of_rows > 0 && (PREV_NEXT_BAR_LOCATION == '1' || PREV_NEXT_BAR_LOCATION == '3')) {
+
+if ($listing_split->number_of_rows > 0 && in_array($tplSetting->PREV_NEXT_BAR_LOCATION, ['1', '3'], true)) {
 ?>
     <div id="productsListing-topRow" class="d-flex align-items-center justify-content-between flex-column flex-md-row">
         <div id="productsListing-topNumber" class="topNumber"><?= $listing_split->display_count(TEXT_DISPLAY_NUMBER_OF_PRODUCTS) ?></div>
@@ -54,8 +50,7 @@ if ($listing_split->number_of_rows > 0 && (PREV_NEXT_BAR_LOCATION == '1' || PREV
     </div>
 <?php
 }
-?>
-<?php
+
 /**
  * load the list_box_content template to display the products
  */
@@ -64,9 +59,8 @@ if (in_array($product_listing_layout_style, ['columns', 'fluid'])) {
 } else {
     require $template->get_template_dir('tpl_tabular_display.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_tabular_display.php';
 }
-?>
-<?php 
-if ($listing_split->number_of_rows && (PREV_NEXT_BAR_LOCATION == '2' || PREV_NEXT_BAR_LOCATION == '3')) {
+
+if ($listing_split->number_of_rows && in_array($tplSetting->PREV_NEXT_BAR_LOCATION, ['2', '3'], true)) {
 ?>
     <div id="productsListing-bottomRow" class="d-flex align-items-center justify-content-between flex-column flex-md-row">
         <div id="productsListing-bottomNumber" class="bottomNumber"><?= $listing_split->display_count(TEXT_DISPLAY_NUMBER_OF_PRODUCTS) ?></div>
@@ -76,8 +70,7 @@ if ($listing_split->number_of_rows && (PREV_NEXT_BAR_LOCATION == '2' || PREV_NEX
     </div>
 <?php
 }
-?>
-<?php
+
 if ($show_bottom_submit_button == true) {
 ?>
     <div id="productsListing-btn-toolbarBottom" class="btn-toolbar justify-content-end my-3" role="toolbar">
@@ -88,7 +81,6 @@ if ($show_bottom_submit_button == true) {
 ?>
 </div>
 <?php
-// if ($show_top_submit_button == true or $show_bottom_submit_button == true or (PRODUCT_LISTING_MULTIPLE_ADD_TO_CART != 0 and $show_submit == true and $listing_split->number_of_rows > 0)) {
 if ($show_top_submit_button == true || $show_bottom_submit_button == true) {
     echo '</form>';
 }

@@ -2,7 +2,7 @@
 /**
  * Page Template
  *
- * BOOTSTRAP v3.7.9
+ * BOOTSTRAP v3.8.0
  *
  * Loaded automatically by index.php?main_page=product_info.
  * Displays details of a typical product
@@ -38,7 +38,7 @@ if ($module_show_categories !== '0') {
 <?php
 }
 
-if (PRODUCT_INFO_PREVIOUS_NEXT === '1' || PRODUCT_INFO_PREVIOUS_NEXT === '3') {
+if (in_array($tplSetting->PRODUCT_INFO_PREVIOUS_NEXT, ['1', '3'], true)) {
 ?>
     <!--bof Prev/Next top position -->
     <div id="<?= $html_id_prefix ?>-productPrevNextTop" class="productPrevNextTop">
@@ -111,7 +111,7 @@ require($template->get_template_dir('tpl_bootstrap_images.php',DIR_WS_TEMPLATE, 
 /**
  * display the products additional images in a model carousel
  */
-if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes' && PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE === '1') {
+if ($tplSetting->PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes' && $tplSetting->PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_SLIDE === '1') {
     require $template->get_template_dir('tpl_bootstrap_images.php', DIR_WS_TEMPLATE, $current_page_base, 'modalboxes') . '/tpl_bootstrap_images.php';
 
     if ($num_images > 0) {
@@ -234,8 +234,8 @@ if ($pr_attr->fields['total'] > 0) {
         $display_price_top = false;
         $display_price_bottom = false;
     } else {
-        $display_price_top = (BS4_PRICING_LOCATION === 'Both' || BS4_PRICING_LOCATION === 'Above Only');
-        $display_price_bottom = (BS4_PRICING_LOCATION === 'Both' || BS4_PRICING_LOCATION === 'Below Only');
+        $display_price_top = in_array($tplSetting->BS4_PRICING_LOCATION, ['Both', 'Above Only'], true);
+        $display_price_bottom = in_array($tplSetting->BS4_PRICING_LOCATION, ['Both', 'Below Only'], true);
     }
 ?>
             <!--bof Product Price block above Attributes -->
@@ -263,7 +263,7 @@ if ($pr_attr->fields['total'] > 0) {
             <!--eof Product Price block above Attributes -->
 
             <div id="productAttributes">
-                <?php require $template->get_template_dir('/tpl_modules_attributes.php',DIR_WS_TEMPLATE, $current_page_base,'templates') . '/tpl_modules_attributes.php'; ?>
+                <?php require $template->get_template_dir('/tpl_modules_attributes.php',DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_attributes.php'; ?>
             </div>
 <?php
 }
@@ -284,7 +284,7 @@ if ($products_discount_type !== '0') {
 ?>
             <!--bof Quantity Discounts table -->
             <div id="<?= $html_id_prefix ?>-productQuantityDiscounts" class="productQuantityDiscounts">
-                <?php require $template->get_template_dir('/tpl_modules_products_quantity_discounts.php',DIR_WS_TEMPLATE, $current_page_base,'templates') . '/tpl_modules_products_quantity_discounts.php'; ?>
+                <?php require $template->get_template_dir('/tpl_modules_products_quantity_discounts.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_products_quantity_discounts.php'; ?>
             </div>
             <!--eof Quantity Discounts table -->
 <?php
@@ -308,7 +308,7 @@ if ($display_price_bottom === true) {
 ?>
             <!--bof Add to Cart Box -->
 <?php
-if (CUSTOMERS_APPROVAL === '3' && TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM === '') {
+if (zen_config('CUSTOMERS_APPROVAL') === '3' && TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM === '') {
   // do nothing
 } else {
     $display_qty = ($flag_show_product_info_in_cart_qty === '1' && $_SESSION['cart']->in_cart($_GET['products_id'])) ? '<p>' . PRODUCTS_ORDER_QTY_TEXT_IN_CART . $_SESSION['cart']->get_quantity($_GET['products_id']) . '</p>' : '';
@@ -358,7 +358,7 @@ if (CUSTOMERS_APPROVAL === '3' && TEXT_LOGIN_FOR_PRICE_BUTTON_REPLACE_SHOWROOM =
 
     <div id="<?= $html_id_prefix ?>-moduledDisplayRow" class="row">
 <?php
-if (PRODUCT_INFO_SHOW_NOTIFICATIONS_BOX === '1') {
+if ($tplSetting->PRODUCT_INFO_SHOW_NOTIFICATIONS_BOX === '1') {
 ?>
         <!--bof Products Notification Module-->
         <div id="<?= $html_id_prefix ?>-moduleDisplayColLeft" class="col-sm">
@@ -368,7 +368,7 @@ if (PRODUCT_INFO_SHOW_NOTIFICATIONS_BOX === '1') {
 <?php
 }
 
-if (PRODUCT_INFO_SHOW_MANUFACTURER_BOX === '1') {
+if ($tplSetting->PRODUCT_INFO_SHOW_MANUFACTURER_BOX === '1') {
 ?>
         <!--bof Products Manufacturer Info Module-->
         <div id="<?= $html_id_prefix ?>-moduleDisplayColRight" class="col-sm">
@@ -421,7 +421,7 @@ if ($products_date_available > date('Y-m-d H:i:s')) {
 
 <!--bof Prev/Next bottom position -->
 <?php
-if (PRODUCT_INFO_PREVIOUS_NEXT === '2' || PRODUCT_INFO_PREVIOUS_NEXT === '3') {
+if (in_array($tplSetting->PRODUCT_INFO_PREVIOUS_NEXT, ['2', '3'], true)) {
 ?>
     <div id="<?= $html_id_prefix ?>-productPrevNextBottom" class="productPrevNextBottom">
         <?php require $template->get_template_dir('/tpl_products_next_previous.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_products_next_previous.php'; ?>

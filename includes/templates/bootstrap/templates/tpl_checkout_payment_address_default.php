@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.5.2
+ * BOOTSTRAP v3.8.0
  *
  * Loaded automatically by index.php?main_page=checkout_payment_address.
  * Allows customer to change the billing address.
@@ -14,20 +14,23 @@
  */
 ?>
 <div id="checkoutPaymentAddressDefault" class="centerColumn">
-    <h1 id="checkoutPaymentAddressDefault-pageHeading" class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
-    <?php if ($messageStack->size('checkout_address') > 0) echo $messageStack->output('checkout_address'); ?>
+    <h1 id="checkoutPaymentAddressDefault-pageHeading" class="pageHeading"><?= HEADING_TITLE ?></h1>
 <?php
-if ($process == false || $error == true) {
+if ($messageStack->size('checkout_address') > 0) {
+    echo $messageStack->output('checkout_address');
+}
+
+if ($process === false || $error === true) {
 ?>
     <div id="billingAddress-card" class="card mb-3">
-        <h2 id="billingAddress-card-header" class="card-header"><?php echo TITLE_PAYMENT_ADDRESS; ?></h2>
+        <h2 id="billingAddress-card-header" class="card-header"><?= TITLE_PAYMENT_ADDRESS ?></h2>
         <div id="billingAddress-card-body" class="card-body p-3">
             <div class="row">
                 <div id="billingAddress-billToAddress" class="billToAddress col-sm-5">
-                    <address><?php echo zen_address_label($_SESSION['customer_id'], $_SESSION['billto'], true, ' ', '<br>'); ?></address>
+                    <address><?= zen_address_label($_SESSION['customer_id'], $_SESSION['billto'], true, ' ', '<br>') ?></address>
                 </div>
                 <div class="col-sm-7">
-                    <div id="billingAddress-content" class="content"><?php echo TEXT_SELECTED_PAYMENT_DESTINATION; ?></div>
+                    <div id="billingAddress-content" class="content"><?= TEXT_SELECTED_PAYMENT_DESTINATION ?></div>
                 </div>
             </div>
         </div>
@@ -42,22 +45,22 @@ if ($process == false || $error == true) {
     //
     $title_continue_checkout = str_replace(['<strong>', '</strong>'], '', TITLE_CONTINUE_CHECKOUT_PROCEDURE);
 
-    if ($addresses_count < MAX_ADDRESS_BOOK_ENTRIES) {
+    if ($addresses_count < zen_config('MAX_ADDRESS_BOOK_ENTRIES')) {
 ?>
         <div class="col-lg-6">
             <div id="checkoutNewAddress-card" class="card mb-3">
-                <?php echo zen_draw_form('checkout_address', zen_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL'), 'post', 'class="group"'); ?>
-                <h2 id="checkoutNewAddress-card-header" class="card-header"><?php echo TITLE_PLEASE_SELECT; ?></h2>
+                <?= zen_draw_form('checkout_address', zen_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL'), 'post', 'class="group"') ?>
+                <h2 id="checkoutNewAddress-card-header" class="card-header"><?= TITLE_PLEASE_SELECT ?></h2>
                 <div id="checkoutNewAddress-card-body" class="card-body p-3">
 <?php 
         require $template->get_template_dir('tpl_modules_common_address_format.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_common_address_format.php'; 
 ?>
                     <div class="btn-toolbar justify-content-between mt-3" role="toolbar">
-                        <?php echo '<strong>' . $title_continue_checkout . '</strong><br>' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?>
-                        <?php echo zen_draw_hidden_field('action', 'submit') . zen_image_submit(BUTTON_IMAGE_CONTINUE, BUTTON_CONTINUE_ALT); ?>
+                        <?= '<strong>' . $title_continue_checkout . '</strong><br>' . TEXT_CONTINUE_CHECKOUT_PROCEDURE ?>
+                        <?= zen_draw_hidden_field('action', 'submit') . zen_image_submit(BUTTON_IMAGE_CONTINUE, BUTTON_CONTINUE_ALT) ?>
                     </div>
                 </div>
-                <?php echo '</form>'; ?>
+                <?= '</form>' ?>
             </div>
         </div>
 <?php
@@ -65,27 +68,27 @@ if ($process == false || $error == true) {
 ?>
         <div class="col-lg-6">
             <div id="addressBookEntries-card" class="card mb-3">
-                <?php echo zen_draw_form('checkout_address_book', zen_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL'), 'post', 'class="group"'); ?>
-                <h4 id="addressBookEntries-card-header" class="card-header"><?php echo TABLE_HEADING_ADDRESS_BOOK_ENTRIES; ?></h4>
+                <?= zen_draw_form('checkout_address_book', zen_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL'), 'post', 'class="group"') ?>
+                <h4 id="addressBookEntries-card-header" class="card-header"><?= TABLE_HEADING_ADDRESS_BOOK_ENTRIES ?></h4>
                 <div id="addressBookEntries-card-body" class="card-body p-3">
 <?php
     require $template->get_template_dir('tpl_modules_checkout_address_book.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_checkout_address_book.php';
 ?>
                     <div class="btn-toolbar justify-content-between" role="toolbar">
-                        <?php echo '<strong>' . $title_continue_checkout . '</strong><br>' . TEXT_CONTINUE_CHECKOUT_PROCEDURE; ?>
-                        <?php echo zen_draw_hidden_field('action', 'submit') . zen_image_submit(BUTTON_IMAGE_CONTINUE, BUTTON_CONTINUE_ALT); ?>
+                        <?= '<strong>' . $title_continue_checkout . '</strong><br>' . TEXT_CONTINUE_CHECKOUT_PROCEDURE ?>
+                        <?= zen_draw_hidden_field('action', 'submit') . zen_image_submit(BUTTON_IMAGE_CONTINUE, BUTTON_CONTINUE_ALT) ?>
                     </div>
                 </div>
-                <?php echo '</form>'; ?>
+                <?= '</form>' ?>
             </div>
         </div>
     </div>
 <?php
 }
-if ($process == true) {
+if ($process === true) {
 ?>
     <div id="checkoutPaymentAddressDefault-btn-toolbar" class="btn-toolbar justify-content-end mt-3" role="toolbar">
-        <?php echo zca_button_link(zen_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL'), BUTTON_BACK_ALT, 'button_back'); ?>
+        <?= zca_button_link(zen_href_link(FILENAME_CHECKOUT_PAYMENT_ADDRESS, '', 'SSL'), BUTTON_BACK_ALT, 'button_back') ?>
     </div>
 <?php
 }

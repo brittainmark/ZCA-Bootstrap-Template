@@ -2,25 +2,24 @@
 // -----
 // Part of the ZCA Bootstrap template, @zcadditions, @lat9, @marco-pm
 //
-// BOOTSTRAP 3.7.6
+// BOOTSTRAP 3.8.0
 //
 class ZcaBootstrapObserver extends base
 {
-    protected
-        $products_id,
-        $display_sale_price,
-        $display_normal_price,
-        $display_special_price,
-        $display_wholesale_price,
-        $has_wholesale_price,
-        $product_is_free,
-        $product_is_call,
-        $products_tax_class_id,
-        $button_name,
-        $sec_class,
-        $parameters,
-        $text,
-        $is_product_info_page;
+    protected $products_id;
+    protected string $display_sale_price;
+    protected string $display_normal_price;
+    protected string $display_special_price;
+    protected string $display_wholesale_price;
+    protected bool $has_wholesale_price;
+    protected bool $product_is_free;
+    protected bool $product_is_call;
+    protected int $products_tax_class_id;
+    protected string $button_name;
+    protected string $sec_class;
+    protected string $parameters;
+    protected string $text;
+    protected bool $is_product_info_page;
 
     // -----
     // On construction, watch for various notifications ONLY IF the ZCA Bootstrap template
@@ -28,10 +27,6 @@ class ZcaBootstrapObserver extends base
     //
     public function __construct()
     {
-        if (!defined('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS')) {
-            define('PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS', 'Yes');
-        }
-
         if (zca_bootstrap_active()) {
             $this->attach(
                 $this,
@@ -69,7 +64,7 @@ class ZcaBootstrapObserver extends base
         }
     }
 
-    public function update(&$class, $eventID, $p1, &$p2, &$p3, &$p4, &$p5)
+    public function update(&$class, string $eventID, $p1, &$p2, &$p3, &$p4, &$p5): void
     {
         switch ($eventID) {
             case 'NOTIFY_ZEN_GET_PRODUCTS_DISPLAY_PRICE_SALE':
@@ -88,22 +83,36 @@ class ZcaBootstrapObserver extends base
                 );
 
                 if ($this->display_sale_price) {
-                    if (SHOW_SALE_DISCOUNT == 1) {
+                    if (zen_config('SHOW_SALE_DISCOUNT') === '1') {
                         if ($this->display_normal_price != 0) {
                             $show_discount_amount = number_format(100 - (($this->display_sale_price / $this->display_normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS);
                         } else {
                             $show_discount_amount = '';
                         }
-                        $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $show_discount_amount . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</span>';
+                        $show_sale_discount =
+                            '<span class="mx-auto w-100 p-1 productPriceDiscount">' .
+                                PRODUCT_PRICE_DISCOUNT_PREFIX . $show_discount_amount . PRODUCT_PRICE_DISCOUNT_PERCENTAGE .
+                            '</span>';
                     } else {
-                        $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $this->displayPrice($this->display_normal_price - $this->display_sale_price) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</span>';
+                        $show_sale_discount =
+                            '<span class="mx-auto w-100 p-1 productPriceDiscount">' .
+                                PRODUCT_PRICE_DISCOUNT_PREFIX . $this->displayPrice($this->display_normal_price - $this->display_sale_price) . PRODUCT_PRICE_DISCOUNT_AMOUNT .
+                            '</span>';
                     }
+                } elseif (zen_config('SHOW_SALE_DISCOUNT') === '1') {
+                    $show_sale_discount =
+                        '<span class="mx-auto w-100 p-1 productPriceDiscount">' .
+                            PRODUCT_PRICE_DISCOUNT_PREFIX .
+                            number_format(100 - (($this->display_special_price / $this->display_normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS) .
+                            PRODUCT_PRICE_DISCOUNT_PERCENTAGE .
+                        '</span>';
                 } else {
-                    if (SHOW_SALE_DISCOUNT == 1) {
-                        $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . number_format(100 - (($this->display_special_price / $this->display_normal_price) * 100), SHOW_SALE_DISCOUNT_DECIMALS) . PRODUCT_PRICE_DISCOUNT_PERCENTAGE . '</span>';
-                    } else {
-                        $show_sale_discount = '<span class="mx-auto w-100 p-1 productPriceDiscount">' . PRODUCT_PRICE_DISCOUNT_PREFIX . $this->displayPrice($this->display_normal_price - $this->display_special_price) . PRODUCT_PRICE_DISCOUNT_AMOUNT . '</span>';
-                    }
+                    $show_sale_discount =
+                        '<span class="mx-auto w-100 p-1 productPriceDiscount">' .
+                            PRODUCT_PRICE_DISCOUNT_PREFIX .
+                            $this->displayPrice($this->display_normal_price - $this->display_special_price) .
+                            PRODUCT_PRICE_DISCOUNT_AMOUNT .
+                        '</span>';
                 }
                 $p2 = true;
                 $p3 = $show_sale_discount;
@@ -125,7 +134,7 @@ class ZcaBootstrapObserver extends base
                     ]
                 );
 
-                $show_normal_price = '<span class="mx-auto w-100 p-1 normalprice">' . $this->displayPrice($this->display_normal_price) . ' </span>';
+                $show_normal_price = '<span class="mx-auto w-100 p-1 normalprice">' . $this->displayPrice($this->display_normal_price) . '</span>';
                 if ($this->display_sale_price && $this->display_sale_price != $this->display_special_price) {
                     $show_special_price = '<span class="mx-auto w-100 p-1 productSpecialPriceSale">' . $this->displayPrice($this->display_special_price) . '</span>';
                     if ($this->product_is_free == '1') {
@@ -205,7 +214,7 @@ class ZcaBootstrapObserver extends base
                 $free_tag = $call_tag = '';
 
                 if ($this->product_is_free == '1') {
-                    if (OTHER_IMAGE_PRICE_IS_FREE_ON == '0') {
+                    if (zen_config('OTHER_IMAGE_PRICE_IS_FREE_ON') === '0') {
                         $free_tag = '<span class="mx-auto w-100 p-1">' . PRODUCTS_PRICE_IS_FREE_TEXT . '</span>';
                     } else {
                         $free_tag = '<span class="mx-auto w-100 p-1">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_PRICE_IS_FREE, PRODUCTS_PRICE_IS_FREE_TEXT, '', '', '') . '</span>';
@@ -213,7 +222,7 @@ class ZcaBootstrapObserver extends base
                 }
 
                 if ($this->product_is_call) {
-                    if (PRODUCTS_PRICE_IS_CALL_IMAGE_ON == '0') {
+                    if (zen_config('PRODUCTS_PRICE_IS_CALL_IMAGE_ON') === '0') {
                         $call_tag = '<span class="mx-auto w-100 p-1">' . PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT . '</span>';
                     } else {
                         $call_tag = '<span class="mx-auto w-100 p-1">' . zen_image(DIR_WS_TEMPLATE_IMAGES . OTHER_IMAGE_CALL_FOR_PRICE, PRODUCTS_PRICE_IS_CALL_FOR_PRICE_TEXT, '', '', '') . '</span>';
@@ -235,7 +244,7 @@ class ZcaBootstrapObserver extends base
                         'text',
                     ]
                 );
-                if (trim($this->button_name) == trim($this->sec_class)) {
+                if (trim($this->button_name) === trim($this->sec_class)) {
                     $this->sec_class = '';
                 }
 
@@ -254,7 +263,7 @@ class ZcaBootstrapObserver extends base
                         'text',
                     ]
                 );
-                if (trim($this->button_name) == trim($this->sec_class)) {
+                if (trim($this->button_name) === trim($this->sec_class)) {
                     $this->sec_class = '';
                 }
 
@@ -264,7 +273,7 @@ class ZcaBootstrapObserver extends base
 
             case 'NOTIFY_ZEN_DRAW_INPUT_FIELD':
                 $field = $p2;
-                if (strpos($field, 'class="') !== false) {
+                if (str_contains($field, 'class="')) {
                     $field = str_replace('class="', 'class="form-control ', $field);
                 } else {
                     $field = str_replace('<input ', '<input class="form-control" ', $field);
@@ -274,7 +283,7 @@ class ZcaBootstrapObserver extends base
 
             case 'NOTIFY_ZEN_DRAW_SELECTION_FIELD':
                 $selection = $p2;
-                if (strpos($selection, 'class="') !== false) {
+                if (str_contains($selection, 'class="')) {
                     $selection = str_replace('class="', 'class="custom-control-input ', $selection);
                 } else {
                     $selection = str_replace('<input ', '<input class="custom-control-input" ', $selection);
@@ -284,7 +293,7 @@ class ZcaBootstrapObserver extends base
 
             case 'NOTIFY_ZEN_DRAW_TEXTAREA_FIELD':
                 $field = $p2;
-                if (strpos($field, 'class="') !== false) {
+                if (str_contains($field, 'class="')) {
                     $field = str_replace('class="', 'class="form-control ', $field);
                 } else {
                     $field = str_replace('<textarea ', '<textarea class="form-control" ', $field);
@@ -294,7 +303,7 @@ class ZcaBootstrapObserver extends base
 
             case 'NOTIFY_ZEN_DRAW_PULL_DOWN_MENU':
                 $field = $p2;
-                if (strpos($field, 'class="') !== false) {
+                if (str_contains($field, 'class="')) {
                     $field = str_replace('class="', 'class="custom-select ', $field);
                 } else {
                     $field = str_replace('<select ', '<select class="custom-select" ', $field);
@@ -322,11 +331,12 @@ class ZcaBootstrapObserver extends base
                 break;
 
             case 'NOTIFY_MODULES_ADDITIONAL_IMAGES_SCRIPT_LINK':
-                if (PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes') {
+                global $tplSetting;
+                if ($tplSetting->PRODUCT_INFO_SHOW_BOOTSTRAP_MODAL_POPUPS === 'Yes') {
                     $products_image_large = $p1['products_image_large'];
                     $i = $p1['index'];
                     $link = '<a href="javascript:void(0)" class="imageModal">';
-                    $link .= '<img src="' . $products_image_large . '" height="' . SMALL_IMAGE_HEIGHT . '" width="'. SMALL_IMAGE_WIDTH . '" id="' . $i . '" alt="' . zen_output_string_protected($p1['products_name']) . '">';
+                    $link .= '<img src="' . $products_image_large . '" height="' . $tplSetting->SMALL_IMAGE_HEIGHT . '" width="' . $tplSetting->SMALL_IMAGE_WIDTH . '" id="' . $i . '" alt="' . zen_output_string_protected($p1['products_name']) . '">';
                     $link .= '<div class="p-1"></div>';
                     $link .= '<span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span>';
                     $link .= '</a>';
@@ -364,7 +374,7 @@ class ZcaBootstrapObserver extends base
     // This function creates class variables for the specified elements in the
     // (presumed) associative array received with a notification.
     //
-    protected function setVariables($eventID, $notifyParams, array $variableArray): void
+    protected function setVariables(string $eventID, array $notifyParams, array $variableArray): void
     {
         foreach ($variableArray as $key) {
             $this->$key = $notifyParams[$key] ?? false;
@@ -375,7 +385,7 @@ class ZcaBootstrapObserver extends base
     // This function creates the display of a given price in the current currency.  The caller is PRESUMED
     // to have set $this->products_tax_class_id or a PHP error will result.
     //
-    protected function displayPrice($value)
+    protected function displayPrice(mixed $value): string
     {
         global $currencies;
         return $currencies->display_price($value, zen_get_tax_rate($this->products_tax_class_id));

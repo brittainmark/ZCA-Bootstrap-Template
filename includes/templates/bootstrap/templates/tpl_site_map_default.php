@@ -1,8 +1,8 @@
 <?php
 /**
  * Page Template
- * 
- * BOOTSTRAP v3.7.6
+ *
+ * BOOTSTRAP v3.8.0
  *
  * Loaded by index.php?main_page=site_map
  * Displays site-map and some hard-coded navigation components
@@ -16,7 +16,7 @@
 <div id="siteMapDefault" class="centerColumn">
     <h1 id="siteMapDefault-pageHeading" class="pageHeading"><?= HEADING_TITLE ?></h1>
 <?php
-if (DEFINE_SITE_MAP_STATUS === '1' || DEFINE_SITE_MAP_STATUS === '2') {
+if ($tplSetting->DEFINE_SITE_MAP_STATUS === '1') {
 ?>
     <div id="siteMapDefault-defineContent" class="defineContent">
 <?php
@@ -32,9 +32,14 @@ if (DEFINE_SITE_MAP_STATUS === '1' || DEFINE_SITE_MAP_STATUS === '2') {
 echo $zen_SiteMapTree->buildTree();
 ?>
     <ul class="list-group">
+<?php
+if (!empty($flag_show_about_us_sidebox_link)) {
+?>
         <li class="list-group-item"><a href="<?= zen_href_link(FILENAME_ABOUT_US) ?>"><?= BOX_INFORMATION_ABOUT_US ?></a></li>
 <?php
-if (SHOW_ACCOUNT_LINKS_ON_SITE_MAP === 'Yes') {
+}
+
+if ($tplSetting->SHOW_ACCOUNT_LINKS_ON_SITE_MAP === 'Yes') {
 ?>
         <li class="list-group-item"><a href="<?= zen_href_link(FILENAME_ACCOUNT, '', 'SSL') ?>"><?= PAGE_ACCOUNT ?></a>
             <ul class="list-group">
@@ -58,31 +63,35 @@ if (SHOW_ACCOUNT_LINKS_ON_SITE_MAP === 'Yes') {
                 <!-- MJFB -->
                 <li class="list-group-item"><?php echo '<a href="' . zen_href_link(FILENAME_ABOUT_US) . '">' . BOX_INFORMATION_ABOUT_US . '</a>'; ?></li>
 <?php
-if (DEFINE_SHIPPINGINFO_STATUS <= '1') {
+if ($tplSetting->DEFINE_SHIPPINGINFO_STATUS <= '1') {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_SHIPPING) . '">' . BOX_INFORMATION_SHIPPING . '</a>' ?></li>
 <?php
 }
-if (DEFINE_PRIVACY_STATUS <= '1') {
+
+if ($tplSetting->DEFINE_PRIVACY_STATUS <= '1') {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_PRIVACY) . '">' . BOX_INFORMATION_PRIVACY . '</a>' ?></li>
 <?php
 }
-if (DEFINE_CONDITIONS_STATUS <= '1') {
+if ($tplSetting->DEFINE_CONDITIONS_STATUS <= '1') {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_CONDITIONS) . '">' . BOX_INFORMATION_CONDITIONS . '</a>' ?></li>
 <?php
 }
-if (defined('FILENAME_ACCESSIBILITY') && (!empty($flag_show_accessibility_sidebox_link))) {
+
+if (defined('FILENAME_ACCESSIBILITY') && !empty($flag_show_accessibility_sidebox_link)) {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_ACCESSIBILITY) . '">' . BOX_INFORMATION_ACCESSIBILITY . '</a>' ?></li>
 <?php
 }
-if (DEFINE_CONTACT_US_STATUS <= '1') {
+
+if ($tplSetting->DEFINE_CONTACT_US_STATUS <= '1') {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_CONTACT_US, '', 'SSL') . '">' . BOX_INFORMATION_CONTACT . '</a>' ?></li>
 <?php
 }
+
 if (!empty($external_bb_url) && !empty($external_bb_text)) {
 ?>
                 <li class="list-group-item"><?= '<a href="' . $external_bb_url . '" rel="noopener" target="_blank">' . $external_bb_text . '</a>' ?></li>
@@ -95,32 +104,38 @@ if (defined('FILENAME_FAQ')) {
 <?php
 }
 // MJFB End
-if (defined('MODULE_ORDER_TOTAL_GV_STATUS') && MODULE_ORDER_TOTAL_GV_STATUS === 'true') {
+
+if (zen_config('MODULE_ORDER_TOTAL_GV_STATUS') === 'true') {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_GV_FAQ) . '">' . BOX_INFORMATION_GV . '</a>' ?></li>
 <?php
 }
-if (defined('MODULE_ORDER_TOTAL_COUPON_STATUS') && MODULE_ORDER_TOTAL_COUPON_STATUS === 'true') {
+
+if (zen_config('MODULE_ORDER_TOTAL_COUPON_STATUS') === 'true') {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_DISCOUNT_COUPON) . '">' . BOX_INFORMATION_DISCOUNT_COUPONS . '</a>' ?></li>
 <?php
 }
-if (SHOW_NEWSLETTER_UNSUBSCRIBE_LINK === 'true') {
+
+if (zen_config('SHOW_NEWSLETTER_UNSUBSCRIBE_LINK') === 'true') {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_UNSUBSCRIBE) . '">' . BOX_INFORMATION_UNSUBSCRIBE . '</a>' ?></li>
 <?php
 }
-if (DEFINE_PAGE_2_STATUS <= '1') {
+
+if ($tplSetting->DEFINE_PAGE_2_STATUS <= '1') {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_PAGE_2) . '">' . BOX_INFORMATION_PAGE_2 . '</a>' ?></li>
 <?php
 }
-if (DEFINE_PAGE_3_STATUS <= '1') {
+
+if ($tplSetting->DEFINE_PAGE_3_STATUS <= '1') {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_PAGE_3) . '">' . BOX_INFORMATION_PAGE_3 . '</a>' ?></li>
 <?php
 }
-if (DEFINE_PAGE_4_STATUS <= '1') {
+
+if ($tplSetting->DEFINE_PAGE_4_STATUS <= '1') {
 ?>
                 <li class="list-group-item"><?= '<a href="' . zen_href_link(FILENAME_PAGE_4) . '">' . BOX_INFORMATION_PAGE_4 . '</a>' ?></li>
 <?php
@@ -128,7 +143,7 @@ if (DEFINE_PAGE_4_STATUS <= '1') {
 ?>
             </ul>
         </li>
-<?php 
+<?php
 $pages_query = $db->Execute(
     "SELECT e.*, ec.*
        FROM " . TABLE_EZPAGES . " e, " . TABLE_EZPAGES_CONTENT . " ec

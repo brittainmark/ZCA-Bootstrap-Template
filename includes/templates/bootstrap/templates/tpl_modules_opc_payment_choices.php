@@ -1,13 +1,13 @@
 <?php
 // -----
 // Part of the One-Page Checkout plugin, provided under GPL 2.0 license by lat9
-// Copyright (C) 2013-2025, Vinos de Frutas Tropicales.  All rights reserved.
+// Copyright (C) 2013-2026, Vinos de Frutas Tropicales.  All rights reserved.
 //
 // Note: This formatting has changed in v2.0.0+ of OPC, in support of the guest-checkout path.
 // The $enabled_payment_modules variable must be handled using foreach, since numerical keys
 // might have been removed if the payment method is not supported for guest-checkout!!
 //
-// Last updated: OPC v2.4.2/Bootstrap v3.7.9
+// Last updated: OPC v2.4.2/Bootstrap v3.8.0
 //
 // -----
 // Don't display the payment-method block unless there is a shipping method available
@@ -22,11 +22,11 @@ if ($shipping_module_available === true && $display_payment_block === true) {
     // ** BEGIN PAYPAL EXPRESS CHECKOUT **
     if (!$payment_modules->in_special_checkout()) {
     // ** END PAYPAL EXPRESS CHECKOUT ** 
-        if (SHOW_ACCEPTED_CREDIT_CARDS != '0') {
-            if (SHOW_ACCEPTED_CREDIT_CARDS == '1') {
+        if (zen_config('SHOW_ACCEPTED_CREDIT_CARDS') !== '0') {
+            if (zen_config('SHOW_ACCEPTED_CREDIT_CARDS') === '1') {
                 echo TEXT_ACCEPTED_CREDIT_CARDS . zen_get_cc_enabled();
           
-            } elseif (SHOW_ACCEPTED_CREDIT_CARDS == '2') {
+            } elseif (zen_config('SHOW_ACCEPTED_CREDIT_CARDS') === '2') {
                 echo TEXT_ACCEPTED_CREDIT_CARDS . zen_get_cc_enabled('IMAGE_');
             }
         } 
@@ -73,7 +73,7 @@ if ($shipping_module_available === true && $display_payment_block === true) {
             <label for="pmt-<?= $payment_id ?>"<?= $payment_label_class ?>><?= $current_method['module'] ?></label>
         </div>
 <?php
-            if (defined('MODULE_ORDER_TOTAL_COD_STATUS') && MODULE_ORDER_TOTAL_COD_STATUS === 'true' && $payment_id === 'cod') {
+            if (zen_config('MODULE_ORDER_TOTAL_COD_STATUS') === 'true' && $payment_id === 'cod') {
                 if (!defined('TEXT_INFO_COD_FEES')) {
                     // -----
                     // Need to load the 'ot_cod' language file, since it's not pre-loaded during AJAX operations.

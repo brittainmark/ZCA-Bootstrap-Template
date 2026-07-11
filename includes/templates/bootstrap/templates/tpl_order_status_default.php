@@ -6,7 +6,7 @@
 // Adapted from the like-named page handling with the following history:
 // - Integrated COWAA v1.0 (@davewest)
 //
-// Last updated: OPC v2.5.4/Bootstrap v3.7.10
+// Last updated: OPC v2.5.4/Bootstrap v3.8.0
 //
 // -----
 // v3.7.3 and later, constants now have a 'ORDER_STATUS_' prefix to align with
@@ -29,7 +29,7 @@ $display_products = in_array(ORDER_STATUS_DISPLAY_PRODUCTS, ['true', true]);
 ?>
 <div class="centerColumn" id="orderStatus">
     <h1 id="orderHistoryHeading"><?= HEADING_TITLE ?></h1>
-<?php 
+<?php
 if ($messageStack->size('order_status') > 0) {
     echo $messageStack->output('order_status');
 }
@@ -42,8 +42,8 @@ if (isset($order)) {
         </h2>
         <div class="card-body">
             <div class="text-right"><?= HEADING_ORDER_DATE . ' ' . zen_date_long($order->info['date_purchased']) ?></div>
-<?php 
-    if ($display_products === true) { 
+<?php
+    if ($display_products === true) {
         $display_tax_column = (count($order->info['tax_groups']) > 1);
 ?>
             <div class="table-responsive">
@@ -114,7 +114,7 @@ if (isset($order)) {
 ?>
                 </table>
             </div>
-<?php 
+<?php
     }
 
     // -----
@@ -124,7 +124,7 @@ if (isset($order)) {
     // We'll set the order's email address into the session for that module's processing and then remove
     // that value, once finished.
     //
-    if (DOWNLOAD_ENABLED === 'true') {
+    if (zen_config('DOWNLOAD_ENABLED') === 'true') {
         require $template->get_template_dir('tpl_modules_downloads.php', DIR_WS_TEMPLATE, $current_page_base, 'templates') . '/tpl_modules_downloads.php';
     }
 
@@ -159,7 +159,7 @@ if (isset($order)) {
         }
 ?>
             </table>
-<?php 
+<?php
     }
 
     $display_card_group = (($display_shipping === true && !empty($order->info['shipping_method'])) || $display_payment === true);
@@ -175,10 +175,10 @@ if (isset($order)) {
                         <div><?= $order->info['shipping_method'] ?></div>
                     </div>
                 </div>
-<?php 
+<?php
         }
 
-        if ($display_payment === true) { 
+        if ($display_payment === true) {
 ?>
                 <div id="myAccountPaymentInfo" class="card col-md-6 p-0">
                     <h5 class="card-header"><?= HEADING_PAYMENT_METHOD ?></h5>
@@ -186,15 +186,15 @@ if (isset($order)) {
                         <div><?= $order->info['payment_method'] ?></div>
                     </div>
                 </div>
- <?php 
-        } 
+ <?php
+        }
 ?>
             </div>
         </div>
     </div>
-<?php 
+<?php
     }
-} 
+}
 
 echo zen_draw_form('order_status', zen_href_link(FILENAME_ORDER_STATUS, 'action=status', $request_type), 'post');
 ?>
@@ -205,7 +205,7 @@ echo zen_draw_form('order_status', zen_href_link(FILENAME_ORDER_STATUS, 'action=
             <div class="form-group row">
                 <label class="inputLabel" for="order_id" class="col-sm-2 col-form-label"><?= ENTRY_ORDER_NUMBER ?></label>
                 <div class="col-sm-2">
-                    <?= zen_draw_input_field('order_id', $orderID, 'size="10" id="order_id" required', 'number') ?> 
+                    <?= zen_draw_input_field('order_id', $orderID, 'size="10" id="order_id" required', 'number') ?>
                 </div>
 
                 <label class="inputLabel" for="query_email_address" class="col-sm-2 col-form-label"><?= ENTRY_EMAIL ?></label>

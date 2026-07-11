@@ -123,3 +123,59 @@ table.tabTable td {
 }
 }
 
+/* Merging back from version-specific stylesheets */
+.btn.button_add_selected {
+    position: fixed;
+    bottom: 7.5rem;
+    z-index: 100;
+}
+#shippingEstimatorContent,
+#shoppingcartBody .qtyCell input {
+    width: fit-content;
+}
+a {
+    text-decoration: underline;
+}
+.btn.button_add_selected {
+    position: static;
+    z-index: auto;
+}
+.btn.button_add_selected.bs4-button-float.always {
+    position: fixed;
+    bottom: 7.5rem;
+    z-index: 100;
+}
+@media (max-width: 577px) { 
+    .btn.button_add_selected.bs4-button-float.sm-only {
+        position: fixed;
+        bottom: 5rem;
+        z-index: 100;
+        left: 2vw;
+    }
+    .btn.button_add_selected.bs4-button-hide-sm {
+        display: none;
+    }
+}
+#checkoutPayment label.inputLabelPayment+input[type="checkbox"],
+#checkoutPayment label.inputLabel+input[type="checkbox"] {
+    opacity: 100%;
+    position: initial;
+    margin-left: .5rem;
+}
+.card-body {
+    border-radius: inherit;
+}
+.card-header+.card-body {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.leftBoxCard,
+.rightBoxCard {
+    overflow: hidden;
+}
+.pl-dp {
+    min-width: 7rem;
+}
+.qmax > br {
+    display: none;
+}

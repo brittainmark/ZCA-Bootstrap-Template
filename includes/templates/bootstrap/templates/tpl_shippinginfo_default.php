@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.5.0
+ * BOOTSTRAP v3.8.0
  *
  * @package templateSystem
  * @copyright Copyright 2003-2005 Zen Cart Development Team
@@ -12,10 +12,10 @@
  */
 ?>
 <div id="shippinginfoDefault" class="centerColumn">
-    <h1 id="shippinginfoDefault-pageHeading" class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
+    <h1 id="shippinginfoDefault-pageHeading" class="pageHeading"><?= HEADING_TITLE ?></h1>
 
 <?php
-if (DEFINE_SHIPPINGINFO_STATUS === '1' || DEFINE_SHIPPINGINFO_STATUS === '2') {
+if (in_array($tplSetting->DEFINE_SHIPPINGINFO_STATUS, ['1', '2'], true)) {
 ?>
     <div id="shippinginfoDefault-defineContent" class="defineContent">
 <?php
@@ -29,6 +29,6 @@ if (DEFINE_SHIPPINGINFO_STATUS === '1' || DEFINE_SHIPPINGINFO_STATUS === '2') {
 }
 ?>
     <div id="shippinginfoDefault-btn-toolbar" class="btn-toolbar my-3" role="toolbar">
-        <?php echo zca_back_link(); ?>
+        <?= zca_back_link() ?>
     </div>
 </div>

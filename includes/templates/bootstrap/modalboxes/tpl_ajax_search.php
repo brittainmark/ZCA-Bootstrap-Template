@@ -2,10 +2,10 @@
 // -----
 // Part of the Bootstrap template for Zen Cart.  Included by /includes/templates/bootstrap/common/tpl_main_page.php.
 //
-// Bootstrap v3.7.2
+// Bootstrap v3.8.0
 //
-if (defined('BS4_AJAX_SEARCH_ENABLE') && BS4_AJAX_SEARCH_ENABLE === 'true') {
-    $ajax_search_parameter = (defined('BS4_AJAX_SEARCH_INC_DESC') && BS4_AJAX_SEARCH_INC_DESC === 'true') ? 'search_in_description=1' : '';
+if ($tplSetting->BS4_AJAX_SEARCH_ENABLE === 'true') {
+    $ajax_search_parameter = ($tplSetting->BS4_AJAX_SEARCH_INC_DESC === 'true') ? 'search_in_description=1' : '';
 ?>
     <div id="search-wrapper" class="modal fade" role="dialog" aria-labelledby="search-modal-title" aria-hidden="true">
         <div class="modal-dialog">

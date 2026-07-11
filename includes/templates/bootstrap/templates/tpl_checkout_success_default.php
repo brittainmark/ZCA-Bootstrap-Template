@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.7.6
+ * BOOTSTRAP v3.8.0
  *
  * Loaded automatically by index.php?main_page=checkout_success.
  * Displays confirmation details after order has been successfully processed.
@@ -18,11 +18,9 @@
         <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
     </div>
 
-    <h1 id="checkoutSuccessDefault-pageHeading" class="pageHeading">
-        <?= HEADING_TITLE ?>
-    </h1>
+    <h1 id="checkoutSuccessDefault-pageHeading" class="pageHeading"><?= HEADING_TITLE ?></h1>
 <?php
-if (DEFINE_CHECKOUT_SUCCESS_STATUS >= 1 && DEFINE_CHECKOUT_SUCCESS_STATUS <= 2) {
+if (in_array($tplSetting->DEFINE_CHECKOUT_SUCCESS_STATUS, ['1', '2'], true)) {
 ?>
     <div id="checkoutSuccessDefault-defineContent" class="defineContent">
 <?php
@@ -38,7 +36,7 @@ if (DEFINE_CHECKOUT_SUCCESS_STATUS >= 1 && DEFINE_CHECKOUT_SUCCESS_STATUS <= 2) 
 
 <!-- bof payment-method-alerts -->
 <?php
-if (isset($additional_payment_messages) && $additional_payment_messages !== '') {
+if (($additional_payment_messages ?? '') !== '') {
 ?>
     <div id="checkoutSuccessDefault-content" class="content">
         <?= $additional_payment_messages ?>
@@ -111,7 +109,7 @@ if ($customer_has_gv_balance ) {
  * The following creates a list of checkboxes for the customer to select if they wish to be included in product-notification
  * announcements related to products they've just purchased.
  **/
-if ($flag_show_products_notification == true) {
+if ($flag_show_products_notification === true) {
 ?>
 <!--bof product notifications card-->
     <div id="productNotifications-card" class="card mb-3">

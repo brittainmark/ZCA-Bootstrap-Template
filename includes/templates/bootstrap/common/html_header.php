@@ -2,7 +2,7 @@
 /**
  * Common Template
  *
- * BOOTSTRAP v3.7.10
+ * BOOTSTRAP v3.8.0
  *
  * outputs the html header. i,e, everything that comes before the </head> tag.
  *
@@ -20,6 +20,7 @@ $zco_notifier->notify('NOTIFY_HTML_HEAD_START', $current_page_base, $template_di
 
 // Prevent clickjacking risks by setting X-Frame-Options:SAMEORIGIN
 header('X-Frame-Options:SAMEORIGIN');
+header('X-Content-Type-Options: nosniff');
 
 /**
  * load the module for generating page meta-tags
@@ -79,10 +80,10 @@ $zco_notifier->notify('NOTIFY_HTML_HEAD_TAG_START', $current_page_base);
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="<?= META_TAG_KEYWORDS ?>">
     <meta name="description" content="<?= META_TAG_DESCRIPTION ?>">
-    <meta name="author" content="<?= STORE_NAME ?>">
+    <meta name="author" content="<?= zen_config('STORE_NAME') ?>">
     <meta name="generator" content="shopping cart program by Zen Cart&reg;, https://www.zen-cart.com eCommerce">
 <?php
-if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base, explode(',', constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base == 'down_for_maintenance' || $robotsNoIndex === true) {
+if (defined('ROBOTS_PAGES_TO_SKIP') && in_array($current_page_base, explode(',', constant('ROBOTS_PAGES_TO_SKIP'))) || $current_page_base === 'down_for_maintenance' || $robotsNoIndex === true) {
 ?>
     <meta name="robots" content="noindex, nofollow">
 <?php

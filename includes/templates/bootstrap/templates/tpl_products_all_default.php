@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP 3.7.0
+ * BOOTSTRAP 3.8.0
  *
  * @package templateSystem
  * @copyright Copyright 2003-2016 Zen Cart Development Team
@@ -12,10 +12,10 @@
  */
 ?>
 <div id="productsAllDefault" class="centerColumn">
-    <h1 id="productsAllDefault-pageHeading" class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
+    <h1 id="productsAllDefault-pageHeading" class="pageHeading"><?= HEADING_TITLE ?></h1>
     <div class="row">
 <?php
-if (PRODUCT_LIST_ALPHA_SORTER === 'true') {
+if ($tplSetting->PRODUCT_LIST_ALPHA_SORTER === 'true') {
 ?>
         <div class="col">
 <?php

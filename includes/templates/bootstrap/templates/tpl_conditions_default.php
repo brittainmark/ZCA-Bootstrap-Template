@@ -2,7 +2,7 @@
 /**
  * Page Template
  * 
- * BOOTSTRAP v3.5.0
+ * BOOTSTRAP v3.8.0
  *
  * Loaded automatically by index.php?main_page=conditions.<br />
  * Displays conditions page.
@@ -15,9 +15,9 @@
  */
 ?>
 <div id="conditionsDefault" class="centerColumn">
-    <h1 id="conditionsDefault-pageHeading" class="pageHeading"><?php echo HEADING_TITLE; ?></h1>
+    <h1 id="conditionsDefault-pageHeading" class="pageHeading"><?= HEADING_TITLE ?></h1>
 <?php
-if (DEFINE_CONDITIONS_STATUS === '1' || DEFINE_CONDITIONS_STATUS === '2') {
+if (in_array($tplSetting->DEFINE_CONDITIONS_STATUS, ['1', '2'], true)) {
 ?>
     <div id="conditionsDefault-defineContent" class="defineContent">
 <?php
@@ -31,6 +31,6 @@ if (DEFINE_CONDITIONS_STATUS === '1' || DEFINE_CONDITIONS_STATUS === '2') {
 }
 ?>
     <div id="conditionsDefault-btn-toolbar" class="btn-toolbar my-3" role="toolbar">
-        <?php echo zca_back_link(); ?>
+        <?= zca_back_link() ?>
     </div>
 </div>
